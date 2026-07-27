@@ -1,0 +1,46 @@
+skills/butterfly-effect/SKILL.md
+  s_522ff224fa33e9::t_5a446d1700fffc 27,38
+  s_522ff224fa33e9::t_92ddbb4993d89b 20
+  s_522ff224fa33e9::t_6dd5966e123ec8 42,44,46,50-57,61,67
+  s_522ff224fa33e9::t_9fbebc2860444a 73,77
+  s_522ff224fa33e9::t_aa56978c636535 17
+  s_522ff224fa33e9::t_54210f04b60906 28-30,32
+scripts/check-repository.js
+  s_522ff224fa33e9::t_0fd1a6add72163 1-55,85-102
+  s_522ff224fa33e9::t_2be64ad441feeb 56-84
+package.json
+  s_522ff224fa33e9::t_0fd1a6add72163 44-48
+scripts/check-skill-contract.js
+  s_522ff224fa33e9::t_7ec6c0a6f9e518 20-38,75-78,81,85-89
+.github/workflows/publish.yml
+  s_522ff224fa33e9::t_4d8915d13f2ead 57
+  s_522ff224fa33e9::t_08093838d3a1a0 29,33,36-39,41-42,45,50
+  s_522ff224fa33e9::t_dee6c1329cf49e 11-14,17-18,20-21,24-25,27-28,30-32,34,40,43-44,46-48,52-56,58-66
+.github/dependabot.yml
+  s_522ff224fa33e9::t_e15a705ae9fa17 1-11
+scripts/check-package.js
+  s_522ff224fa33e9::t_0fd1a6add72163 1-96
+.github/workflows/test.yml
+  s_522ff224fa33e9::t_dee6c1329cf49e 9-15,18-19,21-22,25-26
+scripts/check-versions.js
+  s_522ff224fa33e9::t_0fd1a6add72163 48-52
+scripts/check-versions.test.js
+  s_522ff224fa33e9::t_df2f02dfebb43f 10,32,34-37,40
+  s_522ff224fa33e9::t_0fd1a6add72163 1-9,11-31,33,38-39,41-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "7e458fefaf61805980c5c56edbe29d94968be3e1",
+  "prompts": {},
+  "sessions": {
+    "s_522ff224fa33e9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa2b1-6eed-7e01-b4a8-4ab21c2252b3",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
