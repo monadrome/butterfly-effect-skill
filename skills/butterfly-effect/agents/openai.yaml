@@ -1,0 +1,4 @@
+interface:
+  display_name: "蝴蝶效应"
+  short_description: "Turn correction history into a better restart prompt"
+  default_prompt: "Use $butterfly-effect to turn the corrections in this session into a better prompt for restarting the task."

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "butterfly-effect",
+  "description": "Generate better restart prompts from the corrections accumulated in AI-assisted work.",
+  "owner": {
+    "name": "HuaTalk",
+    "url": "https://github.com/HuaTalk"
+  },
+  "plugins": [
+    {
+      "name": "butterfly-effect",
+      "source": "./",
+      "description": "Analyze correction loops and produce a copy-ready prompt that would have prevented the same rework from the start.",
+      "category": "prompt-engineering"
+    }
+  ]
+}

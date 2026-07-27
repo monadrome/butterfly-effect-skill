@@ -1,0 +1,17 @@
+{
+  "name": "butterfly-effect-skill",
+  "description": "Turn repeated corrections from an AI session into a better initial prompt for restarting the task with hindsight.",
+  "version": "0.1.0",
+  "author": {
+    "name": "HuaTalk",
+    "url": "https://github.com/HuaTalk"
+  },
+  "repository": "https://github.com/HuaTalk/butterfly-effect-skill.git",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "prompt-engineering",
+    "retrospective",
+    "butterfly-effect"
+  ]
+}

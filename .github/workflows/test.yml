@@ -1,0 +1,42 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check repository contracts
+        run: npm test
+      - name: Validate plugin JSON
+        run: |
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8')); console.log('$f: valid')"
+          done
+      - name: Check English docs have no Chinese characters
+        run: |
+          if grep -Pn '[\x{4e00}-\x{9fff}\x{3400}-\x{4dbf}]' README.md docs/en/*.md; then
+            echo 'ERROR: English docs must not contain Chinese characters.'
+            exit 1
+          fi
+      - name: Check SKILL.md frontmatter
+        run: |
+          npm install --no-save js-yaml
+          node -e "
+          const fs = require('fs');
+          const yaml = require('js-yaml');
+          const content = fs.readFileSync('skills/butterfly-effect/SKILL.md', 'utf8');
+          const end = content.indexOf('\n---', 3);
+          const fm = yaml.load(content.substring(3, end));
+          if (fm.name !== 'butterfly-effect') process.exit(1);
+          if (!fm.description || !fm.metadata || !fm.metadata.version) process.exit(1);
+          console.log('SKILL.md frontmatter: valid');
+          "

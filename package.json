@@ -1,0 +1,47 @@
+{
+  "name": "@huatalk/butterfly-effect-skill",
+  "version": "0.1.0",
+  "description": "Turn repeated human corrections in AI sessions into better initial prompts for restarting the work.",
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "prompt-engineering",
+    "retrospective",
+    "hindsight",
+    "butterfly-effect"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "HuaTalk",
+    "url": "https://github.com/HuaTalk"
+  },
+  "homepage": "https://github.com/HuaTalk/butterfly-effect-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuaTalk/butterfly-effect-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HuaTalk/butterfly-effect-skill/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "AGENTS.md",
+    "skills/",
+    "scripts/",
+    ".claude-plugin/",
+    "docs/",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README.md",
+    "README-zh.md"
+  ],
+  "scripts": {
+    "test": "node scripts/check-versions.js && node scripts/check-skill-contract.js",
+    "check": "node scripts/check-versions.js && node scripts/check-skill-contract.js"
+  }
+}
