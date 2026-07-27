@@ -1,0 +1,20 @@
+scripts/check-repository.js
+  s_522ff224fa33e9::t_eb44ce804f2964 87-108,110-112
+  s_522ff224fa33e9::t_efc3738d9e4822 109
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "396cc7cd35eca555933a00658f69bc55c2edc9b7",
+  "prompts": {},
+  "sessions": {
+    "s_522ff224fa33e9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa2b1-6eed-7e01-b4a8-4ab21c2252b3",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
