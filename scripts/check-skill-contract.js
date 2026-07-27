@@ -17,6 +17,25 @@ function read(filePath) {
   return fs.readFileSync(filePath, 'utf8').replace(/\r\n/g, '\n');
 }
 
+function readRegularFile(filePath) {
+  try {
+    return fs.lstatSync(filePath).isFile() ? read(filePath) : '';
+  } catch {
+    return '';
+  }
+}
+
+function walkMarkdown(directory) {
+  const files = [];
+  if (!fs.existsSync(directory) || !fs.lstatSync(directory).isDirectory()) return files;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...walkMarkdown(entryPath));
+    else if (entry.isFile() && entry.name.endsWith('.md')) files.push(entryPath);
+  }
+  return files.sort();
+}
+
 function frontmatterValue(frontmatter, key) {
   const match = frontmatter.match(new RegExp(`^${key}:\\s*(?:"([^"]*)"|'([^']*)'|(.*))$`, 'm'));
   return match ? (match[1] ?? match[2] ?? match[3]).trim() : null;
@@ -53,18 +72,21 @@ while ((match = localLinkPattern.exec(skill)) !== null) {
     continue;
   }
   const resolved = path.resolve(skillDir, normalized);
-  if (!fs.existsSync(resolved)) fail(`Missing reference: ${link}`);
-  else linked.add(resolved);
+  const referencesRoot = path.resolve(referencesDir);
+  if (!resolved.startsWith(`${referencesRoot}${path.sep}`) || !fs.existsSync(resolved) || !fs.lstatSync(resolved).isFile()) {
+    fail(`Reference is missing, outside references/, or not a regular file: ${link}`);
+  } else linked.add(resolved);
 }
 
-const referenceFiles = fs.readdirSync(referencesDir)
-  .filter((name) => name.endsWith('.md'))
-  .map((name) => path.join(referencesDir, name))
-  .sort();
+const referenceFiles = walkMarkdown(referencesDir);
 
 for (const reference of referenceFiles) {
   if (!linked.has(reference)) fail(`Reference is not directly linked: ${path.basename(reference)}`);
-  const content = read(reference);
+  const content = readRegularFile(reference);
+  if (!content) {
+    fail(`Reference is not a readable regular file: ${path.relative(skillDir, reference)}`);
+    continue;
+  }
   localLinkPattern.lastIndex = 0;
   while ((match = localLinkPattern.exec(content)) !== null) {
     if (!/^[a-z]+:\/\//i.test(match[1])) fail(`Reference-to-reference link is not allowed: ${path.basename(reference)}`);

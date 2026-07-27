@@ -8,25 +8,59 @@ permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
-    runs-on: ubuntu-latest
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22'
-      - name: Check repository contracts
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check repository, Skill, and package contracts
         run: npm test
-      - name: Install current npm CLI
-        run: npm install -g npm@latest
-      - name: Publish first release with npm token
-        if: env.NPM_TOKEN != ''
+      - name: Install the pinned npm release client
+        run: npm install --global npm@11.6.2
+      - name: Select npm publication mode
+        id: auth
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TRUSTED_PUBLISHER: ${{ vars.NPM_TRUSTED_PUBLISHER }}
+        shell: bash
         run: |
-          npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN" --location=user
-          npm publish --provenance --access public --registry=https://registry.npmjs.org/
-      - name: Publish with npm Trusted Publisher
-        if: env.NPM_TOKEN == ''
+          if [[ "$NPM_TRUSTED_PUBLISHER" == "true" ]]; then
+            echo "mode=oidc" >> "$GITHUB_OUTPUT"
+          elif [[ -n "$NPM_TOKEN" ]]; then
+            echo "mode=token" >> "$GITHUB_OUTPUT"
+          else
+            echo "Set NPM_TOKEN for bootstrap or configure Trusted Publisher and set NPM_TRUSTED_PUBLISHER=true."
+            exit 1
+          fi
+      - name: Publish with npm token bootstrap
+        if: steps.auth.outputs.mode == 'token'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public --registry=https://registry.npmjs.org/
+      - name: Publish with npm Trusted Publisher
+        if: steps.auth.outputs.mode == 'oidc'
+        run: npm publish --provenance --access public --registry=https://registry.npmjs.org/
+      - name: Verify registry provenance
+        shell: bash
+        run: |
+          package_name=$(node -p "require('./package.json').name")
+          package_version=$(node -p "require('./package.json').version")
+          for attempt in {1..12}; do
+            provenance=$(npm view "${package_name}@${package_version}" dist.attestations.provenance --json 2>/dev/null || true)
+            if node -e 'const value = JSON.parse(process.argv[1] || "null"); process.exit(value?.predicateType === "https://slsa.dev/provenance/v1" ? 0 : 1)' "$provenance"; then
+              echo "Verified npm provenance for ${package_name}@${package_version}."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Published package is missing npm provenance."
+          exit 1

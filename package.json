@@ -41,7 +41,10 @@
     "README-zh.md"
   ],
   "scripts": {
-    "test": "node scripts/check-versions.js && node scripts/check-skill-contract.js",
-    "check": "node scripts/check-versions.js && node scripts/check-skill-contract.js"
+    "test": "node --test scripts/check-versions.test.js && node scripts/check-repository.js",
+    "check": "node scripts/check-repository.js",
+    "check:package": "node scripts/check-package.js",
+    "check:skill": "node scripts/check-skill-contract.js",
+    "check:versions": "node scripts/check-versions.js"
   }
 }

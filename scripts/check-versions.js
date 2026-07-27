@@ -45,10 +45,11 @@ if (distinct.length !== 1) {
 }
 
 const shared = distinct.length === 1 ? distinct[0] : null;
-if (shared && process.env.GITHUB_REF_TYPE === 'tag') {
-  const tagVersion = (process.env.GITHUB_REF_NAME || '').replace(/^v/, '');
-  if (pinnedSemver.test(tagVersion) && tagVersion !== shared) {
-    console.error(`release tag ${process.env.GITHUB_REF_NAME} does not match ${shared}`);
+if (process.env.GITHUB_REF_TYPE === 'tag') {
+  const tag = process.env.GITHUB_REF_NAME || '';
+  const expected = shared ? `v${shared}` : null;
+  if (!expected || tag !== expected) {
+    console.error(`release tag ${JSON.stringify(tag)} must exactly match ${expected || 'the shared version'}`);
     failed = true;
   }
 }
