@@ -16,9 +16,10 @@ Butterfly Effect analyzes repeated human corrections in AI-assisted work and tur
 
 ```bash
 npm test
+node --test scripts/check-versions.test.js
 node scripts/check-versions.js
 node scripts/check-skill-contract.js
-npm pack --dry-run
+npm run check:package
 ```
 
 ## Repository Map
@@ -26,8 +27,9 @@ npm pack --dry-run
 - `skills/butterfly-effect/SKILL.md`: canonical workflow and output contract
 - `skills/butterfly-effect/references/`: source discovery, correction taxonomy, and formatting details
 - `.claude-plugin/`: Claude Code plugin and marketplace metadata
-- `scripts/`: static version and Skill contract checks
+- `scripts/`: release-tag, repository, Skill, documentation, and package checks
 - `README.md` / `README-zh.md`: equivalent user-facing documentation
+- `docs/en/skill-progressive-loading.md`: maintainer guidance for instruction placement and evaluation
 
 ## Maintenance
 
@@ -36,3 +38,4 @@ npm pack --dry-run
 - Keep both READMEs structurally equivalent.
 - Bump the version in `package.json`, `.claude-plugin/plugin.json`, and Skill metadata together.
 - Do not claim a preference is stable unless the source evidence supports it.
+- Keep `NPM_TOKEN` until a Trusted Publisher release and its provenance check both succeed.
