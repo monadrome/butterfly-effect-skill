@@ -84,6 +84,32 @@ for (const relative of ['README.md', 'README-zh.md']) {
   }
 }
 
+const workflowFiles = [
+  path.join(root, '.github', 'workflows', 'test.yml'),
+  path.join(root, '.github', 'workflows', 'publish.yml'),
+];
+for (const workflowPath of workflowFiles) {
+  const workflow = fs.readFileSync(workflowPath, 'utf8');
+  if (!/actions\/checkout@[0-9a-f]{40}/.test(workflow) || !/actions\/setup-node@[0-9a-f]{40}/.test(workflow)) {
+    fail(`${path.relative(root, workflowPath)} must pin checkout and setup-node to immutable SHAs.`);
+  }
+}
+
+const publishWorkflow = fs.readFileSync(path.join(root, '.github', 'workflows', 'publish.yml'), 'utf8');
+for (const [label, pattern] of [
+  ['OIDC permission', /id-token:\s*write/],
+  ['npm registry configuration', /registry-url:\s*['"]https:\/\/registry\.npmjs\.org['"]/],
+  ['pinned npm client', /npm install --global npm@11\.6\.2/],
+  ['explicit publication mode', /NPM_TRUSTED_PUBLISHER/],
+  ['provenance publication', /npm publish --provenance/],
+  ['provenance verification', /dist\.attestations\.provenance/],
+]) {
+  if (!pattern.test(publishWorkflow)) fail(`publish.yml is missing the ${label} contract.`);
+}
+if (/\n    env:\n      NPM_TOKEN:/.test(publishWorkflow)) {
+  fail('publish.yml must not expose NPM_TOKEN at job scope.');
+}
+
 if (failures.length > 0) {
   for (const failure of failures) console.error(failure);
   process.exit(1);
