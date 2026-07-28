@@ -1,0 +1,35 @@
+CONTRIBUTING.md
+  s_30148f74c71b08::t_d5abf27d22181c 64,68,76,89-93
+scripts/check-install.js
+  s_30148f74c71b08::t_d5abf27d22181c 1-93
+scripts/check-repository.js
+  s_30148f74c71b08::t_d5abf27d22181c 33-43,89,120,133
+scripts/check-package.js
+  s_30148f74c71b08::t_d5abf27d22181c 43
+CLAUDE.md
+  s_30148f74c71b08::t_d5abf27d22181c 35
+.github/workflows/publish.yml
+  s_30148f74c71b08::t_d5abf27d22181c 27-28
+package.json
+  s_30148f74c71b08::t_d5abf27d22181c 4,55,58-60
+AGENTS.md
+  s_30148f74c71b08::t_d5abf27d22181c 23
+CHANGELOG.md
+  s_30148f74c71b08::t_3a408a9137b3c8 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "b069840cb3928e4d189ae7564cdef2fb1d0c914f",
+  "prompts": {},
+  "sessions": {
+    "s_30148f74c71b08": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa795-29f6-79d1-abba-7cb04a232e1f",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
