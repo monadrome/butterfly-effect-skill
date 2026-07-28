@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
-- Rewrote both READMEs around the user's adoption path: recognize a correction-heavy session, see the result in one short example, install the Skill, and run it.
+- Rewrote both READMEs around the Skill's time-machine model: use later corrections as hindsight, return to the session node where outputs began to diverge, and revise the prompt at that point.
 - Moved diagnostic terminology, historical design context, and maintainer-facing detail out of the primary explanation so first-time users can understand the value without learning the internal model.
 - Simplified npm, Agent, and Claude plugin discovery descriptions to state the user-visible outcome.
 

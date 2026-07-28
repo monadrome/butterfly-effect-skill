@@ -1,4 +1,4 @@
 interface:
   display_name: "蝴蝶效应"
-  short_description: "Restart correction-heavy AI work better"
-  default_prompt: "Use /butterfly-effect on this session. Find the earliest supported assumption behind the repeated corrections, then return a rewind recommendation and an updated prompt I can use to restart the task."
+  short_description: "Rewind an AI session with hindsight"
+  default_prompt: "Use /butterfly-effect on this session. Use the later corrections to find the point where the conversation started going off course, then return a rewind recommendation and a revised prompt that carries what we learned back to that point."

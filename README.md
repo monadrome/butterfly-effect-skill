@@ -4,9 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-blue.svg)](README-zh.md)
 
-**Turn a correction-heavy AI session into a better restart.**
+**A time machine for AI sessions: take what you learned later back to the point where the conversation started going off course.**
 
-When you have repeatedly told an AI agent to change direction, Butterfly Effect finds the earliest supported assumption that sent the work off course. It gives you two things: a short recommendation for where to rewind and an updated prompt you can paste into a fresh session.
+An AI session often looks reasonable at first. Then one assumption or decision sends the model down the wrong path, and every answer after that drifts further from what you wanted. Only later, after several corrections, do you know what should have happened at that earlier point.
+
+Butterfly Effect uses those later corrections to find the earliest supported turning point in the session. It tells you where to rewind and creates a revised prompt that carries what you learned later back to that point, so you can continue from a better trajectory.
 
 No setup is needed before the original session. Use the conversation you already have.
 
@@ -16,7 +18,12 @@ You started with:
 
 > Fix the intermittent duplicate charges in checkout.
 
-The session then needed several corrections: inspect more than the frontend button, trace callbacks and retries, prove the cause before editing, and preserve the existing payment API.
+The Agent assumed the frontend button was the only payment entry point. From that point onward, its output moved further from the real problem. You later had to correct it: trace callbacks and retries, prove the cause before editing, and preserve the existing payment API.
+
+```text
+Original request -> frontend-only assumption -> drifting answers -> later corrections
+                    ^ rewind here with what you learned later
+```
 
 Run:
 
@@ -34,16 +41,16 @@ You get:
 
 > First reproduce the duplicate charge and trace the full path through user submission, server-side order creation, payment callbacks, and retry jobs. Explain the evidence and root cause before editing. Preserve the existing payment API, then add regression coverage for the confirmed failure path.
 
-Paste the updated prompt into a new session and restart the same task with the useful corrections already included.
+The later corrections act as hindsight. Butterfly Effect carries them back to the point before the frontend-only assumption and turns them into a prompt for the new trajectory.
 
 ## When to Use It
 
 Use Butterfly Effect when:
 
-- the agent kept solving the wrong version of the problem;
-- several corrections were needed before the work became acceptable;
-- you want to restart without repeating the same guidance;
-- you need to understand which earlier assumption caused the rework.
+- a session started well, then the model's answers became increasingly misaligned;
+- you can identify later corrections that reveal what went wrong earlier;
+- you want to return to the turning point instead of restarting blindly;
+- you want a revised prompt that applies hindsight without pretending it was known at the time.
 
 It works with coding, research, writing, design, planning, operations, and other AI-assisted work.
 
