@@ -1,0 +1,29 @@
+scripts/check-skill-contract.js
+  s_9c11382bb39584::t_1bc021d2c31745 52
+.claude-plugin/marketplace.json
+  s_9c11382bb39584::t_1bc021d2c31745 4
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_1bc021d2c31745 3,12
+.claude-plugin/plugin.json
+  s_9c11382bb39584::t_1bc021d2c31745 3
+package.json
+  s_9c11382bb39584::t_1bc021d2c31745 5
+skills/butterfly-effect/agents/openai.yaml
+  s_9c11382bb39584::t_1bc021d2c31745 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "1de93b3584c801988479b09ed861b9ead14bc136",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
