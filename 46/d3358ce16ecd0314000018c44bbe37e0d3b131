@@ -1,0 +1,31 @@
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_80349367c8790f 6
+package.json
+  s_9c11382bb39584::t_80349367c8790f 3
+.claude-plugin/plugin.json
+  s_9c11382bb39584::t_80349367c8790f 4
+CHANGELOG.md
+  s_9c11382bb39584::t_80349367c8790f 7-12
+README.md
+  s_9c11382bb39584::t_80349367c8790f 7,23
+  s_9c11382bb39584::t_f87de04f7444b2 9
+README-zh.md
+  s_9c11382bb39584::t_f87de04f7444b2 9
+  s_9c11382bb39584::t_80349367c8790f 7,23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "46d3358ce16ecd0314000018c44bbe37e0d3b131",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
