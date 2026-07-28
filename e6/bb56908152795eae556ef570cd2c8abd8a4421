@@ -1,0 +1,25 @@
+scripts/check-repository.js
+  s_30148f74c71b08::t_d6ab645977e7c6 110-112
+.github/workflows/publish.yml
+  s_30148f74c71b08::t_d6ab645977e7c6 25
+.github/workflows/test.yml
+  s_30148f74c71b08::t_d6ab645977e7c6 26
+CHANGELOG.md
+  s_30148f74c71b08::t_d6ab645977e7c6 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "e6bb56908152795eae556ef570cd2c8abd8a4421",
+  "prompts": {},
+  "sessions": {
+    "s_30148f74c71b08": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa795-29f6-79d1-abba-7cb04a232e1f",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
