@@ -1,0 +1,25 @@
+scripts/check-skill-contract.js
+  s_9c11382bb39584::t_e4687ef7c267a6 129,131-133,141-142,156,158
+skills/butterfly-effect/references/rewind-analysis.md
+  s_9c11382bb39584::t_cfe2297f75fbaa 3,7,9,11,15,17
+skills/butterfly-effect/references/correction-taxonomy.md
+  s_9c11382bb39584::t_cfe2297f75fbaa 1,3,5,7-12,14,16,18
+skills/butterfly-effect/references/output-contract.md
+  s_9c11382bb39584::t_cfe2297f75fbaa 3,5,7,9,11,13,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "9c2f7a0f4b89bb64f3660b068745fbf7ab6bbf34",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
