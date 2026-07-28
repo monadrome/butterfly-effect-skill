@@ -1,0 +1,64 @@
+.claude-plugin/plugin.json
+  s_08beca13946fde::t_5a021f010dca34 3
+  s_08beca13946fde::t_2764ffafb23a48 4
+CHANGELOG.md
+  s_08beca13946fde::t_5a021f010dca34 8-16
+  s_08beca13946fde::t_2764ffafb23a48 7
+.claude-plugin/marketplace.json
+  s_08beca13946fde::t_5a021f010dca34 4,13
+skills/butterfly-effect/SKILL.md
+  s_08beca13946fde::t_14b5217f97f779 18,22
+  s_08beca13946fde::t_db2cad0365cd62 21,23,32
+  s_08beca13946fde::t_2764ffafb23a48 6
+docs/en/skill-progressive-loading.md
+  s_08beca13946fde::t_5a021f010dca34 22,52,60
+package.json
+  s_08beca13946fde::t_2764ffafb23a48 3
+  s_08beca13946fde::t_5a021f010dca34 5
+scripts/check-repository.js
+  s_08beca13946fde::t_3b6472143b84d6 92-93,111-116,122-130
+docs/en/examples.md
+  s_08beca13946fde::t_a8a2165f62278c 42-76
+CONTEXT.md
+  s_08beca13946fde::t_c0c4c7b2ed4e4a 26-41
+docs/en/design.md
+  s_08beca13946fde::t_14b5217f97f779 34
+  s_08beca13946fde::t_b9642cf6b9c6d4 12,18,31-33,41,47-49,55-57,85-86,92,103-106,119-121,129
+docs/adr/0002-salvage-mixed-post-drift-evidence.md
+  s_08beca13946fde::t_c0c4c7b2ed4e4a 1-5
+CONTRIBUTING.md
+  s_08beca13946fde::t_5a021f010dca34 21,41-42,58-59
+scripts/check-skill-contract.js
+  s_08beca13946fde::t_3b6472143b84d6 104,116-118,121,127
+  s_08beca13946fde::t_14b5217f97f779 105,107,119
+  s_08beca13946fde::t_32b75603175f48 106
+README.md
+  s_08beca13946fde::t_1b06b49f1ba2c4 9,28-29,161,176,192
+docs/zh/design.md
+  s_08beca13946fde::t_b9642cf6b9c6d4 12,18,31-33,41,47-49,55-57,85-86,92,103-106,119-121,129
+  s_08beca13946fde::t_14b5217f97f779 34
+README-zh.md
+  s_08beca13946fde::t_1b06b49f1ba2c4 9,28-29,161,176,192
+AGENTS.md
+  s_08beca13946fde::t_5a021f010dca34 11-12,50
+docs/zh/examples.md
+  s_08beca13946fde::t_a8a2165f62278c 42-76
+skills/butterfly-effect/agents/openai.yaml
+  s_08beca13946fde::t_5a021f010dca34 3-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "aa3d16520f765159692bc2c7b516d7e34d1330d0",
+  "prompts": {},
+  "sessions": {
+    "s_08beca13946fde": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa964-4ef8-74f3-996c-190eab26b3b3",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": null
+    }
+  }
+}
