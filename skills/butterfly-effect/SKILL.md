@@ -3,7 +3,7 @@ name: butterfly-effect
 description: Diagnose and correct AI trajectory drift in a completed or ongoing session across coding, research, writing, design, planning, operations, and other work; link human corrections to the earliest supported Agent assumption or action, then return a rewind recommendation and updated prompt. Use when users ask to rewind, restart better, rewrite the opening prompt, learn from corrections, reduce repeated guidance, or say 蝴蝶效应、AI偏斜纠正、回退建议、重开、如果一开始就知道、从纠偏生成提示词。
 metadata:
   author: HuaTalk
-  version: "0.4.1"
+  version: "0.4.0"
   category: prompt-engineering
 ---
 

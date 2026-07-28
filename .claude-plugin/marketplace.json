@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "butterfly-effect",
-  "description": "Restart correction-heavy AI work with a clearer prompt and an evidence-backed rewind point.",
+  "description": "Diagnose and correct AI trajectory drift with evidence-backed rewind recommendations across any AI-assisted work.",
   "owner": {
     "name": "HuaTalk",
     "url": "https://github.com/HuaTalk"
@@ -10,7 +10,7 @@
     {
       "name": "butterfly-effect",
       "source": "./",
-      "description": "Find the earlier assumption behind repeated corrections, then return a rewind recommendation and a prompt for restarting the task.",
+      "description": "Diagnose correction chains across coding, research, writing, design, planning, operations, and other tasks, then recommend a supported rewind and updated prompt.",
       "category": "prompt-engineering"
     }
   ]
