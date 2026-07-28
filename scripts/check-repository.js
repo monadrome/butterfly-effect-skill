@@ -107,6 +107,9 @@ for (const workflowPath of workflowFiles) {
   if (!/actions\/checkout@[0-9a-f]{40}/.test(workflow) || !/actions\/setup-node@[0-9a-f]{40}/.test(workflow)) {
     fail(`${path.relative(root, workflowPath)} must pin checkout and setup-node to immutable SHAs.`);
   }
+  if (!/package-manager-cache:\s*false/.test(workflow)) {
+    fail(`${path.relative(root, workflowPath)} must disable package-manager caching while the package has no lockfile.`);
+  }
 }
 
 const publishWorkflow = fs.readFileSync(path.join(root, '.github', 'workflows', 'publish.yml'), 'utf8');

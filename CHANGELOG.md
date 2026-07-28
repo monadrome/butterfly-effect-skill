@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Unified single-chain, independent-chain, missing-history, weak-causality, and no-material-drift outcomes in one evidence-first output decision.
 - Changed the no-reliable fallback to avoid generating an unsupported updated prompt unless reconstruction is explicitly requested from limited evidence.
 - Strengthened bilingual documentation, examples, maintainer guidance, plugin metadata, and static checks around explicit-only `--prompt-only`, confidence, and false-precision prevention.
-- Added a prepublish test guard, npm publication dry run, pinned release client metadata, and clean tarball installation smoke test.
+- Added a prepublish test guard, npm publication dry run, pinned release client metadata, clean tarball installation smoke test, and lockfile-free CI configuration.
 
 ## [0.3.0] - 2026-07-28
 
