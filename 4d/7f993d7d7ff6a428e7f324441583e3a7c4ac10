@@ -1,0 +1,35 @@
+README.md
+  s_9c11382bb39584::t_d177715a7e664a 160,188
+README-zh.md
+  s_9c11382bb39584::t_d177715a7e664a 160,188
+CONTRIBUTING.md
+  s_9c11382bb39584::t_d177715a7e664a 43
+docs/en/design.md
+  s_9c11382bb39584::t_d177715a7e664a 3,49,75,99,111
+CHANGELOG.md
+  s_9c11382bb39584::t_7c25cf418f7521 20-25
+scripts/check-repository.js
+  s_9c11382bb39584::t_64eaeda906acf2 101-114
+CLAUDE.md
+  s_9c11382bb39584::t_7c25cf418f7521 26
+docs/zh/design.md
+  s_9c11382bb39584::t_d177715a7e664a 3,49,69,75,99,111
+skills/butterfly-effect/agents/openai.yaml
+  s_9c11382bb39584::t_d177715a7e664a 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "4d7f993d7d7ff6a428e7f324441583e3a7c4ac10",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
