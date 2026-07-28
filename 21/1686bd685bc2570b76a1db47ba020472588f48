@@ -1,0 +1,34 @@
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_bfe1b928b7e03b 6,28-37
+package.json
+  s_9c11382bb39584::t_694d97e5e6af35 3
+skills/butterfly-effect/references/rewind-analysis.md
+  s_9c11382bb39584::t_dcef3dec30684e 5-15
+CHANGELOG.md
+  s_9c11382bb39584::t_e4bdb2f8f59fc0 13
+  s_9c11382bb39584::t_694d97e5e6af35 7-12,14
+docs/zh/design.md
+  s_9c11382bb39584::t_694d97e5e6af35 32-35
+scripts/check-skill-contract.js
+  s_9c11382bb39584::t_e4bdb2f8f59fc0 112-115,155-157
+.claude-plugin/plugin.json
+  s_9c11382bb39584::t_694d97e5e6af35 4
+docs/en/design.md
+  s_9c11382bb39584::t_694d97e5e6af35 32-35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "211686bd685bc2570b76a1db47ba020472588f48",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
