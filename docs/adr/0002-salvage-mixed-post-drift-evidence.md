@@ -1,0 +1,5 @@
+# Salvage Mixed Evidence After Drift
+
+Butterfly Effect treats the Corrupted Suffix at and after a Rewind Point as mixed evidence. It rejects assumptions, decisions, and artifact states that depend on the drift; retains accepted constraints and separable valid work; and applies Hindsight Translation to useful facts that were knowable only later. Discarding the whole suffix would lose validated learning, while carrying it forward wholesale would preserve the context corruption that rewind is meant to escape.
+
+Optional user descriptions of what appears wrong or right are Evidence Hints, not drift labels. They use ordinary natural language rather than command flags because Agent Skill hosts do not share a reliable argument parser. Hints may focus artifact comparison and evidence salvage, but the history must still show a produced Artifact Version reworked because it missed the expected outcome. When a hint conflicts with visible history, the current user instruction governs the desired continuation without rewriting the historical record.

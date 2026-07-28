@@ -1,7 +1,7 @@
 {
   "name": "butterfly-effect-skill",
-  "description": "Detect task-artifact drift, recommend where an AI session should rewind, and generate a revised prompt for continuing from there.",
-  "version": "0.5.0",
+  "description": "Detect task-artifact drift, salvage useful later evidence, and generate a rewind recommendation plus revised continuation prompt.",
+  "version": "0.5.1",
   "author": {
     "name": "HuaTalk",
     "url": "https://github.com/HuaTalk"

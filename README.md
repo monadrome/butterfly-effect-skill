@@ -6,7 +6,7 @@
 
 **Butterfly Effect is a time machine for AI sessions: take what you learned later back to the point where the conversation started going off course.**
 
-One assumption or decision can produce code, a document, a design, or another task artifact that later has to be reworked because it missed the expected outcome. Butterfly Effect traces that artifact rework back to the earliest supported turning point, then returns a rewind recommendation and a copy-ready updated prompt for taking a better path from there. Added requests alone do not establish drift: requirements introduced before an artifact version exists, normal evolution after an accepted artifact, and repeated explanations without artifact rework are no-op. It works across AI-assisted tasks with no advance tracker or artifact-version tagging.
+One assumption or decision can produce code, a document, a design, or another task artifact that later has to be reworked because it missed the expected outcome. Butterfly Effect traces that artifact rework back to the earliest supported turning point, then salvages the useful parts of later history without carrying forward the bad assumption. It returns a rewind recommendation and a copy-ready updated prompt for taking a better path from there. Added requests alone do not establish drift: requirements introduced before an artifact version exists, normal evolution after an accepted artifact, and repeated explanations without artifact rework are no-op. It works across AI-assisted tasks with no advance tracker or artifact-version tagging.
 
 ## Quickstart
 
@@ -24,6 +24,8 @@ Use /butterfly-effect on this session. Determine whether a produced task artifac
 ```
 
 Use the `Updated prompt` blockquote when continuing from the recommended history point. The rewind recommendation explains where the original trajectory first drifted. If the session does not support a reliable drift diagnosis, the Skill returns the no-reliable result instead of manufacturing a prompt.
+
+You may also describe `what's wrong` or `what's right` in ordinary language after the request. These optional hints focus the artifact comparison and identify useful later evidence; they do not replace the requirement for visible artifact rework. No special flags are required.
 
 When no produced task artifact was reworked because it missed the expected outcome, the result is `No reliable drift or rewind point detected`.
 
@@ -156,6 +158,7 @@ The current conversation is the default source. If its visible history is trunca
 | Diagnose artifact drift | `Use /butterfly-effect on this session.` | Uses visible history, recovering only the same current session when early turns are truncated |
 | Analyze a named local session | `Use /butterfly-effect on Codex session "launch-plan".` | Resolves and reads that session |
 | Analyze an exported record | `Use /butterfly-effect on /path/to/transcript.md.` | Reads the supplied transcript or handoff in order |
+| Focus the diagnosis | `Use /butterfly-effect on this session. What's wrong: V2 was replaced. What's right: the public API and reproduced failure.` | Treats both descriptions as evidence hints, then verifies them against artifact history |
 | Return only the prompt | `Use /butterfly-effect --prompt-only on this session.` | Explicitly omits the rewind recommendation |
 | Include supporting analysis | `Use /butterfly-effect --detailed on this session.` | Returns the rewind recommendation and prompt first, then absorbed requirements and exclusions |
 | Compare several sessions | `Use /butterfly-effect on these three session exports.` | Analyzes each independently before retaining repeated rules |
@@ -170,6 +173,7 @@ For research notes, a document review, an issue discussion, or another external 
 - **Artifact-first:** establish that a produced task artifact was reworked because it missed the expected outcome; added requests alone do not prove drift.
 - **Diagnosis before reconstruction:** establish that a supported drift boundary exists before generating an updated prompt.
 - **Rewind-first:** explain the earliest supported drift boundary, then return the artifact needed to continue from that point instead of making the user translate a retrospective report.
+- **Evidence salvage:** reject later content that depends on the drift, retain separable accepted work and constraints, and translate hindsight-only facts into discovery or verification steps.
 - **Counterfactual branch:** construct a better continuation from the selected history point while respecting what was knowable there.
 
 Read the [design notes](docs/en/design.md) for the evidence model, non-goals, and failure modes.
@@ -185,7 +189,7 @@ Read the [design notes](docs/en/design.md) for the evidence model, non-goals, an
 
 ## Validation and Limitations
 
-**Important:** Identifying artifact versions, deciding whether rework proves drift, and selecting a causal boundary still depend on model judgment. Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents, but these static checks cannot prove runtime diagnostic accuracy. A result may miss a drift, infer causality too strongly, overfit a one-off reaction, or soften a contradiction incorrectly. Review important recommendations and updated prompts before using them, especially when the source spans several sessions or contains sensitive material.
+**Important:** Identifying artifact versions, deciding whether rework proves drift, selecting a causal boundary, and separating useful evidence from corrupted context still depend on model judgment. Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents, but these static checks cannot prove runtime diagnostic accuracy. A result may miss a drift, infer causality too strongly, overfit a hint or one-off reaction, retain a contaminated decision, or soften a contradiction incorrectly. Review important recommendations and updated prompts before using them, especially when the source spans several sessions or contains sensitive material.
 
 ## Updating
 

@@ -39,6 +39,41 @@ These histories return `No reliable drift or rewind point detected` and no updat
 - The user asks for several explanations of the same code. No independently evaluable task artifact is reworked.
 - After accepting a document, the user asks for a new appendix. This is normal evolution unless the history shows that the accepted version missed the expected outcome.
 
+## Optional Evidence Hints
+
+Use ordinary language; the labels are examples, not parsed command flags:
+
+```text
+Use /butterfly-effect on this session.
+What's wrong: the implementation replaced the supported V2 path.
+What's right: the public API and the reproduced failure should be preserved.
+```
+
+The Skill verifies both hints against the artifact versions and rework before using them. Their treatment does not depend on supplying both:
+
+| Input | Treatment |
+|---|---|
+| What's wrong only | Focus comparison on the named outcome, region, assumption, or behavior; still require artifact rework and causal evidence. |
+| What's right only | Look for accepted work, constraints, findings, or eliminated options worth preserving; still diagnose drift independently. |
+| Both hints conflict with history | Follow the explicit current instruction for the desired continuation, state the mismatch only when material, and do not rewrite what happened. |
+| Either hint without artifact drift | Return the no-reliable result unless the user explicitly requests reconstruction from limited evidence. |
+
+## Salvaging Later Evidence
+
+A payment session first produced a frontend-only fix. Later rework established that the public API and monitoring fields were accepted, exposed callback and retry paths that needed investigation, and showed that a database uniqueness constraint should not be adopted as the sole fix without proving a stable key across those paths.
+
+Rewind recommendation:
+
+- Rewind to: before the Agent assumed the frontend action was the only payment entry point.
+- Why: that assumption caused the artifact to omit callback and retry behavior.
+- Keep: the accepted public API and monitoring fields; retain the uniqueness-constraint finding as a decision gate, and translate the later path discovery into investigation work.
+
+Updated prompt:
+
+> Reproduce the duplicate charge, then trace user submission, server-side order creation, payment callbacks, and retry jobs before editing. Preserve the existing public API and accepted monitoring fields. Identify the stable business identity available on every confirmed path and do not use a database uniqueness constraint as the sole fix unless the evidence shows that the same key covers them all. Explain the root cause and trade-offs, implement the smallest cross-path correction, and add regression coverage for the confirmed failure path.
+
+The prompt keeps accepted partial work without carrying forward the frontend-only assumption. It also preserves the eliminated option as a verification gate rather than claiming that a later-only root cause was known at the rewind point.
+
 ## Product or Positioning Task
 
 A product-positioning session first produced a release-template-based proposal. That document was reworked through these requirements:

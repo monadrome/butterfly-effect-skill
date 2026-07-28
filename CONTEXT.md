@@ -23,3 +23,19 @@ _Avoid_: correction
 **Rewind Point**:
 The earliest supported Agent action whose replacement would have prevented the Artifact Version from requiring rework.
 _Avoid_: first correction
+
+**Corrupted Suffix**:
+The session history at and after a Rewind Point, where invalid trajectory content may be mixed with later evidence that remains useful for the continued task.
+_Avoid_: bad context, discarded history
+
+**Evidence Salvage**:
+The treatment of relevant content from a Corrupted Suffix by rejecting what depends on the drift, retaining what remains valid, or translating hindsight-only knowledge into discovery work.
+_Avoid_: context carryover, correction collection
+
+**Evidence Hint**:
+An optional current user statement about what appears wrong or right that focuses diagnosis and Evidence Salvage without establishing Trajectory Drift by itself.
+_Avoid_: ground truth, drift label
+
+**Hindsight Translation**:
+The conversion of a fact knowable only after the Rewind Point into an instruction to inspect, reproduce, decide, or verify from that point.
+_Avoid_: hindsight fact
