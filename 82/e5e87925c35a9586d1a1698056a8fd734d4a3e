@@ -1,0 +1,21 @@
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_e3d0aa69e5d69e 3,12,14,16-21,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53-54,56,58,60
+scripts/check-skill-contract.js
+  s_9c11382bb39584::t_0885ee53469530 98-105,108-109,111-112,119-124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "82e5e87925c35a9586d1a1698056a8fd734d4a3e",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
