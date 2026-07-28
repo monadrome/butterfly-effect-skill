@@ -4,11 +4,14 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.1] - 2026-07-28
+## [0.5.0] - 2026-07-28
 
 ### Changed
 
-- Clarified the README introduction with the session time-machine model: use later corrections to return to the point where LLM output began to diverge, while preserving the existing examples and documentation structure.
+- Aligned Skill discovery and user documentation around the session time-machine model while preserving the existing README examples and structure.
+- Separated correction evidence strength from rewind boundary confidence so explicit feedback cannot inflate causal certainty.
+- Added exhaustive completion criteria for timeline classification, correction coverage, boundary selection, prompt clauses, and output.
+- Restricted rewind and output references to exceptional branches, keeping the normal single-chain path in one authoritative workflow.
 
 ## [0.4.0] - 2026-07-28
 

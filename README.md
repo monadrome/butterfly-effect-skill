@@ -173,7 +173,7 @@ For research notes, a document review, an issue discussion, or another external 
 4. Keep independent chains separate; lower confidence for missing history or weak causal evidence, and stop with the no-reliable result when no usable boundary exists.
 5. Separate stable preferences, task-specific requirements, and one-off decisions.
 6. Turn later discoveries into inspection or verification steps, then compose the updated prompt in execution order.
-7. Check that it covers every high-confidence correction without adding unsupported rules.
+7. Check that it covers every high-strength correction without adding unsupported rules.
 
 ## Design Principles
 

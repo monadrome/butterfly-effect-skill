@@ -15,9 +15,15 @@ Use this taxonomy to distinguish reusable prompt clauses from ordinary conversat
 | Output | User wants a prompt, document, table, or concise answer | Put the requested artifact first and omit unrequested narration. |
 | Language | User corrects a term, example, or semantic range | Use the corrected terminology and avoid the narrowing word. |
 
-## Confidence
+## Evidence Strength
 
-Treat a correction as high confidence when it is explicit, repeated, accepted in the final result, or supported by project rules. Treat inferred personality traits and isolated stylistic reactions as low confidence.
+Evidence strength grades the resulting rule, not the causal confidence of a rewind boundary:
+
+- **High:** explicit, repeated, accepted in the final result, or supported by project rules.
+- **Medium:** explicit but isolated, with no conflicting later decision.
+- **Low:** inferred from style, indirect feedback, or a reaction whose task scope is unclear.
+
+Use low-strength evidence only to interpret stronger events; omit it from the updated prompt unless another source supports the same rule.
 
 ## Contradictions
 

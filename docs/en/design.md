@@ -29,11 +29,13 @@ The same user statement can belong to different evidence classes depending on co
 
 Project rules and accepted final decisions can support a clause. Generated summaries are weaker evidence than raw chronological messages.
 
+Evidence strength grades the correction or resulting rule: explicit, repeated, accepted, or project-backed evidence is stronger than an isolated or inferred reaction. It is separate from boundary confidence, which grades the causal link between corrections and an earlier Agent action.
+
 ## Trajectory Drift and Rewind Model
 
 The unit of analysis is a correction chain, not an isolated user message. A chain links an Agent assumption or action to a material user correction and the downstream corrections that repair the same objective, audience, artifact, or acceptance criterion.
 
-The rewind point is the earliest Agent assumption or action that caused most of the linked corrections. It is not automatically the first user correction. The recommendation should identify the boundary as `before turn <id>`, `before <timestamp>`, `before the Agent assumed ...`, or `the original request` only when the evidence supports that precision. Independent chains disprove one common rewind point but may retain separate supported boundaries; mark the overall result medium or low confidence even when an individual chain is high confidence. Missing early history or weak causality requires lower confidence and a non-precise boundary; when no material chain or usable boundary remains, return `No reliable drift or rewind point detected` rather than inventing a location.
+The rewind point is the earliest Agent assumption or action that caused most of the linked corrections. It is not automatically the first user correction. The recommendation should identify the boundary as `before turn <id>`, `before <timestamp>`, `before the Agent assumed ...`, or `the original request` only when the evidence supports that precision. Independent chains disprove one common rewind point but may retain separate supported boundaries; mark the overall result medium or low boundary confidence even when an individual chain has high boundary confidence. Missing early history or weak causality requires lower boundary confidence and a non-precise boundary; when no material chain or usable boundary remains, return `No reliable drift or rewind point detected` rather than inventing a location.
 
 The updated prompt keeps valid earlier decisions and translates hindsight into checks. It must prevent the linked correction chain without asserting a root cause that was discovered only later. The no-reliable result does not include an updated prompt unless the user explicitly asks for reconstruction from limited evidence.
 
@@ -42,10 +44,10 @@ The updated prompt keeps valid earlier decisions and translates hindsight into c
 1. Recover the original objective and the information available at the first turn.
 2. Build a chronological timeline of Agent assumptions, actions, corrections, accepted decisions, and later discoveries.
 3. Identify material corrections, link them into causal chains, and locate the earliest supported drift boundary for each chain.
-4. Classify each correction by confidence, scope, and durability.
+4. Classify each correction by evidence strength, scope, and durability.
 5. Choose the output outcome: one boundary, separate independent boundaries, a qualified low-confidence boundary, or the no-reliable fallback.
 6. When the outcome supports reconstruction, compose the rewind recommendation and updated prompt in execution order.
-7. Check the prompt against every high-confidence correction and disclose missing or ambiguous history.
+7. Check the prompt against every high-strength correction and disclose missing or ambiguous history.
 
 The result should be usable without the retrospective. A fresh agent should not need access to the old conversation to understand the objective, gates, constraints, and verification requirements.
 
@@ -67,11 +69,11 @@ Verify source coverage and regional scope before drawing conclusions.
 
 This keeps the prompt useful without inventing prior knowledge or prescribing a premature solution before verification.
 
-## Contradictions and Confidence
+## Contradictions and Evidence Strength
 
 Use the latest explicit decision for the same phase and scope. Earlier instructions may still apply elsewhere. For example, "do not finalize yet" can become a review gate rather than a permanent ban once the user later approves publication.
 
-Explicit, repeated, accepted, or project-backed corrections are high confidence. Isolated reactions and inferred personality traits are not. When confidence is low, omit the clause or make it task-specific instead of calling it a stable preference.
+Explicit, repeated, accepted, or project-backed corrections have high evidence strength. Isolated reactions and inferred personality traits do not. When evidence strength is low, omit the clause or make it task-specific instead of calling it a stable preference. Grade boundary confidence separately from the visibility of the Agent action and the causal link to its downstream corrections.
 
 ## Non-goals
 
@@ -108,4 +110,4 @@ Before returning the prompt, ask:
 
 Repository checks validate static contracts, references, manifests, language boundaries, release tags, and package contents. They cannot prove that a model extracts corrections accurately.
 
-Behavior evaluation should use raw transcripts in a fresh context. Include cases with one shared drift, multiple independent chains, missing early history, weak causality, and no material drift. Do not provide the expected prompt or intended classification. Review whether the result selects the correct outcome before formatting, locates only supported boundaries, covers every high-confidence correction, excludes unsupported claims, preserves the original objective, and turns later discoveries into checks. Add a regression fixture only after observing a real failure pattern.
+Behavior evaluation should use raw transcripts in a fresh context. Include cases with one shared drift, multiple independent chains, missing early history, weak causality, and no material drift. Do not provide the expected prompt or intended classification. Review whether the result selects the correct outcome before formatting, locates only supported boundaries, covers every high-strength correction, excludes unsupported claims, preserves the original objective, and turns later discoveries into checks. Add a regression fixture only after observing a real failure pattern.

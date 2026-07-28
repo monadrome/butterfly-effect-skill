@@ -49,8 +49,8 @@ if (!frontmatterMatch) {
   const frontmatter = frontmatterMatch[1];
   if (frontmatterValue(frontmatter, 'name') !== 'butterfly-effect') fail('Skill name must be butterfly-effect.');
   const description = frontmatterValue(frontmatter, 'description') || '';
-  if (description.length < 100 || !/蝴蝶效应/.test(description) || !/corrections/i.test(description)) {
-    fail('Description must explain correction-to-restart behavior and retain bilingual discovery terms.');
+  if (description.length < 100 || description.length > 400 || !/月光宝盒|蝴蝶效应/.test(description) || !/Rewind AI sessions/.test(description) || !/later corrections/i.test(description)) {
+    fail('Description must use the time-machine leading word, explain correction-to-restart behavior, retain bilingual discovery terms, and stay under 400 characters.');
   }
   if (!/^metadata:\s*\n(?: {2}[^\n]+\n)* {2}version:\s*["']?[^"'\s]+["']?\s*$/m.test(frontmatter)) {
     fail('metadata.version is missing or malformed.');
@@ -98,21 +98,28 @@ const requiredContracts = [
   ['rewind and updated prompt output', /rewind recommendation and a copy-ready updated prompt/],
   ['current conversation default', /current conversation as the default source/],
   ['stable versus task-specific rules', /Separate stable collaboration preferences from task-specific requirements/],
-  ['later discoveries become checks', /Convert them into instructions to inspect, verify, or compare first/],
+  ['later discoveries become checks', /Convert later discoveries into instructions to inspect, verify, or compare first/],
   ['original objective preserved', /Preserve the user's original objective/],
-  ['domain-neutral task handling', /Keep the source domain-neutral/],
+  ['domain-neutral task handling', /source task's audience, artifact, evidence standard, and acceptance criteria/],
   ['general correction dimensions', /method, content, evidence, quality bar, output, or delivery/],
   ['rewind point detection', /Locate the Rewind Point/],
-  ['independent-chain separation', /Keep independent chains separate/],
+  ['independent-chain separation', /Keep independent correction chains separate/],
   ['no reliable fallback', /No reliable drift or rewind point detected/],
-  ['counterfactual validation', /Run the Counterfactual Check/],
-  ['supported-drift default output', /Default output when drift is supported: a concise rewind recommendation followed by one copy-ready updated prompt/],
+  ['counterfactual validation', /Run the counterfactual check/],
+  ['supported-drift default output', /For one supported chain, return exactly these two artifacts first/],
   ['explicit prompt-only route', /explicit `--prompt-only`/],
-  ['secret redaction', /Do not reproduce secrets, credentials/],
+  ['secret redaction', /Redact secrets, credentials/],
+  ['evidence-strength axis', /`Evidence strength` measures the correction itself/],
+  ['boundary-confidence axis', /Assign `boundary confidence` separately/],
 ];
 
 for (const [label, pattern] of requiredContracts) {
   if (!pattern.test(skill)) fail(`Missing core contract: ${label}`);
+}
+
+const completionCriteria = skill.match(/\*\*Complete when:\*\*/g) || [];
+if (completionCriteria.length !== 7) {
+  fail(`Workflow must define exactly seven completion criteria (${completionCriteria.length} found).`);
 }
 
 const taxonomy = readRegularFile(path.join(referencesDir, 'correction-taxonomy.md'));
@@ -120,34 +127,36 @@ for (const [label, pattern] of [
   ['general task scope', /Wrong audience, channel, source, locale/],
   ['domain methods', /structure, tone, sequence, medium, architecture, or algorithm/],
   ['non-coding validation', /fact checks, examples, visual review, or stakeholder approval/],
+  ['evidence-strength naming', /## Evidence Strength/],
+  ['confidence-axis separation', /not the causal confidence of a rewind boundary/],
 ]) {
   if (!pattern.test(taxonomy)) fail(`Correction taxonomy is missing ${label}.`);
 }
 
 const outputContract = readRegularFile(path.join(referencesDir, 'output-contract.md'));
-if (!/instead of forcing every task into a coding workflow/.test(outputContract)) {
-  fail('Output contract must preserve domain-native verbs and artifacts.');
-}
-if (!/## Rewind recommendation/.test(outputContract) || !/## Updated prompt/.test(outputContract)) {
-  fail('Output contract must define rewind recommendation and updated prompt sections.');
-}
 for (const [label, pattern] of [
-  ['outcome decision before formatting', /## Outcome Decision/],
+  ['non-default scope', /# Non-default Output Contract/],
+  ['explicit prompt-only mode', /## Prompt-only Mode/],
+  ['detailed mode', /## Detailed Mode/],
   ['independent-chain output', /no single rewind point exists/],
   ['exact no-reliable fallback', /No reliable drift or rewind point detected/],
-  ['no synthetic prompt fallback', /do not emit an updated prompt/],
-  ['explicit-only prompt mode', /explicit output mode, never the default/],
+  ['completion criterion', /## Completion Criterion/],
 ]) {
   if (!pattern.test(outputContract)) fail(`Output contract is missing ${label}.`);
+}
+if (/## Outcome Decision|## Default/.test(outputContract)) {
+  fail('Output contract must not duplicate the normal outcome or default format from SKILL.md.');
 }
 
 const rewindAnalysis = readRegularFile(path.join(referencesDir, 'rewind-analysis.md'));
 for (const [label, pattern] of [
-  ['correction chains', /Correction Chains/],
-  ['earlier Agent boundary', /earlier Agent (?:assumption|action)/],
-  ['confidence and fallback rules', /Confidence and Fallbacks/],
-  ['independent-chain separation', /Independence is evidence against one common rewind point/],
+  ['exceptional scope', /# Exceptional Rewind Analysis/],
+  ['independent chains', /## Independent Chains/],
+  ['conflicting boundaries', /## Conflicting Candidate Boundaries/],
+  ['missing early actions', /## Missing Early Actions/],
+  ['boundary confidence', /boundary confidence/],
   ['no reliable boundary fallback', /No reliable drift or rewind point detected/],
+  ['completion criterion', /## Completion Criterion/],
 ]) {
   if (!pattern.test(rewindAnalysis)) fail(`Rewind analysis is missing ${label}.`);
 }

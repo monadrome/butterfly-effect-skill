@@ -1,4 +1,4 @@
 interface:
   display_name: "蝴蝶效应"
-  short_description: "Diagnose AI drift and recommend a rewind"
-  default_prompt: "Use /butterfly-effect to diagnose trajectory drift in this session, then return an evidence-backed rewind recommendation plus an updated prompt when supported."
+  short_description: "Rewind an AI session with hindsight"
+  default_prompt: "Use /butterfly-effect on this session. Use later corrections to find where the conversation began to diverge, then return a rewind recommendation and revised prompt for a better trajectory."
