@@ -75,7 +75,10 @@ for (const relative of ['README.md', 'README-zh.md']) {
   for (const [label, pattern] of [
     ['Agent Skills installation', /npx skills add HuaTalk\/butterfly-effect-skill/],
     ['Claude marketplace installation', /https:\/\/github\.com\/HuaTalk\/butterfly-effect-skill\.git/],
+    ['slash Skill invocation', /\/butterfly-effect/],
+    ['explicit prompt-only mode', /--prompt-only/],
     ['detailed output mode', /--detailed/],
+    ['no-reliable fallback', /No reliable drift or rewind point detected/],
     ['contribution link', /CONTRIBUTING\.md/],
     ['changelog link', /CHANGELOG\.md/],
     ['license link', /LICENSE/],

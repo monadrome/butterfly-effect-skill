@@ -94,6 +94,7 @@ for (const reference of referenceFiles) {
 }
 
 const requiredContracts = [
+  ['diagnosis before prompt reconstruction', /Diagnose trajectory drift before reconstructing a prompt/],
   ['rewind and updated prompt output', /rewind recommendation and a copy-ready updated prompt/],
   ['current conversation default', /current conversation as the default source/],
   ['stable versus task-specific rules', /Separate stable collaboration preferences from task-specific requirements/],
@@ -102,8 +103,11 @@ const requiredContracts = [
   ['domain-neutral task handling', /Keep the source domain-neutral/],
   ['general correction dimensions', /method, content, evidence, quality bar, output, or delivery/],
   ['rewind point detection', /Locate the Rewind Point/],
+  ['independent-chain separation', /Keep independent chains separate/],
+  ['no reliable fallback', /No reliable drift or rewind point detected/],
   ['counterfactual validation', /Run the Counterfactual Check/],
-  ['default rewind-plus-prompt output', /Default output: a concise rewind recommendation followed by one copy-ready updated prompt/],
+  ['supported-drift default output', /Default output when drift is supported: a concise rewind recommendation followed by one copy-ready updated prompt/],
+  ['explicit prompt-only route', /explicit `--prompt-only`/],
   ['secret redaction', /Do not reproduce secrets, credentials/],
 ];
 
@@ -127,11 +131,22 @@ if (!/instead of forcing every task into a coding workflow/.test(outputContract)
 if (!/## Rewind recommendation/.test(outputContract) || !/## Updated prompt/.test(outputContract)) {
   fail('Output contract must define rewind recommendation and updated prompt sections.');
 }
+for (const [label, pattern] of [
+  ['outcome decision before formatting', /## Outcome Decision/],
+  ['independent-chain output', /no single rewind point exists/],
+  ['exact no-reliable fallback', /No reliable drift or rewind point detected/],
+  ['no synthetic prompt fallback', /do not emit an updated prompt/],
+  ['explicit-only prompt mode', /explicit output mode, never the default/],
+]) {
+  if (!pattern.test(outputContract)) fail(`Output contract is missing ${label}.`);
+}
 
 const rewindAnalysis = readRegularFile(path.join(referencesDir, 'rewind-analysis.md'));
 for (const [label, pattern] of [
   ['correction chains', /Correction Chains/],
   ['earlier Agent boundary', /earlier Agent (?:assumption|action)/],
+  ['confidence and fallback rules', /Confidence and Fallbacks/],
+  ['independent-chain separation', /Independence is evidence against one common rewind point/],
   ['no reliable boundary fallback', /No reliable drift or rewind point detected/],
 ]) {
   if (!pattern.test(rewindAnalysis)) fail(`Rewind analysis is missing ${label}.`);

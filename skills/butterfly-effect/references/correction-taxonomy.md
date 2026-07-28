@@ -2,7 +2,7 @@
 
 Use this taxonomy to distinguish reusable prompt clauses from ordinary conversation.
 
-| Type | Signal | Typical restart clause |
+| Type | Signal | Typical updated-prompt clause |
 |---|---|---|
 | Phase | "Inspect before acting" | Inspect, outline, or ask for approval before drafting, changing, publishing, or executing. |
 | Scope | Wrong audience, channel, source, locale, file, module, branch, or worktree | Work only in the named scope and verify it before acting. |
@@ -29,5 +29,5 @@ Do not place a later domain or environment finding into the opening prompt as a 
 
 ```text
 Later finding: the source data covers only one region.
-Restart clause: verify source coverage and regional scope before drawing conclusions.
+Updated-prompt clause: verify source coverage and regional scope before drawing conclusions.
 ```

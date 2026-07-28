@@ -1,9 +1,9 @@
 ---
 name: butterfly-effect
-description: Analyze a completed or ongoing AI session across coding, research, writing, design, planning, operations, and other work; link repeated human corrections to the earliest supported AI trajectory drift, then return a rewind recommendation and updated prompt. Use when users ask to rewind, restart better, rewrite the opening prompt, learn from corrections, reduce repeated guidance, or say 蝴蝶效应、AI偏斜纠正、回退建议、重开、如果一开始就知道、从纠偏生成提示词。
+description: Diagnose and correct AI trajectory drift in a completed or ongoing session across coding, research, writing, design, planning, operations, and other work; link human corrections to the earliest supported Agent assumption or action, then return a rewind recommendation and updated prompt. Use when users ask to rewind, restart better, rewrite the opening prompt, learn from corrections, reduce repeated guidance, or say 蝴蝶效应、AI偏斜纠正、回退建议、重开、如果一开始就知道、从纠偏生成提示词。
 metadata:
   author: HuaTalk
-  version: "0.3.0"
+  version: "0.4.0"
   category: prompt-engineering
 ---
 
@@ -13,7 +13,8 @@ Trace downstream corrections to the earliest supported trajectory drift, then re
 
 ## Core Contract
 
-- Produce a concise rewind recommendation and a copy-ready updated prompt, not a generic retrospective.
+- Diagnose trajectory drift before reconstructing a prompt. Do not assume that corrections form a causal chain or that a rewind point exists.
+- When reliable drift exists, produce a concise rewind recommendation and a copy-ready updated prompt, not a generic retrospective.
 - Treat the current conversation as the default source.
 - Ground every clause in observed corrections, accepted decisions, repeated preferences, or authoritative project context.
 - Separate stable collaboration preferences from task-specific requirements and one-off course changes.
@@ -22,7 +23,7 @@ Trace downstream corrections to the earliest supported trajectory drift, then re
 - Match the user's language unless explicitly asked otherwise.
 - Do not reproduce secrets, credentials, private identifiers, or irrelevant personal content from session logs.
 - Keep the source domain-neutral: preserve its audience, artifact, evidence standard, and acceptance criteria whether the work involves code, research, writing, design, planning, operations, or another domain.
-- Identify the earliest reliable Agent assumption or action that caused a linked correction chain, or state that no single rewind point can be supported.
+- Identify the earliest reliable Agent assumption or action that caused a linked correction chain. Keep independent chains separate; never invent a shared cause or precise boundary.
 
 ## Source Routing
 
@@ -31,7 +32,7 @@ Trace downstream corrections to the earliest supported trajectory drift, then re
 - Named local session, ambiguous source, or transcript requiring discovery: read [Source resolution](references/source-resolution.md) before lookup.
 - Multiple sessions: analyze each independently, then retain cross-session rules only when repeated or explicitly requested.
 
-If history is unavailable, use visible evidence, state the gap in one sentence, and do not invent corrections.
+If history is unavailable, use visible evidence, state the gap in one sentence, and do not invent corrections, causal links, turn identifiers, or prompts unsupported by the remaining record.
 
 ## Workflow
 
@@ -47,7 +48,7 @@ Read chronological human and Agent turns and mark the original request, Agent as
 
 Record only turns where the user materially corrected the Agent's behavior, reasoning, scope, method, content, evidence, quality bar, output, or delivery. Internally map each event as `Agent assumption/action -> user correction -> resulting rule -> confidence`.
 
-Link events into correction chains when they share the same objective and a common earlier assumption, or when one correction depends on another. Do not treat ordinary follow-up questions, independent new requirements, or requests for explanation as corrections unless they expose a flaw in the earlier approach.
+Link events into correction chains only when they share the same objective and a supported earlier assumption, a later correction explicitly repairs an earlier consequence, or replacing one earlier Agent action would have prevented most of the downstream corrections. Do not treat ordinary follow-up questions, independent new requirements, or requests for explanation as corrections unless they expose a flaw in the earlier approach.
 
 Read [Correction taxonomy](references/correction-taxonomy.md) when classification is ambiguous, corrections conflict, multiple sessions are involved, or confidence is unclear. Read [Rewind analysis](references/rewind-analysis.md) when linking events, locating a rewind point, or handling multiple correction chains.
 
@@ -55,7 +56,7 @@ Read [Correction taxonomy](references/correction-taxonomy.md) when classificatio
 
 For each correction chain, trace backward to the earliest Agent assumption or action whose removal or replacement would have prevented most of the linked corrections. Set the rewind boundary immediately before that turn, or at the original request when the drift began at the first action. Keep earlier valid decisions and state the evidence and confidence for the boundary.
 
-If chains are independent, report multiple rewind points. If the evidence cannot support a reliable boundary, say so instead of inventing one.
+If independent chains each have a supported boundary, report them separately, mark the overall result medium or low confidence, and state that there is no single rewind point. Individual chain confidence may remain high when its own evidence is strong. If missing history or weak causality makes a boundary uncertain, lower confidence and describe it without a turn identifier. If no material chain or usable boundary is supported, return `No reliable drift or rewind point detected` instead of inventing one.
 
 ### 5. Classify What Belongs in the Updated Prompt
 
@@ -80,10 +81,10 @@ Check every high-confidence correction: would the prompt prevent it; does each c
 
 ## Output
 
-Default output: a concise rewind recommendation followed by one copy-ready updated prompt. Do not replace either artifact with a generic retrospective.
+Default output when drift is supported: a concise rewind recommendation followed by one copy-ready updated prompt. Do not replace either artifact with a generic retrospective.
 
-Read [Output contract](references/output-contract.md) for the default two-part output, `--prompt-only`, `--detailed`, multiple cases, or output-format uncertainty. For multiple cases, produce independent rewind recommendations and prompts rather than summaries.
+Read [Output contract](references/output-contract.md) for the result decision, default two-part output, explicit `--prompt-only`, `--detailed`, multiple cases, or output-format uncertainty. For multiple cases, produce independent rewind recommendations and prompts rather than summaries.
 
 ## Quality Bar
 
-The rewind recommendation must point to the earliest supported drift boundary without claiming false precision. The updated prompt must let a fresh Agent pursue the same objective, create or evaluate the requested artifact, avoid the observed correction chains, and investigate unknown facts without the retrospective.
+The diagnosis must not claim drift merely to produce a prompt. When supported, the rewind recommendation must point to the earliest defensible boundary without false precision, and the updated prompt must let a fresh Agent pursue the same objective, create or evaluate the requested artifact, avoid the observed correction chains, and investigate unknown facts without the retrospective.

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This repository packages the `/butterfly-effect` Agent Skill for finding AI trajectory drift and producing rewind recommendations with updated restart prompts.
+This repository packages the `/butterfly-effect` Agent Skill for diagnosing and correcting AI trajectory drift. Prompt reconstruction follows a supported rewind diagnosis; it is not the product's assumed starting point.
 
 ## Architecture
 
@@ -17,13 +17,16 @@ Read `docs/en/skill-progressive-loading.md` before moving instructions between t
 
 ## Design Rules
 
-1. The default artifacts are a concise rewind recommendation and the updated prompt.
-2. The recommendation identifies the earliest supported Agent assumption or action behind a linked correction chain; it is not automatically the first user correction.
-3. Historical analysis is an internal means except for the short evidence needed to justify the rewind recommendation; full analysis is available through `--detailed`.
-4. Later discoveries become investigation instructions unless they were available at the original start.
-5. Every prompt clause must trace to evidence; inferred personality profiles are insufficient.
-6. The prompt must preserve the original objective while preventing repeated correction loops.
-7. User-facing English and Chinese documentation must remain structurally and semantically equivalent.
+1. Diagnose whether a material correction chain and usable drift boundary exist before reconstructing a prompt.
+2. When drift is supported, the default artifacts are a concise rewind recommendation and the updated prompt; `--prompt-only` is explicit-only.
+3. The recommendation identifies the earliest supported Agent assumption or action behind a linked correction chain; it is not automatically the first user correction.
+4. Independent chains retain separate supported boundaries and never justify a synthetic shared cause.
+5. Missing history or weak causality lowers confidence; no material chain or usable boundary returns the exact no-reliable fallback without a synthetic prompt.
+6. Historical analysis is an internal means except for the short evidence needed to justify the rewind recommendation; full analysis is available through `--detailed`.
+7. Later discoveries become investigation instructions unless they were available at the original start.
+8. Every prompt clause must trace to evidence; inferred personality profiles are insufficient.
+9. The prompt must preserve the original objective while preventing repeated correction loops.
+10. User-facing English and Chinese documentation must remain structurally and semantically equivalent.
 
 ## Commands
 

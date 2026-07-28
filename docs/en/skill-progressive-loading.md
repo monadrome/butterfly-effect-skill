@@ -7,8 +7,8 @@ This guide explains how Butterfly Effect keeps activation context small without 
 | Layer | Loaded when | Content |
 |---|---|---|
 | Discovery metadata | During Skill discovery | Stable name and complete bilingual trigger description |
-| `SKILL.md` | Every activation | Core contract, workflow order, drift boundary, classification rules, counterfactual check, and conditional routes |
-| Direct references | When the route requires them | Source lookup, correction-chain/rewind analysis, ambiguous classification, or output details |
+| `SKILL.md` | Every activation | Diagnosis-first contract, workflow order, drift boundary, fallback, classification rules, counterfactual check, and conditional routes |
+| Direct references | When the route requires them | Source lookup, correction-chain/rewind analysis, confidence and fallback decisions, ambiguous classification, or output details |
 | Static checks | Repository validation only | Version, reference graph, contract anchors, language, manifest, and package guards |
 
 Moving text into a reference saves context only when `SKILL.md` states exactly when to read it. An unconditional reference merely relocates the cost.
@@ -19,10 +19,10 @@ Moving text into a reference saves context only when `SKILL.md` states exactly w
 |---|---|
 | `references/source-resolution.md` | A named local session, ambiguous source, or transcript that requires discovery |
 | `references/correction-taxonomy.md` | Ambiguous classification, conflicting corrections, multiple sessions, or unclear confidence |
-| `references/rewind-analysis.md` | Linking corrections into chains, locating a rewind boundary, multiple chains, or missing history |
-| `references/output-contract.md` | Any default output, `--prompt-only`, `--detailed`, multiple cases, or output-format uncertainty |
+| `references/rewind-analysis.md` | Linking corrections into chains, locating a rewind boundary, grading confidence, multiple chains, missing history, or no reliable result |
+| `references/output-contract.md` | Selecting an evidence outcome and formatting the supported-drift default, explicit `--prompt-only`, `--detailed`, multiple cases, or fallback |
 
-The visible current conversation, a direct transcript path, and straightforward correction extraction stay on the short source path; the rewind and output references define the universal result shape without requiring unrelated source lookup.
+The visible current conversation, a direct transcript path, and straightforward correction extraction stay on the short source path; the rewind and output references define the diagnosis and result shape without requiring unrelated source lookup.
 
 ## Placement Test
 
@@ -52,7 +52,7 @@ Do not hide a universal safeguard behind a conditional route. Secret redaction, 
 2. Measure `SKILL.md` lines, words, and bytes.
 3. Change one high-cost conditional or duplicated block.
 4. Run old and new versions with the same raw transcript in separate fresh contexts.
-5. Grade observable output: source used, corrections retained, later discoveries converted, unsupported rules excluded, and default formatting.
+5. Grade observable output: source used, correction chains supported, outcome selected before formatting, later discoveries converted, unsupported rules excluded, and explicit-only modes respected.
 6. Add a focused harness only after a consequential failure is observed.
 7. Run static checks and inspect the complete diff.
 
@@ -60,7 +60,7 @@ Do not give the evaluator the intended prompt or your diagnosis. A forward test 
 
 ## Current Result
 
-The entry file keeps the complete rewind-first workflow below the repository's 500-line contract. Conditional detail remains in four directly linked references: source resolution, correction taxonomy, rewind analysis, and output formatting. Default current-conversation requests do not load unrelated source lookup details, while correction-chain analysis and the two-part output contract load when their routes are reached. The discovery description and repository contract anchors remain explicit.
+The entry file keeps the complete diagnosis-first, rewind-first workflow below the repository's 500-line contract. Conditional detail remains in four directly linked references: source resolution, correction taxonomy, rewind analysis, and output decisions. Default current-conversation requests do not load unrelated source lookup details, while correction-chain analysis and the outcome contract load when their routes are reached. The discovery description, no-reliable fallback, and explicit-only prompt mode remain testable repository anchors.
 
 ## Change Checklist
 

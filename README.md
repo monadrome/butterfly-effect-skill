@@ -4,9 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-blue.svg)](README-zh.md)
 
-**The core value is finding where the Agent went off course, then rewinding the task before that drift and starting again with a better prompt.**
+**Butterfly Effect corrects AI trajectory drift. It is not a restart-prompt generator that assumes every session needs rewriting.**
 
-Butterfly Effect analyzes an existing AI-assisted conversation, links repeated human corrections into causal chains, and identifies the earliest supported Agent assumption or action that sent the work off course. It returns a concise rewind recommendation plus a copy-ready updated prompt for restarting the same task. It applies to coding, research, writing, design, planning, operations, and other AI-assisted work; it needs no advance tracker or correction tagging, and the prompt never pretends that facts discovered later were known at the start.
+Butterfly Effect analyzes an existing AI-assisted conversation, links human corrections only when causal evidence supports a chain, and identifies the earliest defensible Agent assumption or action that sent the work off course. When drift is supported, it returns a concise rewind recommendation plus a copy-ready updated prompt for restarting the same task. When history or causality is insufficient, it lowers confidence or reports `No reliable drift or rewind point detected` instead of inventing precision. It applies to coding, research, writing, design, planning, operations, and other AI-assisted work; it needs no advance tracker or correction tagging, and the prompt never pretends that facts discovered later were known at the start.
 
 ## Quickstart
 
@@ -20,10 +20,10 @@ npx skills-npm setup
 After a correction-heavy session, ask:
 
 ```text
-Use $butterfly-effect to find where the Agent first drifted in this session and return a rewind recommendation plus an updated prompt.
+Use /butterfly-effect to find where the Agent first drifted in this session and return a rewind recommendation plus an updated prompt.
 ```
 
-Copy the `Updated prompt` blockquote into a fresh session. Use the rewind recommendation to understand where the original trajectory first drifted.
+Copy the `Updated prompt` blockquote into a fresh session. Use the rewind recommendation to understand where the original trajectory first drifted. If the session does not support a reliable drift diagnosis, the Skill returns the no-reliable result instead of manufacturing a prompt.
 
 ## Example
 
@@ -154,27 +154,31 @@ The current conversation is the default source. If its visible history is trunca
 
 | Goal | Example request | Source behavior |
 |---|---|---|
-| Restart the current task | `Use $butterfly-effect on this session.` | Uses visible history, recovering only the same current session when early turns are truncated |
-| Analyze a named local session | `Use $butterfly-effect on Codex session "launch-plan".` | Resolves and reads that session |
-| Analyze an exported record | `Use $butterfly-effect on /path/to/transcript.md.` | Reads the supplied transcript or handoff in order |
-| Return only the prompt | `Use $butterfly-effect --prompt-only on this session.` | Explicitly omits the rewind recommendation |
-| Include supporting analysis | `Use $butterfly-effect --detailed on this session.` | Returns the rewind recommendation and prompt first, then timeline, corrections, and exclusions |
-| Compare several sessions | `Use $butterfly-effect on these three session exports.` | Analyzes each independently before retaining repeated rules |
+| Restart the current task | `Use /butterfly-effect on this session.` | Uses visible history, recovering only the same current session when early turns are truncated |
+| Analyze a named local session | `Use /butterfly-effect on Codex session "launch-plan".` | Resolves and reads that session |
+| Analyze an exported record | `Use /butterfly-effect on /path/to/transcript.md.` | Reads the supplied transcript or handoff in order |
+| Return only the prompt | `Use /butterfly-effect --prompt-only on this session.` | Explicitly omits the rewind recommendation |
+| Include supporting analysis | `Use /butterfly-effect --detailed on this session.` | Returns the rewind recommendation and prompt first, then timeline, corrections, and exclusions |
+| Compare several sessions | `Use /butterfly-effect on these three session exports.` | Analyzes each independently before retaining repeated rules |
 
 For research notes, a document review, an issue discussion, or another external record, provide a locally accessible export or path. The Skill does not fetch remote content implicitly. See [more examples](docs/en/examples.md).
+
+`--prompt-only` is an explicit output mode. It is never inferred from prior usage and never replaces the default rewind-plus-prompt contract.
 
 ## How It Works
 
 1. Reconstruct the original objective, audience, requested artifact, and information available at the start.
 2. Build a chronological timeline of Agent assumptions, actions, user corrections, accepted decisions, and later discoveries.
-3. Link related corrections into chains and trace each chain back to the earliest reliable Agent drift point.
-4. Separate stable preferences, task-specific requirements, and one-off decisions.
-5. Turn later discoveries into inspection or verification steps, then compose the updated prompt in execution order.
-6. Check that it covers every high-confidence correction without adding unsupported rules; report multiple or unreliable rewind points explicitly.
+3. Link related corrections into chains only when the timeline supports causality, then trace each chain back to the earliest defensible Agent drift point.
+4. Keep independent chains separate; lower confidence for missing history or weak causal evidence, and stop with the no-reliable result when no usable boundary exists.
+5. Separate stable preferences, task-specific requirements, and one-off decisions.
+6. Turn later discoveries into inspection or verification steps, then compose the updated prompt in execution order.
+7. Check that it covers every high-confidence correction without adding unsupported rules.
 
 ## Design Principles
 
 - **Zero preparation:** analyze records that already exist; no initialization, hooks, or correction tagging are required beforehand.
+- **Diagnosis before reconstruction:** establish that a supported drift boundary exists before generating an updated prompt.
 - **Rewind-first:** explain the earliest supported drift boundary, then return the artifact needed for a fresh session instead of making the user translate a retrospective report.
 - **Counterfactual restart:** reconstruct what should have been said initially while staying honest about what was knowable then.
 
@@ -186,11 +190,12 @@ Read the [design notes](docs/en/design.md) for the evidence model, non-goals, an
 - When a session or path is named, read only the requested history needed for the task.
 - Credentials, secrets, private identifiers, and irrelevant personal content are omitted from output.
 - Missing history and ambiguous evidence are reported briefly; corrections are never invented.
+- Independent correction chains are not collapsed into a synthetic common cause or falsely precise single rewind point.
 - Generated summaries are secondary evidence when raw chronological messages are available.
 
 ## Validation and Limitations
 
-**Important:** Correction extraction and classification still depend on model judgment. Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents, but these static checks cannot prove runtime extraction accuracy. A result may miss an implicit preference, overfit a one-off reaction, or soften a contradiction incorrectly. Review important restart prompts before using them, especially when the source spans several sessions or contains sensitive material.
+**Important:** Correction extraction, chain linkage, and rewind confidence still depend on model judgment. Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents, but these static checks cannot prove runtime diagnostic accuracy. A result may miss a drift, infer causality too strongly, overfit a one-off reaction, or soften a contradiction incorrectly. Review important recommendations and updated prompts before using them, especially when the source spans several sessions or contains sensitive material.
 
 ## Updating
 

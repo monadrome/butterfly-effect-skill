@@ -1,8 +1,19 @@
 # Output Contract
 
+## Outcome Decision
+
+Choose the result before formatting it:
+
+| Evidence state | Output |
+|---|---|
+| One supported correction chain | One rewind recommendation, then one updated prompt |
+| Several independent chains with supported boundaries | Mark the overall result medium or low confidence, state that no single rewind point exists, list each boundary, then use one prompt only if it can cover the chains without conflating objectives; otherwise provide separate prompts |
+| Missing early history or weak causality, but supported corrections remain | Give a low-confidence boundary without a fabricated turn or timestamp, then an updated prompt containing only supported clauses |
+| No material chain or evidence too weak to distinguish drift from a new requirement | `No reliable drift or rewind point detected`, followed by one sentence naming the evidence gap; do not emit an updated prompt unless the user explicitly requests reconstruction from the limited evidence |
+
 ## Default
 
-Return two compact artifacts in this order:
+When at least one reliable or qualified drift boundary exists, return two compact artifacts in this order:
 
 ```markdown
 ## Rewind recommendation
@@ -19,13 +30,11 @@ Return two compact artifacts in this order:
 
 Keep the recommendation actionable rather than retrospective. Do not preface it with a session summary or end with an offer to do more.
 
-When no reliable drift boundary exists, say `No reliable drift or rewind point detected` and explain the evidence gap in one sentence. Do not invent a turn, timestamp, or causal chain.
-
-When several independent chains exist, list each rewind boundary briefly and provide separate prompts only when one prompt cannot cover them without conflating their objectives.
+When several independent chains exist, explicitly state that no single rewind point exists, list each supported boundary briefly, and provide separate prompts only when one prompt cannot cover them without conflating their objectives.
 
 ## Prompt-only mode
 
-When the user explicitly requests `--prompt-only`, return only the updated prompt blockquote. This is an explicit output mode, not the default.
+When the user explicitly requests `--prompt-only`, return only the updated prompt blockquote. This is an explicit output mode, never the default or an inferred preference. If the evidence cannot support an updated prompt, return the no-reliable fallback instead of fabricating one.
 
 ## Detailed mode
 

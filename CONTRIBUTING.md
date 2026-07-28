@@ -18,7 +18,7 @@ This repository has no runtime application or build. It contains the Skill, dire
 ## Making a Change
 
 1. Keep universal workflow and invariants in `skills/butterfly-effect/SKILL.md`. Put condition-specific detail in the matching directly linked reference.
-2. Preserve the default rewind recommendation plus copy-ready updated prompt, current-conversation source, hindsight boundary, original objective, evidence grounding, and secret redaction.
+2. Preserve diagnosis before reconstruction, the supported-drift default of rewind recommendation plus copy-ready updated prompt, explicit-only `--prompt-only`, current-conversation source, hindsight boundary, original objective, evidence grounding, and secret redaction.
 3. Keep `README.md` and `README-zh.md` semantically and structurally equivalent. Update paired `docs/en/` and `docs/zh/` pages together.
 4. Update `CHANGELOG.md` for release-visible behavior, documentation, packaging, or workflow changes.
 5. Run `npm test` and inspect the full diff. Static checks do not replace fresh-context behavior evaluation.
@@ -34,23 +34,25 @@ Read [Skill progressive loading](docs/en/skill-progressive-loading.md) before mo
 
 ## Design Constraints
 
-Butterfly Effect is a post-hoc AI trajectory-drift correction tool. It is not a session recorder, persistent memory, a general prompt optimizer, or a report-first retrospective.
+Butterfly Effect is a post-hoc AI trajectory-drift diagnosis and correction tool. It is not a session recorder, persistent memory, restart-prompt generator, general prompt optimizer, or report-first retrospective.
 
-Every restart clause needs observed correction evidence, an accepted decision, a repeated preference, or authoritative project context. Facts knowable only after investigation become inspection or verification instructions. Do not turn isolated reactions into stable user traits.
+Every updated-prompt clause needs observed correction evidence, an accepted decision, a repeated preference, or authoritative project context. Facts knowable only after investigation become inspection or verification instructions. Do not turn isolated reactions into stable user traits.
 
 ## Evaluation
 
-Use raw correction-heavy transcripts in a fresh context. Do not give the evaluator the intended restart prompt or your classification notes.
+Use raw transcripts in a fresh context. Do not give the evaluator the intended updated prompt or your classification notes.
 
 A successful result should:
 
-- return a concise rewind recommendation followed by the copy-ready updated prompt by default;
+- return a concise rewind recommendation followed by the copy-ready updated prompt by default when drift is supported;
+- select the evidence outcome before applying an output format and keep `--prompt-only` explicit-only;
 - locate the earliest supported Agent assumption or action rather than treating the first user correction as the rewind point;
 - cover every high-confidence correction;
 - preserve the original objective;
 - distinguish stable, task-specific, and one-off rules;
 - turn later discoveries into investigation steps;
-- report multiple independent chains or missing history without inventing a precise rewind boundary;
+- report multiple independent chains or missing history without inventing a precise rewind boundary or shared cause;
+- return the no-reliable fallback without a synthetic updated prompt when no material chain or usable boundary is supported;
 - exclude unsupported personality claims and private content.
 
 For routing or output changes, compare the old and new Skill with identical transcripts. Add regression instructions only after observing a meaningful failure.

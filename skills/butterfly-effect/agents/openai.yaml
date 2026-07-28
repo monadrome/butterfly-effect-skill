@@ -1,4 +1,4 @@
 interface:
   display_name: "蝴蝶效应"
-  short_description: "Find AI drift and generate a rewind plan"
-  default_prompt: "Use $butterfly-effect to find where the Agent first drifted in this session and return a rewind recommendation plus an updated prompt."
+  short_description: "Diagnose AI drift and recommend a rewind"
+  default_prompt: "Use /butterfly-effect to diagnose trajectory drift in this session, then return an evidence-backed rewind recommendation plus an updated prompt when supported."

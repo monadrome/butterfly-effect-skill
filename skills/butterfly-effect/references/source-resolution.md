@@ -6,7 +6,7 @@ Use the least invasive source that contains the requested interaction history, r
 
 Use the visible conversation directly when it contains the opening request and the Agent actions needed to explain the correction chain. Treat the history as truncated when the first visible turn refers to omitted work, starts after the suspected drift, or is presented as a summary without the underlying turns.
 
-When the current session is identifiable and its local log is accessible, resolve only that session to recover the missing early turns. Do not search unrelated sessions or use a different session as a proxy. If the current session cannot be identified or read, use the visible evidence, lower rewind confidence, and avoid precise turn or timestamp claims.
+When the current session is identifiable and its local log is accessible, resolve only that session to recover the missing early turns. Do not search unrelated sessions or use a different session as a proxy. If the current session cannot be identified or read, use the visible evidence, lower rewind confidence, and avoid precise turn or timestamp claims. If the visible remainder cannot distinguish a correction from a new requirement, return the no-reliable fallback.
 
 ## Codex
 

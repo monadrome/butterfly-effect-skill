@@ -1,12 +1,13 @@
 # Design
 
-Butterfly Effect is a post-hoc trajectory-drift correction tool. It uses an existing AI-assisted session to locate where the Agent's course first diverged from the user's objective, then returns a rewind recommendation and an updated prompt for restarting the same task. It works across coding, research, writing, design, planning, operations, and other domains.
+Butterfly Effect is a post-hoc trajectory-drift correction tool, not a restart-prompt generator. It uses an existing AI-assisted session to determine whether the Agent's course diverged from the user's objective, locate the earliest defensible boundary when it did, then return a rewind recommendation and an updated prompt for restarting the same task. It works across coding, research, writing, design, planning, operations, and other domains.
 
 ## Product Position
 
 | Principle | Meaning |
 |---|---|
 | Zero preparation | Use conversation records that already exist. No tracker, hook, or correction labels must be installed before the session. |
+| Diagnosis before reconstruction | Establish that a material correction chain and usable drift boundary exist before producing an updated prompt. |
 | Rewind-first | Return the earliest supported drift boundary and why it explains the correction chain, followed by a prompt ready for a fresh session. Supporting evidence is available through `--detailed`. |
 | Counterfactual restart | Ask what the user should have said initially, while respecting what could actually have been known then. |
 | Domain neutrality | Preserve the source task's audience, artifact, evidence standard, and acceptance criteria without importing coding-specific defaults. |
@@ -17,7 +18,7 @@ Zero preparation does not mean zero input. The Skill still needs the visible con
 
 The same user statement can belong to different evidence classes depending on context.
 
-| Evidence | Restart treatment |
+| Evidence | Updated-prompt treatment |
 |---|---|
 | Repeated preference or explicit request to remember | Treat as stable when relevant to the restarted task |
 | Correction that prevented rework or protected an invariant | Include as a task-specific requirement |
@@ -32,9 +33,9 @@ Project rules and accepted final decisions can support a clause. Generated summa
 
 The unit of analysis is a correction chain, not an isolated user message. A chain links an Agent assumption or action to a material user correction and the downstream corrections that repair the same objective, audience, artifact, or acceptance criterion.
 
-The rewind point is the earliest Agent assumption or action that caused most of the linked corrections. It is not automatically the first user correction. The recommendation should identify the boundary as `before turn <id>`, `before <timestamp>`, `before the Agent assumed ...`, or `the original request` when the evidence supports that precision. If chains are independent, report separate boundaries; if the early history is missing or causality is weak, report `No reliable drift or rewind point detected` rather than inventing a location.
+The rewind point is the earliest Agent assumption or action that caused most of the linked corrections. It is not automatically the first user correction. The recommendation should identify the boundary as `before turn <id>`, `before <timestamp>`, `before the Agent assumed ...`, or `the original request` only when the evidence supports that precision. Independent chains disprove one common rewind point but may retain separate supported boundaries; mark the overall result medium or low confidence even when an individual chain is high confidence. Missing early history or weak causality requires lower confidence and a non-precise boundary; when no material chain or usable boundary remains, return `No reliable drift or rewind point detected` rather than inventing a location.
 
-The updated prompt keeps valid earlier decisions and translates hindsight into checks. It must prevent the linked correction chain without asserting a root cause that was discovered only later.
+The updated prompt keeps valid earlier decisions and translates hindsight into checks. It must prevent the linked correction chain without asserting a root cause that was discovered only later. The no-reliable result does not include an updated prompt unless the user explicitly asks for reconstruction from limited evidence.
 
 ## Reconstruction Sequence
 
@@ -42,8 +43,9 @@ The updated prompt keeps valid earlier decisions and translates hindsight into c
 2. Build a chronological timeline of Agent assumptions, actions, corrections, accepted decisions, and later discoveries.
 3. Identify material corrections, link them into causal chains, and locate the earliest supported drift boundary for each chain.
 4. Classify each correction by confidence, scope, and durability.
-5. Compose the rewind recommendation and updated prompt in execution order.
-6. Check the prompt against every high-confidence correction and disclose missing or ambiguous history.
+5. Choose the output outcome: one boundary, separate independent boundaries, a qualified low-confidence boundary, or the no-reliable fallback.
+6. When the outcome supports reconstruction, compose the rewind recommendation and updated prompt in execution order.
+7. Check the prompt against every high-confidence correction and disclose missing or ambiguous history.
 
 The result should be usable without the retrospective. A fresh agent should not need access to the old conversation to understand the objective, gates, constraints, and verification requirements.
 
@@ -75,8 +77,9 @@ Explicit, repeated, accepted, or project-backed corrections are high confidence.
 
 - Butterfly Effect is not a session recorder. It works after useful history already exists.
 - It is not persistent memory. Cross-session preferences require repeated evidence or an explicit user request.
+- It is not a restart-prompt generator. Prompt reconstruction follows a supported trajectory-drift diagnosis and is skipped when evidence cannot support one.
 - It is not a general prompt optimizer. Every added clause must trace to observed corrections or authoritative project context.
-- It is not report-first retrospective software. The default artifacts are a concise rewind recommendation and the updated prompt.
+- It is not report-first retrospective software. When drift is supported, the default artifacts are a concise rewind recommendation and the updated prompt.
 - It does not make a fresh agent omniscient. Unknown facts remain investigation tasks.
 
 ## Counterfactual Validation
@@ -95,8 +98,9 @@ Before returning the prompt, ask:
 |---|---|---|
 | Transcript summary replaces raw messages | Corrections can lose order or attribution | Prefer chronological human and assistant turns |
 | Every request is treated as a correction | The prompt becomes a transcript summary | Keep only turns that expose or change an earlier approach |
+| A prompt is generated even when no drift is supported | Formatting pressure creates a fictional diagnosis and unsupported rules | Choose the evidence outcome before formatting and use the no-reliable fallback |
 | One reaction becomes a stable preference | The prompt overfits the user | Require repetition, explicit memory intent, or final acceptance |
-| Later root cause is asserted as known | The restart prompt leaks hindsight | Convert the fact into an inspection or verification step |
+| Later root cause is asserted as known | The updated prompt leaks hindsight | Convert the fact into an inspection or verification step |
 | First user correction is mistaken for the rewind point | The recommendation rewinds too late and leaves the causal drift intact | Trace the correction chain back to the earlier Agent assumption or action |
 | Output starts with a long analysis | The user must translate the report again | Put the concise rewind recommendation and updated prompt first |
 
@@ -104,4 +108,4 @@ Before returning the prompt, ask:
 
 Repository checks validate static contracts, references, manifests, language boundaries, release tags, and package contents. They cannot prove that a model extracts corrections accurately.
 
-Behavior evaluation should use raw correction-heavy transcripts in a fresh context. Include cases with one shared drift, multiple independent chains, missing early history, and no material drift. Do not provide the expected prompt or intended classification. Review whether the result locates the earliest supported boundary, covers every high-confidence correction, excludes unsupported claims, preserves the original objective, and turns later discoveries into checks. Add a regression fixture only after observing a real failure pattern.
+Behavior evaluation should use raw transcripts in a fresh context. Include cases with one shared drift, multiple independent chains, missing early history, weak causality, and no material drift. Do not provide the expected prompt or intended classification. Review whether the result selects the correct outcome before formatting, locates only supported boundaries, covers every high-confidence correction, excludes unsupported claims, preserves the original objective, and turns later discoveries into checks. Add a regression fixture only after observing a real failure pattern.

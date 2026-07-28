@@ -7,7 +7,7 @@ These examples show the source request, observed corrections, rewind recommendat
 Request:
 
 ```text
-Use $butterfly-effect on this session.
+Use /butterfly-effect on this session.
 ```
 
 Observed corrections:
@@ -28,7 +28,7 @@ Updated prompt:
 
 > First inspect the named worktree and explain the existing behavior, call chain, and cause without editing. Wait for confirmation before implementation. Preserve V2, add V3 behind a default-off flag, keep configuration reads at the entry and core matching logic pure, run existing tests without adding new ones unless requested, and verify the worktree diff before committing and pushing.
 
-No local session lookup is needed when the visible conversation contains the opening request and the causal Agent action. If those early turns were truncated, resolve only the current session when it is identifiable and accessible.
+No local session lookup is needed when the visible conversation contains the opening request and the causal Agent action. If those early turns were truncated, resolve only the current session when it is identifiable and accessible. Without that action, lower confidence and do not invent a turn identifier.
 
 ## Product or Positioning Task
 
@@ -94,7 +94,7 @@ Updated prompt:
 Request:
 
 ```text
-Use $butterfly-effect on the Codex session "launch-plan".
+Use /butterfly-effect on the Codex session "launch-plan".
 ```
 
 The Skill resolves that exact local session, extracts human and assistant messages in timestamp order, and excludes tool payloads unless they explain a correction. A Claude Code session can be named in the same way. If several sessions have similar names, the strongest exact match is used and the assumption is stated only when it affects the result.
@@ -104,17 +104,27 @@ The Skill resolves that exact local session, extracts human and assistant messag
 Request:
 
 ```text
-Use $butterfly-effect on /work/exports/research-review.md.
+Use /butterfly-effect on /work/exports/research-review.md.
 ```
 
 A direct path is read as supplied. Message order and speaker attribution are preserved. For research notes, a document review, an issue discussion, or another external record, export it or provide a locally readable path; the Skill does not fetch remote content implicitly.
+
+## Prompt-only Mode
+
+Request:
+
+```text
+Use /butterfly-effect --prompt-only on this session.
+```
+
+This explicit mode returns only the updated prompt blockquote after drift has been diagnosed. It does not become the default from prior usage. If the source cannot support a material correction chain or updated prompt, the result is still `No reliable drift or rewind point detected`; the mode does not force prompt generation.
 
 ## Detailed Mode
 
 Request:
 
 ```text
-Use $butterfly-effect --detailed on this session.
+Use /butterfly-effect --detailed on this session.
 ```
 
 Output shape:
@@ -146,21 +156,21 @@ The rewind recommendation and updated prompt remain first. Detailed mode explain
 
 ## Multiple Correction Chains
 
-When one session contains independent drift, do not force unrelated objectives into one boundary or one prompt. Report each supported boundary and keep separate prompts when combining them would change the task.
+When one session contains independent drift, do not force unrelated objectives into one boundary or one prompt. State that no single rewind point exists, report each supported boundary, and keep separate prompts when combining them would change the task.
 
 Example:
 
 - Chain A: rewind before the Agent chose an unsupported data source; keep the user's target audience and decision criteria.
 - Chain B: rewind before the Agent committed to a visual direction without approval; keep the later accessibility requirement.
 
-Return two recommendations and two standalone prompts unless one updated prompt can cover both chains without conflating their objectives.
+Return two recommendations and two standalone prompts unless one updated prompt can cover both chains without conflating their objectives. Mark the overall result medium or low confidence because there is no shared boundary; independence alone does not lower confidence in a chain whose own action and consequences are visible.
 
 ## Multiple Sessions
 
 Request:
 
 ```text
-Use $butterfly-effect on these three session exports and produce one rewind recommendation plus one updated prompt per representative case.
+Use /butterfly-effect on these three session exports and produce one rewind recommendation plus one updated prompt per representative case.
 ```
 
 Analyze each source independently before comparing them. Each output prompt must stand alone under a descriptive title. A rule becomes cross-session guidance only when it repeats or the user explicitly asks to retain it; unrelated one-off decisions stay with their original case.
@@ -187,12 +197,19 @@ Evidence:
 Treatment:
 
 - Include an analysis gate as a stable collaboration preference when it applies.
-- Keep the temporary review restriction only in that task's restart prompt. Do not generalize it into "the user never wants review."
+- Keep the temporary review restriction only in that task's updated prompt. Do not generalize it into "the user never wants review."
 
 ## Missing History and Privacy
 
-If a named session cannot be read, state the missing source in one sentence and use only evidence that remains visible. Do not fabricate the lost corrections or a precise rewind boundary.
+If a named session cannot be read, state the missing source in one sentence and use only evidence that remains visible. Do not fabricate the lost corrections or a precise rewind boundary. A visible correction may support a low-confidence descriptive boundary, but not a guessed turn or timestamp.
 
-If no material correction chain is supported, return `No reliable drift or rewind point detected` and use the original objective as the basis for the updated prompt.
+If no material correction chain is supported, return:
+
+```text
+No reliable drift or rewind point detected
+The available history does not show a supported causal chain from an Agent action to a material user correction.
+```
+
+Do not add an updated prompt merely to fill the normal output shape. Reconstruct one from limited evidence only when the user explicitly requests it.
 
 If a transcript contains a token, customer identifier, or unrelated personal detail, omit it from the output. Preserve the operational requirement in redacted form when it matters, such as "authenticate with the configured service account," without reproducing the value or identity.

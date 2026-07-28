@@ -12,6 +12,8 @@ Group correction events only when at least one of these signals is present:
 
 Keep independent requests or unrelated preferences in separate chains. A transcript may produce several chains or no reliable chain.
 
+Independence is evidence against one common rewind point, not evidence for a synthetic upstream cause. Separate chains may still have their own supported boundaries.
+
 ## Rewind Boundary
 
 For each chain, compare the Agent's actions in reverse chronological order and choose the earliest boundary that satisfies all of the following:
@@ -25,7 +27,8 @@ Represent the boundary as one of:
 - `before turn <id>` or `before <timestamp>` when the source provides stable identifiers;
 - `before the Agent assumed/decided <short description>` when it does not;
 - `the original request` when the drift began with the first Agent action;
-- `no single reliable rewind point` when chains are independent or evidence is insufficient.
+- `no single rewind point; see independent chains below` when several chains have separate supported boundaries;
+- `No reliable drift or rewind point detected` when no material chain or usable boundary is supported.
 
 Do not call the first user correction the rewind point automatically. The user correction is evidence; the rewind point is the earlier Agent action it reveals.
 
@@ -38,10 +41,17 @@ Keep the default recommendation short and actionable:
 - **Keep:** earlier decisions that remain valid;
 - **Confidence:** high, medium, or low, with one evidence-based qualifier when needed.
 
-When there are multiple chains, list each boundary briefly and say whether the updated prompt covers them together or requires separate prompts.
+When there are multiple independent chains, list only the supported boundary for each, explicitly reject a shared boundary, mark the overall result medium or low confidence, and say whether the updated prompt covers them together or requires separate prompts. Do not lower an individual chain's confidence merely because another independent chain exists; lower confidence for that chain when its own history or causal evidence is weak.
+
+## Confidence and Fallbacks
+
+- **High:** the Agent action is visible and multiple explicit or accepted corrections repair its consequences.
+- **Medium:** the action and correction are visible, but the downstream link is partly inferred or only one material correction supports it.
+- **Low:** the correction is visible but the suspected Agent action or early history is incomplete. Describe the boundary without a turn or timestamp.
+- **No reliable result:** there is no material correction chain, the source is too incomplete to distinguish drift from a new requirement, or causality would be speculative. Return the exact fallback sentence and do not manufacture an updated prompt from unsupported rules.
 
 ## Missing or Truncated History
 
-If the visible conversation does not contain the suspected first action, use the current-session source resolver only when that session is identifiable and accessible. Otherwise report the missing history and lower confidence; never infer a turn number or claim a precise boundary.
+If the visible conversation does not contain the suspected first action, use the current-session source resolver only when that session is identifiable and accessible. Otherwise report the missing history and lower confidence; never infer a turn number or claim a precise boundary. A low-confidence recommendation may still use supported corrections, but its updated prompt must contain only the original objective and constraints directly evidenced by the remaining record.
 
-If no material correction chain exists, return `No reliable drift or rewind point detected` and use the original objective as the basis for the updated prompt. Do not manufacture a rewind recommendation.
+If no material correction chain exists, return `No reliable drift or rewind point detected`. Do not rewrite the original request merely to fill the updated-prompt slot; generate one only when the user explicitly asks for prompt reconstruction despite the diagnostic result.

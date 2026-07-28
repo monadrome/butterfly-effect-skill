@@ -4,6 +4,15 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-07-28
+
+### Changed
+
+- Made trajectory-drift diagnosis an explicit gate before prompt reconstruction, so the Skill no longer assumes every session contains a rewindable failure.
+- Unified single-chain, independent-chain, missing-history, weak-causality, and no-material-drift outcomes in one evidence-first output decision.
+- Changed the no-reliable fallback to avoid generating an unsupported updated prompt unless reconstruction is explicitly requested from limited evidence.
+- Strengthened bilingual documentation, examples, maintainer guidance, plugin metadata, and static checks around explicit-only `--prompt-only`, confidence, and false-precision prevention.
+
 ## [0.3.0] - 2026-07-28
 
 ### Changed
