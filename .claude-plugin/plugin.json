@@ -1,7 +1,7 @@
 {
   "name": "butterfly-effect-skill",
-  "description": "Diagnose and correct AI trajectory drift across coding, research, writing, design, planning, operations, and other work, then recommend an evidence-backed rewind and updated prompt.",
-  "version": "0.4.0",
+  "description": "Turn a correction-heavy AI session into a rewind recommendation and a better prompt for restarting the task.",
+  "version": "0.4.1",
   "author": {
     "name": "HuaTalk",
     "url": "https://github.com/HuaTalk"

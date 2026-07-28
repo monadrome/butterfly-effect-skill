@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-07-28
+
+### Changed
+
+- Rewrote both READMEs around the user's adoption path: recognize a correction-heavy session, see the result in one short example, install the Skill, and run it.
+- Moved diagnostic terminology, historical design context, and maintainer-facing detail out of the primary explanation so first-time users can understand the value without learning the internal model.
+- Simplified npm, Agent, and Claude plugin discovery descriptions to state the user-visible outcome.
+
 ## [0.4.0] - 2026-07-28
 
 ### Changed

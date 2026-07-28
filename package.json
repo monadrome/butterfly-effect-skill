@@ -1,8 +1,8 @@
 {
   "name": "@huatalk/butterfly-effect-skill",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "packageManager": "npm@11.6.2",
-  "description": "Diagnose and correct AI trajectory drift across any AI-assisted work, then recommend an evidence-backed rewind and updated prompt.",
+  "description": "Turn a correction-heavy AI session into a rewind recommendation and a better prompt for restarting the task.",
   "keywords": [
     "agent-skills",
     "claude-code",
