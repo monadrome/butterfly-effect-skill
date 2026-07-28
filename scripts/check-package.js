@@ -36,11 +36,13 @@ const packedPaths = new Set(archive.files.map(({ path: filePath }) => filePath))
 const requiredPaths = [
   '.claude-plugin/marketplace.json',
   '.claude-plugin/plugin.json',
+  'CONTEXT.md',
   'LICENSE',
   'README.md',
   'README-zh.md',
   'package.json',
   'scripts/check-install.js',
+  'docs/adr/0001-artifact-first-drift-diagnosis.md',
   'skills/butterfly-effect/SKILL.md',
   'skills/butterfly-effect/agents/openai.yaml',
 ];

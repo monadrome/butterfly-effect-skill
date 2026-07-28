@@ -70,7 +70,7 @@ try {
     'README.md',
     'README-zh.md',
     'skills/butterfly-effect/SKILL.md',
-    'skills/butterfly-effect/references/rewind-analysis.md',
+    'skills/butterfly-effect/references/source-resolution.md',
   ]) {
     const installedPath = path.join(installedRoot, relative);
     if (!fs.existsSync(installedPath) || !fs.lstatSync(installedPath).isFile()) {

@@ -4,7 +4,7 @@ This repository packages the `/butterfly-effect` Agent Skill for diagnosing and 
 
 ## Architecture
 
-The canonical behavior is in `skills/butterfly-effect/SKILL.md`. Its references are one level deep and load for source discovery, correction-chain and rewind analysis, ambiguous classification, or output formatting. The rest of the repository provides bilingual user documentation, npm and Claude Code distribution, maintainer guidance, and static checks.
+The canonical behavior is in `skills/butterfly-effect/SKILL.md`. Its only runtime reference contains environment-specific source discovery. The rest of the repository provides bilingual user documentation, npm and Claude Code distribution, maintainer guidance, and static checks.
 
 Read `docs/en/skill-progressive-loading.md` before moving instructions between the entry file and references.
 
@@ -17,16 +17,17 @@ Read `docs/en/skill-progressive-loading.md` before moving instructions between t
 
 ## Design Rules
 
-1. Diagnose whether a material correction chain and usable drift boundary exist before reconstructing a prompt.
+1. Identify the task artifact and diagnose whether a produced version was reworked because it missed the expected outcome before reconstructing a prompt.
 2. When drift is supported, the default artifacts are a concise rewind recommendation and the updated prompt; `--prompt-only` is explicit-only.
-3. The recommendation identifies the earliest supported Agent assumption or action behind a linked correction chain; it is not automatically the first user correction.
-4. Independent chains retain separate supported boundaries and never justify a synthetic shared cause.
-5. Missing history or weak causality lowers confidence; no material chain or usable boundary returns the exact no-reliable fallback without a synthetic prompt.
-6. Historical analysis is an internal means except for the short evidence needed to justify the rewind recommendation; full analysis is available through `--detailed`.
-7. Later discoveries become investigation instructions unless they were available at the original start.
-8. Every prompt clause must trace to evidence; inferred personality profiles are insufficient.
-9. The prompt must preserve the original objective while preventing repeated correction loops.
-10. User-facing English and Chinese documentation must remain structurally and semantically equivalent.
+3. Requirements added before an artifact version exists, normal evolution after acceptance, and repeated explanations without artifact rework are no-op.
+4. The recommendation identifies the earliest supported Agent assumption or action whose replacement would have prevented artifact rework; it is not automatically the first later request.
+5. Independent artifact drifts retain separate supported boundaries and never justify a synthetic shared cause.
+6. Missing exact history permits only a descriptive boundary; unsupported artifact rework or causality returns the exact no-reliable fallback without a synthetic prompt.
+7. Historical analysis is internal except for the short evidence needed to justify the rewind recommendation; `--detailed` may add absorbed requirements and exclusions, not a full retrospective.
+8. Later requirements may become continuation constraints; later discoveries become investigation instructions unless they were available at the selected point.
+9. Every prompt clause must trace to evidence; inferred personality profiles are insufficient.
+10. The prompt must preserve the original objective while preventing repeated artifact rework.
+11. User-facing English and Chinese documentation must remain structurally and semantically equivalent.
 
 ## Commands
 

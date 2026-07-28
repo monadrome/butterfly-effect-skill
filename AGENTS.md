@@ -1,18 +1,19 @@
 # Butterfly Effect - trajectory drift diagnosis and correction
 
-Butterfly Effect first determines whether an AI session contains supported trajectory drift, then finds the earliest defensible Agent action behind each correction chain and turns that evidence into a rewind recommendation plus an updated initial prompt.
+Butterfly Effect first determines whether a produced task artifact was reworked because it missed the expected outcome, then finds the earliest defensible Agent action behind that drift and turns the evidence into a rewind recommendation plus an updated prompt.
 
 ## Core Contract
 
-- Diagnose drift before reconstructing a prompt; do not assume every session has a rewind point.
+- Diagnose drift from a reworked task artifact before reconstructing a prompt; do not infer drift from later requests alone.
 - When drift is supported, output a concise rewind recommendation and a copy-ready updated prompt by default, not a retrospective report.
 - Use the current conversation unless the user names another session or transcript.
-- Ground clauses in observed corrections and accepted decisions.
+- Ground clauses in artifact evidence, continuation constraints, and accepted decisions.
 - Separate stable preferences, task-specific requirements, and one-off changes.
 - Convert facts knowable only later into instructions to inspect or verify.
 - Preserve the original objective and avoid overfitting incidental code details.
-- Do not mistake the first user correction for the rewind point; trace it back to the earlier Agent assumption or action.
-- Keep independent correction chains separate, lower confidence when history or causality is weak, and return `No reliable drift or rewind point detected` when no usable boundary exists.
+- Treat requirements added before an artifact version exists, normal evolution after acceptance, and repeated explanations without artifact rework as no-op.
+- Do not mistake the first later request for the rewind point; trace artifact rework back to the earlier Agent assumption or action.
+- Keep independent artifact drifts separate. Use a descriptive boundary when exact history is missing, and return `No reliable drift or rewind point detected` when causality cannot support a boundary.
 - Treat `--prompt-only` as explicit-only; never infer prompt-only output as the default.
 - Redact secrets and irrelevant private content from all output.
 
@@ -29,11 +30,12 @@ npm run check:package
 
 ## Repository Map
 
-- `skills/butterfly-effect/SKILL.md`: canonical workflow and output contract
-- `skills/butterfly-effect/references/`: source discovery, correction taxonomy, rewind decisions, confidence, and formatting details
+- `skills/butterfly-effect/SKILL.md`: canonical decision and output contract
+- `skills/butterfly-effect/references/source-resolution.md`: environment-specific session and transcript discovery
 - `.claude-plugin/`: Claude Code plugin and marketplace metadata
 - `scripts/`: release-tag, repository, Skill, documentation, and package checks
 - `README.md` / `README-zh.md`: equivalent user-facing documentation
+- `CONTEXT.md` / `docs/adr/`: domain language and architectural decisions
 - `docs/en/skill-progressive-loading.md`: maintainer guidance for instruction placement and evaluation
 
 ## Maintenance

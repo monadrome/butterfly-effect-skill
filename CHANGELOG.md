@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-07-28
+
+### Changed
+
+- Aligned Skill discovery and user documentation around the session time-machine model while preserving the existing README examples and structure.
+- Described the output as guidance for continuing from a selected history point.
+- Adopted artifact-first drift diagnosis: only rework of a produced task artifact establishes drift, while pre-version requirements, accepted-artifact evolution, and repeated explanations are no-op.
+- Added the project glossary and ADR explaining why later requests become continuation constraints only after artifact drift is established.
+- Replaced the generated reasoning workflow with a minimal decision contract that relies on the Agent's native analysis ability.
+- Removed uncalibrated reliability labels; visible evidence now determines an exact boundary, a descriptive boundary, or the no-reliable fallback.
+- Retained only the environment-specific source-resolution reference and inlined the small set of product decisions that affect output.
+- Reduced runtime Skill content from about 1,600 words to about 700 while preserving hindsight handling, output modes, and the existing README examples.
+
 ## [0.4.1] - 2026-07-28
 
 ### Changed
@@ -41,7 +54,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Added the `/butterfly-effect` Skill for converting repeated human corrections into a copy-ready restart prompt.
+- Added the `/butterfly-effect` Skill for converting repeated human corrections into a copy-ready continuation prompt from an earlier history point.
 - Added source resolution for current conversations, Codex sessions, Claude Code sessions, and exported transcripts.
 - Added correction classification, hindsight-leak prevention, and counterfactual prompt validation.
 - Added npm and Claude Code plugin distribution metadata, bilingual documentation, CI, and static contract checks.
@@ -50,7 +63,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - Reduced the always-loaded Skill instructions while preserving its discovery metadata, direct reference routes, and behavior contract.
-- Reorganized both READMEs around a complete install, invoke, and restart path; expanded bilingual design, usage, privacy, limitation, and example documentation.
+- Reorganized both READMEs around a complete install, invoke, and history-point continuation path; expanded bilingual design, usage, privacy, limitation, and example documentation.
 - Hardened GitHub Actions with immutable action pins, Dependabot updates, explicit concurrency and permissions, a pinned npm client, explicit token or OIDC publication modes, and registry provenance verification.
 
 ### Fixed
