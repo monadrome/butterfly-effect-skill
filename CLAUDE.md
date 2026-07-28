@@ -32,6 +32,7 @@ Read `docs/en/skill-progressive-loading.md` before moving instructions between t
 
 ```bash
 npm test
+npm run release:check
 npm run check:versions
 npm run check:skill
 npm run check:package

@@ -61,10 +61,11 @@ For routing or output changes, compare the old and new Skill with identical tran
 
 ```bash
 npm test
+npm run release:check
 git diff --check
 ```
 
-`npm test` runs release-tag unit tests, version consistency, Skill contract and reference checks, manifest parsing, language boundaries, bilingual README structure, `npm pack --dry-run`, and packaged Markdown-link validation.
+`npm test` runs release-tag unit tests, version consistency, Skill contract and reference checks, manifest parsing, language boundaries, bilingual README structure, `npm pack --dry-run`, packaged Markdown-link validation, and a clean tarball installation smoke test. `npm run release:check` then exercises npm's publication dry run with the same public registry and access settings used by CI.
 
 Individual checks remain available through `npm run check:versions`, `npm run check:skill`, and `npm run check:package`.
 
@@ -72,7 +73,7 @@ Individual checks remain available through `npm run check:versions`, `npm run ch
 
 1. Update `CHANGELOG.md`. After the first public release, collect pending entries under `Unreleased` and move them to a dated version section when releasing.
 2. Bump the version in `package.json`, `.claude-plugin/plugin.json`, and the Skill frontmatter metadata.
-3. Run `npm test` and inspect `npm pack --dry-run` output.
+3. Run `npm run release:check` and inspect the npm publication dry-run output.
 4. Commit the release preparation.
 5. Create the exact tag `vX.Y.Z`. CI rejects malformed tags and tags that differ from the shared version.
 6. Push the commit and tag. The publish workflow validates the same repository and package contracts before contacting npm.
@@ -85,10 +86,11 @@ Trusted Publisher cannot be configured until the npm package exists. Bootstrap t
 
 1. Sign in with `npm login --scope=@huatalk --registry=https://registry.npmjs.org/`.
 2. Confirm the account with `npm whoami --registry=https://registry.npmjs.org/` and verify it can publish under `@huatalk`.
-3. Create a short-lived or granular npm token with publish permission and store it as the repository secret `NPM_TOKEN`.
-4. Leave the repository variable `NPM_TRUSTED_PUBLISHER` unset or set to `false`.
-5. Push the release tag. The workflow selects token mode and still requests npm provenance.
-6. Confirm the package exists and the workflow's provenance verification step passes.
+3. Confirm the package name is not already occupied with `npm view @huatalk/butterfly-effect-skill --registry=https://registry.npmjs.org/`; `E404` is expected before the first release.
+4. Create a short-lived or granular npm token with publish permission and store it as the repository secret `NPM_TOKEN`.
+5. Leave the repository variable `NPM_TRUSTED_PUBLISHER` unset or set to `false`.
+6. Push the release tag. The workflow selects token mode and still requests npm provenance.
+7. Confirm the package exists and the workflow's provenance verification step passes.
 
 ### Trusted Publisher Migration
 

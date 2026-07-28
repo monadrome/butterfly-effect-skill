@@ -30,6 +30,17 @@ for (const relative of ['package.json', '.claude-plugin/plugin.json', '.claude-p
   }
 }
 
+const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+if (packageJson.packageManager !== 'npm@11.6.2') {
+  fail('package.json must pin the npm release client through packageManager.');
+}
+if (packageJson.scripts?.prepublishOnly !== 'npm test') {
+  fail('package.json must run the full test suite before publication.');
+}
+if (!/npm publish --dry-run/.test(packageJson.scripts?.['release:check'] || '')) {
+  fail('package.json must provide a release:check dry run.');
+}
+
 const englishFiles = [
   'README.md',
   'AGENTS.md',
@@ -74,8 +85,8 @@ for (const relative of ['README.md', 'README-zh.md']) {
   const content = fs.readFileSync(path.join(root, relative), 'utf8');
   for (const [label, pattern] of [
     ['Agent Skills installation', /npx skills add HuaTalk\/butterfly-effect-skill/],
-    ['Claude marketplace installation', /https:\/\/github\.com\/HuaTalk\/butterfly-effect-skill\.git/],
     ['slash Skill invocation', /\/butterfly-effect/],
+    ['Claude marketplace installation', /https:\/\/github\.com\/HuaTalk\/butterfly-effect-skill\.git/],
     ['explicit prompt-only mode', /--prompt-only/],
     ['detailed output mode', /--detailed/],
     ['no-reliable fallback', /No reliable drift or rewind point detected/],
@@ -106,6 +117,7 @@ for (const [label, pattern] of [
   ['explicit publication mode', /NPM_TRUSTED_PUBLISHER/],
   ['provenance publication', /npm publish --provenance/],
   ['provenance verification', /dist\.attestations\.provenance/],
+  ['release dry run', /npm run release:check/],
 ]) {
   if (!pattern.test(publishWorkflow)) fail(`publish.yml is missing the ${label} contract.`);
 }
@@ -118,7 +130,7 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-for (const script of ['check-versions.js', 'check-skill-contract.js', 'check-package.js']) {
+for (const script of ['check-versions.js', 'check-skill-contract.js', 'check-package.js', 'check-install.js']) {
   const result = spawnSync(process.execPath, [path.join(__dirname, script)], {
     cwd: root,
     encoding: 'utf8',

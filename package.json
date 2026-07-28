@@ -1,6 +1,7 @@
 {
   "name": "@huatalk/butterfly-effect-skill",
   "version": "0.4.0",
+  "packageManager": "npm@11.6.2",
   "description": "Diagnose and correct AI trajectory drift across any AI-assisted work, then recommend an evidence-backed rewind and updated prompt.",
   "keywords": [
     "agent-skills",
@@ -51,8 +52,11 @@
   "scripts": {
     "test": "node --test scripts/check-versions.test.js && node scripts/check-repository.js",
     "check": "node scripts/check-repository.js",
+    "check:install": "node scripts/check-install.js",
     "check:package": "node scripts/check-package.js",
     "check:skill": "node scripts/check-skill-contract.js",
-    "check:versions": "node scripts/check-versions.js"
+    "check:versions": "node scripts/check-versions.js",
+    "release:check": "npm test && npm publish --dry-run --ignore-scripts --access public --registry=https://registry.npmjs.org/",
+    "prepublishOnly": "npm test"
   }
 }

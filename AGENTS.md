@@ -20,6 +20,7 @@ Butterfly Effect first determines whether an AI session contains supported traje
 
 ```bash
 npm test
+npm run release:check
 node --test scripts/check-versions.test.js
 node scripts/check-versions.js
 node scripts/check-skill-contract.js

@@ -22,10 +22,10 @@ jobs:
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
-      - name: Check repository, Skill, and package contracts
-        run: npm test
       - name: Install the pinned npm release client
         run: npm install --global npm@11.6.2
+      - name: Run release checks
+        run: npm run release:check
       - name: Select npm publication mode
         id: auth
         env:

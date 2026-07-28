@@ -40,6 +40,7 @@ const requiredPaths = [
   'README.md',
   'README-zh.md',
   'package.json',
+  'scripts/check-install.js',
   'skills/butterfly-effect/SKILL.md',
   'skills/butterfly-effect/agents/openai.yaml',
 ];
