@@ -1,6 +1,6 @@
 # Examples
 
-These examples show the source request, observed corrections, rewind recommendation, and updated prompt across coding, product work, research, and creative tasks. The wording is illustrative; the actual result must stay grounded in the selected session.
+These examples show task-artifact versions, later rework, rewind recommendations, and updated prompts across coding, product work, research, and creative tasks. The wording is illustrative; the actual result must stay grounded in the selected session.
 
 ## Current Conversation
 
@@ -10,7 +10,9 @@ Request:
 Use /butterfly-effect on this session.
 ```
 
-Observed corrections:
+Produced artifact: the Agent edited immediately in the default worktree, replaced V2 with V3, and added new tests.
+
+Rework requirements:
 
 - Analyze before editing.
 - Work in the named worktree.
@@ -20,19 +22,26 @@ Observed corrections:
 Rewind recommendation:
 
 - Rewind to: before the Agent chose the implementation path.
-- Why: the later scope, compatibility, and testing corrections all repair that first assumption.
+- Why: the artifact rework restored the required scope, compatibility path, and testing boundary.
 - Keep: the original V2 objective.
-- Confidence: high.
 
 Updated prompt:
 
 > First inspect the named worktree and explain the existing behavior, call chain, and cause without editing. Wait for confirmation before implementation. Preserve V2, add V3 behind a default-off flag, keep configuration reads at the entry and core matching logic pure, run existing tests without adding new ones unless requested, and verify the worktree diff before committing and pushing.
 
-No local session lookup is needed when the visible conversation contains the opening request and the causal Agent action. If those early turns were truncated, resolve only the current session when it is identifiable and accessible. Without that action, lower confidence and do not invent a turn identifier.
+No local session lookup is needed when the visible conversation contains the opening request and the causal Agent action. If those early turns were truncated, resolve only the current session when it is identifiable and accessible. Without that action, describe the supported boundary without inventing a turn identifier; if the remaining history cannot support causality, return the no-reliable fallback.
+
+## No-op Without Artifact Drift
+
+These histories return `No reliable drift or rewind point detected` and no updated prompt:
+
+- While an answer is still being produced, the user adds "format the result as a Markdown document." The requirement changes the current target before an artifact version exists.
+- The user asks for several explanations of the same code. No independently evaluable task artifact is reworked.
+- After accepting a document, the user asks for a new appendix. This is normal evolution unless the history shows that the accepted version missed the expected outcome.
 
 ## Product or Positioning Task
 
-Observed corrections from a product-positioning session:
+A product-positioning session first produced a release-template-based proposal. That document was reworked through these requirements:
 
 - Start from the product's first principles instead of a popular template.
 - Treat release as a scenario, not a prerequisite.
@@ -41,9 +50,8 @@ Observed corrections from a product-positioning session:
 Rewind recommendation:
 
 - Rewind to: before the Agent treated a popular release template as the product definition.
-- Why: the downstream corrections all restore the product's first principles and approval boundary.
+- Why: the rework restored the product's first principles and approval boundary.
 - Keep: release as a supported scenario and the accepted cross-file consistency requirement.
-- Confidence: high.
 
 Updated prompt:
 
@@ -51,7 +59,7 @@ Updated prompt:
 
 ## Research or Decision Task
 
-Observed corrections from a tool-selection session:
+A tool-selection session first produced a recommendation based on popularity. That decision artifact was reworked through these requirements:
 
 - Do not choose the most popular option before defining the constraints.
 - Separate sourced evidence from assumptions and unknowns.
@@ -63,7 +71,6 @@ Rewind recommendation:
 - Rewind to: before the Agent selected a popular option without defining the team's decision criteria.
 - Why: the later evidence and trade-off requests all repair that ungrounded comparison.
 - Keep: the original tool-selection objective.
-- Confidence: high.
 
 Updated prompt:
 
@@ -71,7 +78,7 @@ Updated prompt:
 
 ## Creative or Design Task
 
-Observed corrections from a visual identity session:
+A visual identity session first produced one polished direction without grounding it in the audience or constraints. That design artifact was reworked through these requirements:
 
 - Define the audience and intended response before polishing the visuals.
 - Present a small set of distinct directions before selecting one.
@@ -81,9 +88,8 @@ Observed corrections from a visual identity session:
 Rewind recommendation:
 
 - Rewind to: before the Agent polished a single visual direction without grounding it in audience and constraints.
-- Why: the later corrections restore the missing decision stage, alternatives, accessibility checks, and approval gate.
+- Why: the rework restored the missing decision stage, alternatives, accessibility checks, and approval gate.
 - Keep: the existing brand constraints and requested public surfaces.
-- Confidence: high.
 
 Updated prompt:
 
@@ -97,7 +103,7 @@ Request:
 Use /butterfly-effect on the Codex session "launch-plan".
 ```
 
-The Skill resolves that exact local session, extracts human and assistant messages in timestamp order, and excludes tool payloads unless they explain a correction. A Claude Code session can be named in the same way. If several sessions have similar names, the strongest exact match is used and the assumption is stated only when it affects the result.
+The Skill resolves that exact local session, extracts human and assistant messages in timestamp order, and excludes tool payloads unless they explain an artifact version or its rework. A Claude Code session can be named in the same way. If several sessions have similar names, the strongest exact match is used and the assumption is stated only when it affects the result.
 
 ## Transcript or Handoff
 
@@ -117,7 +123,7 @@ Request:
 Use /butterfly-effect --prompt-only on this session.
 ```
 
-This explicit mode returns only the updated prompt blockquote after drift has been diagnosed. It does not become the default from prior usage. If the source cannot support a material correction chain or updated prompt, the result is still `No reliable drift or rewind point detected`; the mode does not force prompt generation.
+This explicit mode returns only the updated prompt blockquote after artifact drift has been diagnosed. It does not become the default from prior usage. If the source cannot show a reworked artifact and causal boundary, the result is still `No reliable drift or rewind point detected`; the mode does not force prompt generation.
 
 ## Detailed Mode
 
@@ -133,15 +139,14 @@ Output shape:
 ## Rewind recommendation
 
 - Rewind to: before the Agent assumed the work was only a code change.
-- Why: later corrections changed the audience, evidence, and delivery boundary.
+- Why: the produced artifact was reworked to restore the audience, evidence, and delivery boundary.
 - Keep: the original outcome and accepted constraints.
-- Confidence: medium.
 
 ## Updated prompt
 
 > First inspect ...
 
-## Corrections absorbed
+## Requirements absorbed
 
 - Analysis gate -> inspect and explain before editing.
 - Compatibility -> preserve the old path and gate the new path.
@@ -154,16 +159,16 @@ Output shape:
 
 The rewind recommendation and updated prompt remain first. Detailed mode explains the mapping; it does not replace either artifact with a retrospective.
 
-## Multiple Correction Chains
+## Multiple Artifact Drifts
 
-When one session contains independent drift, do not force unrelated objectives into one boundary or one prompt. State that no single rewind point exists, report each supported boundary, and keep separate prompts when combining them would change the task.
+When one session contains independent artifact drifts, do not force unrelated objectives into one boundary or one prompt. State that no single rewind point exists, report each supported boundary, and keep separate prompts when combining them would change the task.
 
 Example:
 
-- Chain A: rewind before the Agent chose an unsupported data source; keep the user's target audience and decision criteria.
-- Chain B: rewind before the Agent committed to a visual direction without approval; keep the later accessibility requirement.
+- Artifact A: rewind before the Agent chose an unsupported data source; keep the user's target audience and decision criteria.
+- Artifact B: rewind before the Agent committed to a visual direction without approval; keep the later accessibility requirement.
 
-Return two recommendations and two standalone prompts unless one updated prompt can cover both chains without conflating their objectives. Mark the overall result medium or low confidence because there is no shared boundary; independence alone does not lower confidence in a chain whose own action and consequences are visible.
+Return two recommendations and two standalone prompts unless one updated prompt can cover both artifacts without conflating their objectives. State explicitly that no single rewind point exists; each drift may still use a precise boundary when its own action and rework are visible.
 
 ## Multiple Sessions
 
@@ -201,13 +206,13 @@ Treatment:
 
 ## Missing History and Privacy
 
-If a named session cannot be read, state the missing source in one sentence and use only evidence that remains visible. Do not fabricate the lost corrections or a precise rewind boundary. A visible correction may support a low-confidence descriptive boundary, but not a guessed turn or timestamp.
+If a named session cannot be read, state the missing source in one sentence and use only evidence that remains visible. Do not fabricate an artifact version, its rework, or a precise rewind boundary. Visible artifact evidence may support a descriptive boundary, but not a guessed turn or timestamp.
 
-If no material correction chain is supported, return:
+If no reworked task artifact is supported, return:
 
 ```text
 No reliable drift or rewind point detected
-The available history does not show a supported causal chain from an Agent action to a material user correction.
+The available history does not show a task artifact that was reworked because it missed the expected outcome.
 ```
 
 Do not add an updated prompt merely to fill the normal output shape. Reconstruct one from limited evidence only when the user explicitly requests it.

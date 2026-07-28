@@ -98,6 +98,20 @@ for (const relative of ['README.md', 'README-zh.md']) {
   }
 }
 
+const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
+const readmeZh = fs.readFileSync(path.join(root, 'README-zh.md'), 'utf8');
+if (!/--detailed[^\n]+absorbed requirements and exclusions/.test(readme)) {
+  fail('README.md must describe the bounded detailed-mode additions.');
+}
+if (!/--detailed[^\n]+已吸收的要求和未纳入项/.test(readmeZh)) {
+  fail('README-zh.md must describe the bounded detailed-mode additions.');
+}
+
+const openAiAgent = fs.readFileSync(path.join(root, 'skills', 'butterfly-effect', 'agents', 'openai.yaml'), 'utf8');
+if (!/short_description:\s*["']Recommend\b/.test(openAiAgent) || /short_description:\s*["']Continue\b/.test(openAiAgent)) {
+  fail('OpenAI agent metadata must describe a recommendation, not imply that the Skill performs continuation.');
+}
+
 const workflowFiles = [
   path.join(root, '.github', 'workflows', 'test.yml'),
   path.join(root, '.github', 'workflows', 'publish.yml'),
