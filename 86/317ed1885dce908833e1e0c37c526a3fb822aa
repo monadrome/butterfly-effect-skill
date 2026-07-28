@@ -1,0 +1,33 @@
+CHANGELOG.md
+  s_9c11382bb39584::t_b193f8ee62ac64 7-14
+README.md
+  s_9c11382bb39584::t_08e828ca046fc0 7,9,11,13,15,19,21,23-25,27,31,35,37,39,41,43-46,48,50,52,54,56,58-60,62,64,66-71,82,84,86,89,92,94,96,98-101,103,105,107-111,113,115,117-118,120-122,124,126,151
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_b193f8ee62ac64 6
+package.json
+  s_9c11382bb39584::t_b193f8ee62ac64 3,5
+.claude-plugin/marketplace.json
+  s_9c11382bb39584::t_b193f8ee62ac64 4,13
+.claude-plugin/plugin.json
+  s_9c11382bb39584::t_b193f8ee62ac64 3-4
+skills/butterfly-effect/agents/openai.yaml
+  s_9c11382bb39584::t_b193f8ee62ac64 3-4
+README-zh.md
+  s_9c11382bb39584::t_13b9c234b45bfc 7,9,11,13,15,19,21,23-25,27,29,31,33,35,37,39,41,43-46,48,50,52,54,56,58-60,62,64,66-69,71,82,84,86,89,92,94,96,98-101,103,105,107-111,113,115,117,119-122,124,126,151
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "86317ed1885dce908833e1e0c37c526a3fb822aa",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
