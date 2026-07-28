@@ -2,7 +2,7 @@
   "name": "@huatalk/butterfly-effect-skill",
   "version": "0.4.1",
   "packageManager": "npm@11.6.2",
-  "description": "Use what you learned later in an AI session to find where it went off course and generate a better prompt from that point.",
+  "description": "Turn a correction-heavy AI session into a rewind recommendation and a better prompt for restarting the task.",
   "keywords": [
     "agent-skills",
     "claude-code",
