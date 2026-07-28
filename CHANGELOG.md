@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-07-28
+
+### Changed
+
+- Clarified the README introduction with the session time-machine model: use later corrections to return to the point where LLM output began to diverge, while preserving the existing examples and documentation structure.
+
 ## [0.4.0] - 2026-07-28
 
 ### Changed

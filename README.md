@@ -4,9 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-blue.svg)](README-zh.md)
 
-**Butterfly Effect corrects AI trajectory drift. It is not a restart-prompt generator that assumes every session needs rewriting.**
+**Butterfly Effect is a time machine for AI sessions: take what you learned later back to the point where the conversation started going off course.**
 
-Butterfly Effect analyzes an existing AI-assisted conversation, links human corrections only when causal evidence supports a chain, and identifies the earliest defensible Agent assumption or action that sent the work off course. When drift is supported, it returns a concise rewind recommendation plus a copy-ready updated prompt for restarting the same task. When history or causality is insufficient, it lowers confidence or reports `No reliable drift or rewind point detected` instead of inventing precision. It applies to coding, research, writing, design, planning, operations, and other AI-assisted work; it needs no advance tracker or correction tagging, and the prompt never pretends that facts discovered later were known at the start.
+One assumption or decision can make every later LLM response drift further from what you wanted. The corrections that appear later in the session reveal what should have happened at that earlier point. Butterfly Effect traces those corrections back to the earliest supported turning point, then returns a rewind recommendation and a copy-ready updated prompt for taking a better path from there. It works with coding, research, writing, design, planning, operations, and other AI-assisted work, with no advance tracker or correction tagging. When the history does not support a turning point, it returns `No reliable drift or rewind point detected` instead of inventing one.
 
 ## Quickstart
 
@@ -20,7 +20,7 @@ npx skills-npm setup
 After a correction-heavy session, ask:
 
 ```text
-Use /butterfly-effect to find where the Agent first drifted in this session and return a rewind recommendation plus an updated prompt.
+Use /butterfly-effect on this session. Find where the conversation started going off course, then use what we learned later to return a rewind recommendation and an updated prompt for a better path from that point.
 ```
 
 Copy the `Updated prompt` blockquote into a fresh session. Use the rewind recommendation to understand where the original trajectory first drifted. If the session does not support a reliable drift diagnosis, the Skill returns the no-reliable result instead of manufacturing a prompt.
