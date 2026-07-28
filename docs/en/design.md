@@ -29,6 +29,10 @@ The same user statement can belong to different evidence classes depending on co
 
 Project rules and accepted final decisions can support a clause. Generated summaries are weaker evidence than raw chronological messages.
 
+## First-Principles Reduction
+
+The diagnosis is intentionally loss-minimizing. First state the objective invariant: the outcome, audience, artifact, and acceptance conditions that must survive a restart. Then separate the earliest Agent action that violated or weakened that invariant from the later user corrections that reveal its cost. A candidate boundary is accepted only when replacing that action would remove the correction and prevent most downstream repairs. Finally, keep the updated prompt to the minimum sufficient set of evidence-backed clauses. This makes the result useful without turning every symptom, preference, or hindsight fact into a permanent instruction.
+
 ## Trajectory Drift and Rewind Model
 
 The unit of analysis is a correction chain, not an isolated user message. A chain links an Agent assumption or action to a material user correction and the downstream corrections that repair the same objective, audience, artifact, or acceptance criterion.

@@ -109,6 +109,10 @@ const requiredContracts = [
   ['supported-drift default output', /Default output when drift is supported: a concise rewind recommendation followed by one copy-ready updated prompt/],
   ['explicit prompt-only route', /explicit `--prompt-only`/],
   ['secret redaction', /Do not reproduce secrets, credentials/],
+  ['objective invariant', /Objective invariant/],
+  ['causal sufficiency', /Causal sufficiency/],
+  ['minimum sufficient restart', /Minimum sufficient restart/],
+  ['first-principles stop condition', /objective invariant cannot be stated/],
 ];
 
 for (const [label, pattern] of requiredContracts) {
@@ -148,6 +152,9 @@ for (const [label, pattern] of [
   ['confidence and fallback rules', /Confidence and Fallbacks/],
   ['independent-chain separation', /Independence is evidence against one common rewind point/],
   ['no reliable boundary fallback', /No reliable drift or rewind point detected/],
+  ['counterfactual necessity test', /Necessity:/],
+  ['counterfactual coverage test', /Coverage:/],
+  ['minimum prompt constraint set', /minimize the updated prompt/],
 ]) {
   if (!pattern.test(rewindAnalysis)) fail(`Rewind analysis is missing ${label}.`);
 }

@@ -2,6 +2,17 @@
 
 Use this reference to connect multiple corrections to an earlier drift point without inventing causality.
 
+## Invariant-First Reduction
+
+Start with the smallest statement of what success must preserve: the objective, audience, artifact, and acceptance criteria. Call this the objective invariant. A correction is diagnostically useful only when it identifies a violated part of that invariant or a method required to protect it.
+
+For each candidate Agent action, run two counterfactual questions:
+
+- **Necessity:** if this action were replaced with the supported alternative, would the correction disappear?
+- **Coverage:** would that replacement prevent most later corrections in the same chain?
+
+Use the earliest action that passes both tests as the boundary. Do not move the boundary earlier merely because it sounds more general, and do not move it later merely because that is where the user first complained. After locating boundaries, minimize the updated prompt: retain only clauses that protect an invariant, request an evidence-gathering step, or define an accepted delivery/validation rule. This prevents symptom lists and hindsight facts from becoming an overfit restart prompt.
+
 ## Correction Chains
 
 Group correction events only when at least one of these signals is present:

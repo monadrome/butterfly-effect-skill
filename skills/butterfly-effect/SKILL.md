@@ -3,7 +3,7 @@ name: butterfly-effect
 description: Diagnose and correct AI trajectory drift in a completed or ongoing session across coding, research, writing, design, planning, operations, and other work; link human corrections to the earliest supported Agent assumption or action, then return a rewind recommendation and updated prompt. Use when users ask to rewind, restart better, rewrite the opening prompt, learn from corrections, reduce repeated guidance, or say 蝴蝶效应、AI偏斜纠正、回退建议、重开、如果一开始就知道、从纠偏生成提示词。
 metadata:
   author: HuaTalk
-  version: "0.4.0"
+  version: "0.5.0"
   category: prompt-engineering
 ---
 
@@ -24,6 +24,17 @@ Trace downstream corrections to the earliest supported trajectory drift, then re
 - Do not reproduce secrets, credentials, private identifiers, or irrelevant personal content from session logs.
 - Keep the source domain-neutral: preserve its audience, artifact, evidence standard, and acceptance criteria whether the work involves code, research, writing, design, planning, operations, or another domain.
 - Identify the earliest reliable Agent assumption or action that caused a linked correction chain. Keep independent chains separate; never invent a shared cause or precise boundary.
+
+## First-Principles Test
+
+Reduce the session to four observable elements before writing any recommendation:
+
+1. **Objective invariant:** state the outcome, audience, artifact, and acceptance conditions that must remain true.
+2. **Drift action:** identify the earliest Agent assumption or action that weakened or violated that invariant; treat later symptoms as evidence, not as the cause.
+3. **Causal sufficiency:** keep a correction in a chain only when replacing that action would have prevented the correction or most of its downstream repairs. If two actions explain different invariants, keep separate chains.
+4. **Minimum sufficient restart:** add a prompt clause only when it is supported by evidence and passes the counterfactual test. Prefer one general constraint over several incidental prescriptions; stop when every high-confidence correction is covered.
+
+If the objective invariant cannot be stated from the available history, or no Agent action is causally sufficient, stop at the no-reliable result. Do not optimize for producing more prompt text.
 
 ## Source Routing
 
