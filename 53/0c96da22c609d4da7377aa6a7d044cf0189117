@@ -1,0 +1,80 @@
+docs/en/design.md
+  s_9c11382bb39584::t_a0c4327082367c 3,10-11,17-18,21,23,25,27-29,34,38,40,46-48,89-93,101-103,106,113
+  s_9c11382bb39584::t_2408a9b72dcb77 26,100
+  s_9c11382bb39584::t_e1d8b314f02274 42,81
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_7dd17c15f91aaa 17,19
+  s_9c11382bb39584::t_f58fb70a4edc6e 3,12,31,33
+  s_9c11382bb39584::t_2408a9b72dcb77 18,26
+CHANGELOG.md
+  s_9c11382bb39584::t_e1d8b314f02274 14
+  s_9c11382bb39584::t_2408a9b72dcb77 13
+skills/butterfly-effect/references/source-resolution.md
+  s_9c11382bb39584::t_a0c4327082367c 22,32
+  s_9c11382bb39584::t_f58fb70a4edc6e 7,9,44
+docs/zh/design.md
+  s_9c11382bb39584::t_a0c4327082367c 3,10-11,17-18,21,23,25,27-29,34,38,40,46-48,89-93,101-103,106,113
+  s_9c11382bb39584::t_2408a9b72dcb77 26,100
+  s_9c11382bb39584::t_e1d8b314f02274 42,81
+skills/butterfly-effect/agents/openai.yaml
+  s_9c11382bb39584::t_a0c4327082367c 4
+  s_9c11382bb39584::t_e1d8b314f02274 3
+docs/adr/0001-artifact-first-drift-diagnosis.md
+  s_9c11382bb39584::t_f58fb70a4edc6e 1-4,6-7
+  s_9c11382bb39584::t_2408a9b72dcb77 5
+CONTRIBUTING.md
+  s_9c11382bb39584::t_2408a9b72dcb77 49
+  s_9c11382bb39584::t_e1d8b314f02274 21,39,48,51-52,56-57
+README-zh.md
+  s_9c11382bb39584::t_f5bc663d9866b3 20,23,38,65,92,156,170,183
+  s_9c11382bb39584::t_ac2d13bda78850 9,169,182
+  s_9c11382bb39584::t_e1d8b314f02274 28-29
+CONTEXT.md
+  s_9c11382bb39584::t_2408a9b72dcb77 12
+  s_9c11382bb39584::t_f58fb70a4edc6e 1-11,13-25
+AGENTS.md
+  s_9c11382bb39584::t_e1d8b314f02274 3,7,10,15-16,38
+  s_9c11382bb39584::t_2408a9b72dcb77 14
+scripts/check-skill-contract.js
+  s_9c11382bb39584::t_7dd17c15f91aaa 102,104,106,108,129-130
+  s_9c11382bb39584::t_f58fb70a4edc6e 52-53,103,107,109-110
+  s_9c11382bb39584::t_2408a9b72dcb77 105,116
+docs/zh/examples.md
+  s_9c11382bb39584::t_4c230c0fb263b9 3,13-15,25,34-41,44,53,62,81,91,106,126,142,149,162,164,168-169,171,209,211,215
+CLAUDE.md
+  s_9c11382bb39584::t_e1d8b314f02274 20,23-30
+  s_9c11382bb39584::t_2408a9b72dcb77 22
+package.json
+  s_9c11382bb39584::t_e1d8b314f02274 5,42
+.claude-plugin/plugin.json
+  s_9c11382bb39584::t_e1d8b314f02274 3
+.claude-plugin/marketplace.json
+  s_9c11382bb39584::t_e1d8b314f02274 4,13
+scripts/check-package.js
+  s_9c11382bb39584::t_e1d8b314f02274 39,45
+docs/en/examples.md
+  s_9c11382bb39584::t_4c230c0fb263b9 3,13-15,25,34-41,44,53,62,81,91,106,126,142,149,162,164,168-169,171,209,211,215
+README.md
+  s_9c11382bb39584::t_e1d8b314f02274 28-29
+  s_9c11382bb39584::t_ac2d13bda78850 9,169,182
+  s_9c11382bb39584::t_f5bc663d9866b3 20,23,38,65,92,156,170,183
+  s_9c11382bb39584::t_7dd17c15f91aaa 77
+docs/en/skill-progressive-loading.md
+  s_9c11382bb39584::t_e1d8b314f02274 22,52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "530c96da22c609d4da7377aa6a7d044cf0189117",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
