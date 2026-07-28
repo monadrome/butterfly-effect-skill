@@ -1,15 +1,16 @@
-# Butterfly Effect - restart prompts from correction history
+# Butterfly Effect - rewind analysis from correction history
 
-Butterfly Effect analyzes repeated human corrections in AI-assisted work and turns them into a better initial prompt, as if the task were restarted with hindsight.
+Butterfly Effect analyzes an AI session for trajectory drift, finds the earliest supported Agent action behind a correction chain, and turns that evidence into a rewind recommendation plus an updated initial prompt.
 
 ## Core Contract
 
-- Output a copy-ready restart prompt by default, not a retrospective report.
+- Output a concise rewind recommendation and a copy-ready updated prompt by default, not a retrospective report.
 - Use the current conversation unless the user names another session or transcript.
 - Ground clauses in observed corrections and accepted decisions.
 - Separate stable preferences, task-specific requirements, and one-off changes.
 - Convert facts knowable only later into instructions to inspect or verify.
 - Preserve the original objective and avoid overfitting incidental code details.
+- Do not mistake the first user correction for the rewind point; trace it back to the earlier Agent assumption or action.
 - Redact secrets and irrelevant private content from all output.
 
 ## Commands

@@ -7,8 +7,8 @@ This guide explains how Butterfly Effect keeps activation context small without 
 | Layer | Loaded when | Content |
 |---|---|---|
 | Discovery metadata | During Skill discovery | Stable name and complete bilingual trigger description |
-| `SKILL.md` | Every activation | Core contract, workflow order, classification rules, counterfactual check, and conditional routes |
-| Direct references | Only when a named condition applies | Source lookup, ambiguous correction handling, or non-default output details |
+| `SKILL.md` | Every activation | Core contract, workflow order, drift boundary, classification rules, counterfactual check, and conditional routes |
+| Direct references | When the route requires them | Source lookup, correction-chain/rewind analysis, ambiguous classification, or output details |
 | Static checks | Repository validation only | Version, reference graph, contract anchors, language, manifest, and package guards |
 
 Moving text into a reference saves context only when `SKILL.md` states exactly when to read it. An unconditional reference merely relocates the cost.
@@ -19,9 +19,10 @@ Moving text into a reference saves context only when `SKILL.md` states exactly w
 |---|---|
 | `references/source-resolution.md` | A named local session, ambiguous source, or transcript that requires discovery |
 | `references/correction-taxonomy.md` | Ambiguous classification, conflicting corrections, multiple sessions, or unclear confidence |
-| `references/output-contract.md` | `--detailed`, requested analysis, multiple cases, or output-format uncertainty |
+| `references/rewind-analysis.md` | Linking corrections into chains, locating a rewind boundary, multiple chains, or missing history |
+| `references/output-contract.md` | Any default output, `--prompt-only`, `--detailed`, multiple cases, or output-format uncertainty |
 
-The visible current conversation, a direct transcript path, straightforward corrections, and default prompt-only output stay on the short path.
+The visible current conversation, a direct transcript path, and straightforward correction extraction stay on the short source path; the rewind and output references define the universal result shape without requiring unrelated source lookup.
 
 ## Placement Test
 
@@ -59,9 +60,7 @@ Do not give the evaluator the intended prompt or your diagnosis. A forward test 
 
 ## Current Result
 
-The 2026-07-27 optimization reduced `skills/butterfly-effect/SKILL.md` from 116 lines, 855 words, and 6,011 bytes to 77 lines, 656 words, and 4,745 bytes. This is a reduction of 33.6% by lines, 23.3% by words, and 21.1% by bytes.
-
-The three existing references remained directly routed. Default current-conversation requests no longer load source lookup details, straightforward sessions do not load the full taxonomy, and prompt-only output does not load detailed formatting rules. The discovery description and repository contract anchors were preserved.
+The entry file keeps the complete rewind-first workflow below the repository's 500-line contract. Conditional detail remains in four directly linked references: source resolution, correction taxonomy, rewind analysis, and output formatting. Default current-conversation requests do not load unrelated source lookup details, while correction-chain analysis and the two-part output contract load when their routes are reached. The discovery description and repository contract anchors remain explicit.
 
 ## Change Checklist
 

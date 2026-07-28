@@ -1,7 +1,7 @@
 {
   "name": "butterfly-effect-skill",
-  "description": "Turn repeated corrections from an AI session into a better initial prompt for restarting the task with hindsight.",
-  "version": "0.1.0",
+  "description": "Find AI trajectory drift across coding, research, writing, design, planning, operations, and other work, then return a rewind recommendation and updated prompt.",
+  "version": "0.3.0",
   "author": {
     "name": "HuaTalk",
     "url": "https://github.com/HuaTalk"
@@ -12,6 +12,13 @@
     "plugin",
     "prompt-engineering",
     "retrospective",
-    "butterfly-effect"
+    "rewind",
+    "trajectory-drift",
+    "butterfly-effect",
+    "research",
+    "writing",
+    "design",
+    "planning",
+    "operations"
   ]
 }

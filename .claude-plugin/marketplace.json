@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "butterfly-effect",
-  "description": "Generate better restart prompts from the corrections accumulated in AI-assisted work.",
+  "description": "Find AI trajectory drift and generate rewind recommendations with updated prompts across any AI-assisted work.",
   "owner": {
     "name": "HuaTalk",
     "url": "https://github.com/HuaTalk"
@@ -10,7 +10,7 @@
     {
       "name": "butterfly-effect",
       "source": "./",
-      "description": "Analyze correction loops and produce a copy-ready prompt that would have prevented the same rework from the start.",
+      "description": "Analyze correction chains across coding, research, writing, design, planning, operations, and other tasks, then produce a rewind recommendation and updated prompt.",
       "category": "prompt-engineering"
     }
   ]

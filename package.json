@@ -1,7 +1,7 @@
 {
   "name": "@huatalk/butterfly-effect-skill",
-  "version": "0.1.0",
-  "description": "Turn repeated human corrections in AI sessions into better initial prompts for restarting the work.",
+  "version": "0.3.0",
+  "description": "Find AI trajectory drift across any AI-assisted work, then return a rewind recommendation and updated initial prompt.",
   "keywords": [
     "agent-skills",
     "claude-code",
@@ -9,7 +9,14 @@
     "prompt-engineering",
     "retrospective",
     "hindsight",
-    "butterfly-effect"
+    "rewind",
+    "trajectory-drift",
+    "butterfly-effect",
+    "research",
+    "writing",
+    "design",
+    "planning",
+    "operations"
   ],
   "license": "MIT",
   "author": {

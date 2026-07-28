@@ -1,4 +1,4 @@
 interface:
   display_name: "蝴蝶效应"
-  short_description: "Turn correction history into a better restart prompt"
-  default_prompt: "Use $butterfly-effect to turn the corrections in this session into a better prompt for restarting the task."
+  short_description: "Find AI drift and generate a rewind plan"
+  default_prompt: "Use $butterfly-effect to find where the Agent first drifted in this session and return a rewind recommendation plus an updated prompt."

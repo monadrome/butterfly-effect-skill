@@ -94,18 +94,56 @@ for (const reference of referenceFiles) {
 }
 
 const requiredContracts = [
-  ['copy-ready restart prompt', /Produce a copy-ready restart prompt/],
+  ['rewind and updated prompt output', /rewind recommendation and a copy-ready updated prompt/],
   ['current conversation default', /current conversation as the default source/],
   ['stable versus task-specific rules', /Separate stable collaboration preferences from task-specific requirements/],
   ['later discoveries become checks', /Convert them into instructions to inspect, verify, or compare first/],
   ['original objective preserved', /Preserve the user's original objective/],
+  ['domain-neutral task handling', /Keep the source domain-neutral/],
+  ['general correction dimensions', /method, content, evidence, quality bar, output, or delivery/],
+  ['rewind point detection', /Locate the Rewind Point/],
   ['counterfactual validation', /Run the Counterfactual Check/],
-  ['default prompt-only output', /Default output: one blockquote containing only the restart prompt/],
+  ['default rewind-plus-prompt output', /Default output: a concise rewind recommendation followed by one copy-ready updated prompt/],
   ['secret redaction', /Do not reproduce secrets, credentials/],
 ];
 
 for (const [label, pattern] of requiredContracts) {
   if (!pattern.test(skill)) fail(`Missing core contract: ${label}`);
+}
+
+const taxonomy = readRegularFile(path.join(referencesDir, 'correction-taxonomy.md'));
+for (const [label, pattern] of [
+  ['general task scope', /Wrong audience, channel, source, locale/],
+  ['domain methods', /structure, tone, sequence, medium, architecture, or algorithm/],
+  ['non-coding validation', /fact checks, examples, visual review, or stakeholder approval/],
+]) {
+  if (!pattern.test(taxonomy)) fail(`Correction taxonomy is missing ${label}.`);
+}
+
+const outputContract = readRegularFile(path.join(referencesDir, 'output-contract.md'));
+if (!/instead of forcing every task into a coding workflow/.test(outputContract)) {
+  fail('Output contract must preserve domain-native verbs and artifacts.');
+}
+if (!/## Rewind recommendation/.test(outputContract) || !/## Updated prompt/.test(outputContract)) {
+  fail('Output contract must define rewind recommendation and updated prompt sections.');
+}
+
+const rewindAnalysis = readRegularFile(path.join(referencesDir, 'rewind-analysis.md'));
+for (const [label, pattern] of [
+  ['correction chains', /Correction Chains/],
+  ['earlier Agent boundary', /earlier Agent (?:assumption|action)/],
+  ['no reliable boundary fallback', /No reliable drift or rewind point detected/],
+]) {
+  if (!pattern.test(rewindAnalysis)) fail(`Rewind analysis is missing ${label}.`);
+}
+
+const sourceResolution = readRegularFile(path.join(referencesDir, 'source-resolution.md'));
+for (const [label, pattern] of [
+  ['truncated current-session recovery', /history as truncated/],
+  ['same-session restriction', /only that session/],
+  ['no false precision', /precise turn or timestamp/],
+]) {
+  if (!pattern.test(sourceResolution)) fail(`Source resolution is missing ${label}.`);
 }
 
 if (failures.length > 0) {

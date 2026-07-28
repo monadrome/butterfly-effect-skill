@@ -4,6 +4,23 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-07-28
+
+### Changed
+
+- Repositioned the Skill as AI trajectory-drift correction: it links repeated corrections into causal chains and locates the earliest supported Agent assumption or action behind each chain.
+- Changed the default output from a prompt alone to a concise rewind recommendation followed by a copy-ready updated prompt; prompt-only output now requires an explicit request.
+- Added explicit handling for multiple independent chains, missing or truncated current-session history, uncertain rewind boundaries, and sessions with no material drift.
+- Updated bilingual documentation, examples, metadata, source routing, and static contract checks for the rewind-first behavior.
+
+## [0.2.0] - 2026-07-27
+
+### Changed
+
+- Generalized correction extraction, classification, prompt composition, and examples for coding, research, writing, design, planning, operations, and other AI-assisted work.
+- Added domain-neutral handling for audiences, artifacts, evidence standards, quality bars, acceptance criteria, and delivery workflows.
+- Expanded bilingual examples for research decisions and creative work while preserving coding support.
+
 ## [0.1.0] - 2026-07-27
 
 ### Added

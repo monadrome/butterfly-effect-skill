@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-This repository packages the `/butterfly-effect` Agent Skill for turning correction-heavy AI sessions into better restart prompts.
+This repository packages the `/butterfly-effect` Agent Skill for finding AI trajectory drift and producing rewind recommendations with updated restart prompts.
 
 ## Architecture
 
-The canonical behavior is in `skills/butterfly-effect/SKILL.md`. Its references are one level deep and load only for source discovery, ambiguous correction classification, or non-default output formatting. The rest of the repository provides bilingual user documentation, npm and Claude Code distribution, maintainer guidance, and static checks.
+The canonical behavior is in `skills/butterfly-effect/SKILL.md`. Its references are one level deep and load for source discovery, correction-chain and rewind analysis, ambiguous classification, or output formatting. The rest of the repository provides bilingual user documentation, npm and Claude Code distribution, maintainer guidance, and static checks.
 
 Read `docs/en/skill-progressive-loading.md` before moving instructions between the entry file and references.
 
@@ -17,12 +17,13 @@ Read `docs/en/skill-progressive-loading.md` before moving instructions between t
 
 ## Design Rules
 
-1. The default artifact is the restart prompt itself.
-2. Historical analysis is an internal means, not the default product output.
-3. Later discoveries become investigation instructions unless they were available at the original start.
-4. Every prompt clause must trace to evidence; inferred personality profiles are insufficient.
-5. The prompt must preserve the original objective while preventing repeated correction loops.
-6. User-facing English and Chinese documentation must remain structurally and semantically equivalent.
+1. The default artifacts are a concise rewind recommendation and the updated prompt.
+2. The recommendation identifies the earliest supported Agent assumption or action behind a linked correction chain; it is not automatically the first user correction.
+3. Historical analysis is an internal means except for the short evidence needed to justify the rewind recommendation; full analysis is available through `--detailed`.
+4. Later discoveries become investigation instructions unless they were available at the original start.
+5. Every prompt clause must trace to evidence; inferred personality profiles are insufficient.
+6. The prompt must preserve the original objective while preventing repeated correction loops.
+7. User-facing English and Chinese documentation must remain structurally and semantically equivalent.
 
 ## Commands
 
