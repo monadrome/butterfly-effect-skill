@@ -1,0 +1,35 @@
+README.md
+  s_9c11382bb39584::t_0fab90f7146465 26,82,154,169-170
+CHANGELOG.md
+  s_9c11382bb39584::t_2003bbf2ffe515 12
+  s_9c11382bb39584::t_0fab90f7146465 49,58
+README-zh.md
+  s_9c11382bb39584::t_0fab90f7146465 26,82,154,169-170
+CONTRIBUTING.md
+  s_9c11382bb39584::t_0fab90f7146465 37
+docs/zh/design.md
+  s_9c11382bb39584::t_0fab90f7146465 3,11-12,25,47,59,79,99
+scripts/check-skill-contract.js
+  s_9c11382bb39584::t_bb4a2456c9a7d0 123-124
+  s_9c11382bb39584::t_0fab90f7146465 52-53
+docs/en/design.md
+  s_9c11382bb39584::t_0fab90f7146465 3,11-12,23,25,47,59,79
+skills/butterfly-effect/SKILL.md
+  s_9c11382bb39584::t_0fab90f7146465 3,12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "cdcb36f2a244520c66f4f98aed2f37e016342037",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
