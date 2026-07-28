@@ -1,0 +1,40 @@
+README-zh.md
+  s_9c11382bb39584::t_e81e20f82e2f98 185
+docs/en/examples.md
+  s_9c11382bb39584::t_ae0ae9c262afe9 30,161,199
+README.md
+  s_9c11382bb39584::t_e81e20f82e2f98 185
+docs/en/skill-progressive-loading.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 3,10-11,20,22,40,52,60
+CONTRIBUTING.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 50
+docs/zh/design.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 36,71
+CHANGELOG.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 12,14-15
+  s_9c11382bb39584::t_ce05139a15e9b2 13
+docs/en/design.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 36,71
+AGENTS.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 15,32-33
+CLAUDE.md
+  s_9c11382bb39584::t_c614a2a0bd7d11 7,24
+docs/zh/examples.md
+  s_9c11382bb39584::t_ae0ae9c262afe9 30,161,199
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "e6f544cce578adc67142d67381fcc95213b672d4",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
