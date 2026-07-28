@@ -1,0 +1,29 @@
+docs/zh/design.md
+  s_9c11382bb39584::t_43743056536edc 30,42-45,67,71,108
+README.md
+  s_9c11382bb39584::t_43743056536edc 170-173
+README-zh.md
+  s_9c11382bb39584::t_43743056536edc 170-173
+docs/en/design.md
+  s_9c11382bb39584::t_43743056536edc 30,42-45,67,71,108
+docs/en/skill-progressive-loading.md
+  s_9c11382bb39584::t_67a53aca629284 10,21-22,55,63
+CHANGELOG.md
+  s_9c11382bb39584::t_67a53aca629284 12-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "3c33f6b78d546b882cb7fac6e7ed20a27261d8ba",
+  "prompts": {},
+  "sessions": {
+    "s_9c11382bb39584": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa7dd-f17c-7f01-a30a-5a8d20055b10",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
