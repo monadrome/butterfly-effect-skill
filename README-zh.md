@@ -4,9 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 
-**蝴蝶效应用来纠正 AI trajectory drift，而不是默认假设每个会话都需要重写的重开提示词生成器。**
+**蝴蝶效应是 AI 会话里的“月光宝盒”：带着后来得到的信息，回到对话开始偏离预期的节点。**
 
-蝴蝶效应分析已经发生的 AI 协作会话，只在因果证据充分时把人工纠偏连接成链条，并定位最早有依据的 Agent 假设或行动，也就是把工作带偏的起点。确认存在偏斜后，它返回简洁的 rewind 建议和一段可直接复制的更新后提示词，用于重开同一任务；历史或因果证据不足时，则降低置信度或返回 `No reliable drift or rewind point detected`，不会伪造精确位置。它适用于编码、调研、写作、设计、规划、运营和其他 AI 协作任务；不要求提前安装追踪器或标记每次纠正，也不会把后来才查到的事实伪装成开局时已经知道的信息。
+Session 中的一个假设或决定，可能让后续 LLM 输出越来越不符合预期。直到后面经过多次纠偏，你才知道那个节点原本应该怎样处理。蝴蝶效应会沿着这些后续纠偏向前追溯，找到最早有依据的分叉点，再返回 rewind 建议和一段可直接复制的更新后提示词，让任务从那里走向更符合预期的结果。它适用于编码、调研、写作、设计、规划、运营和其他 AI 协作任务，不要求提前安装追踪器或标记纠偏。历史不足以支持分叉点时，它会返回 `No reliable drift or rewind point detected`，而不是凭空编造一个。
 
 ## 快速开始
 
@@ -20,7 +20,7 @@ npx skills-npm setup
 一段反复纠偏的会话结束后，输入：
 
 ```text
-使用 /butterfly-effect，找出当前会话中 Agent 最早从哪里偏航，并返回 rewind 建议和更新后的提示词。
+使用 /butterfly-effect 分析当前会话，找到对话从哪里开始偏离预期，再利用后来得到的信息，返回 rewind 建议和一段让任务从该节点走向更好结果的更新后提示词。
 ```
 
 把 `Updated prompt`（更新后的提示词）引用块复制到新会话中；rewind 建议则说明原轨迹最早从哪里偏离。如果会话不能支持可靠的偏斜诊断，Skill 会返回无可靠结果，而不是凭空生成提示词。
