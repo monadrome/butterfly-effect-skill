@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 
-![蝴蝶效应轨迹偏斜示意图](docs/assets/butterfly-effect-trajectory.png)
+<img src="docs/assets/butterfly-effect-trajectory.png" alt="蝴蝶效应轨迹偏斜示意图" width="427">
 
 **蝴蝶效应是 AI 会话里的“月光宝盒”：带着后来得到的信息，回到对话开始偏离预期的节点。**
 

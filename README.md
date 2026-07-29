@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-blue.svg)](README-zh.md)
 
-![Butterfly Effect trajectory drift illustration](docs/assets/butterfly-effect-trajectory.png)
+<img src="docs/assets/butterfly-effect-trajectory.png" alt="Butterfly Effect trajectory drift illustration" width="427">
 
 **Butterfly Effect is a time machine for AI sessions: take what you learned later back to the point where the conversation started going off course.**
 
