@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 
+<img src="docs/assets/butterfly-effect-trajectory.png" alt="蝴蝶效应轨迹偏斜示意图" width="427">
+
 **蝴蝶效应是 AI 会话里的“月光宝盒”：带着后来得到的信息，回到对话开始偏离预期的节点。**
 
 Session 中的一个假设或决定，可能产出需要返工的代码、文档、设计或其他任务成果，因为它没有达到预期结果。蝴蝶效应会沿着产出物返工向前追溯，找到最早有依据的分叉点，再返回 rewind 建议和一段可直接复制的更新后提示词，让任务从那里走向更符合预期的结果。仅有后续请求不能证明偏斜：产出物版本形成前追加要求、已接受产出物的正常演进，以及没有产出物返工的重复解释都应 no-op。使用前不需要安装追踪器或标记产出物版本。
