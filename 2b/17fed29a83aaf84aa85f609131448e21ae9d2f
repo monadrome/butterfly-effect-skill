@@ -1,0 +1,22 @@
+scripts/check-repository.js
+  s_894287de30859d::t_dc518786477271 122
+  s_894287de30859d::t_79b03c1edf6b03 123
+skills/butterfly-effect/agents/openai.yaml
+  s_894287de30859d::t_34795dd80b9247 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "2b17fed29a83aaf84aa85f609131448e21ae9d2f",
+  "prompts": {},
+  "sessions": {
+    "s_894287de30859d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a7bffe65-81e2-4d7b-82a2-d62c38814176",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
