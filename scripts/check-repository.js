@@ -119,8 +119,8 @@ const openAiAgent = fs.readFileSync(path.join(root, 'skills', 'butterfly-effect'
 if (!/short_description:\s*["']Recommend\b/.test(openAiAgent) || /short_description:\s*["']Continue\b/.test(openAiAgent)) {
   fail('OpenAI agent metadata must describe a recommendation, not imply that the Skill performs continuation.');
 }
-if (!/default_prompt:\s*["'][^"']*\$butterfly-effect\b/.test(openAiAgent)) {
-  fail('OpenAI agent metadata must reference $butterfly-effect in its default prompt.');
+if (!/default_prompt:\s*["'][^"']*\/butterfly-effect\b/.test(openAiAgent)) {
+  fail('OpenAI agent metadata must reference /butterfly-effect in its default prompt.');
 }
 
 for (const relative of ['package.json', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json']) {

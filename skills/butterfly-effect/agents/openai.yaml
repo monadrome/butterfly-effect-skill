@@ -1,4 +1,4 @@
 interface:
   display_name: "蝴蝶效应"
   short_description: "Recommend a drift point and salvage useful evidence"
-  default_prompt: "Use $butterfly-effect on this session to diagnose task-artifact drift, salvage useful later evidence, and return a rewind recommendation plus revised continuation prompt."
+  default_prompt: "Use /butterfly-effect on this session to diagnose task-artifact drift, salvage useful later evidence, and return a rewind recommendation plus revised continuation prompt."
