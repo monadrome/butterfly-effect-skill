@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-blue.svg)](README-zh.md)
 
+![Butterfly Effect trajectory drift illustration](docs/assets/butterfly-effect-trajectory.png)
+
 **Butterfly Effect is a time machine for AI sessions: take what you learned later back to the point where the conversation started going off course.**
 
 One assumption or decision can produce code, a document, a design, or another task artifact that later has to be reworked because it missed the expected outcome. Butterfly Effect traces that artifact rework back to the earliest supported turning point, then returns a rewind recommendation and a copy-ready updated prompt for taking a better path from there. Added requests alone do not establish drift: requirements introduced before an artifact version exists, normal evolution after an accepted artifact, and repeated explanations without artifact rework are no-op. It works across AI-assisted tasks with no advance tracker or artifact-version tagging.
