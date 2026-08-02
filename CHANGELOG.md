@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2026-08-02
+
+### Fixed
+
+- Quoted the Skill frontmatter description so YAML parsers do not interpret `Chinese triggers:` as a nested mapping and reject package installation.
+
 ## [0.5.0] - 2026-07-28
 
 ### Changed

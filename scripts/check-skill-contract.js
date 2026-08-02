@@ -116,8 +116,9 @@ const requiredContracts = [
   ['fallback is no-op', /This is the no-op result/],
   ['no unsupported prompt', /Do not generate a revised prompt unless the user explicitly requests reconstruction from limited evidence/],
   ['rewind recommendation fields', /`Rewind to`, `Why`, and `Keep`/],
-  ['copy-ready prompt', /one copy-ready blockquote/],
-  ['explicit prompt-only mode', /For explicit `--prompt-only`/],
+  ['copy-ready prompt', /one copy-ready fenced `text` code block/],
+  ['blockquote-free prompt', /Do not use Markdown blockquote syntax because copied prompts must not contain leading `>` characters/],
+  ['explicit prompt-only mode', /For explicit `--prompt-only`, return only the fenced prompt block/],
   ['explicit detailed mode', /For explicit `--detailed`/],
   ['multiple-boundary output', /no single rewind point exists/],
 ];
