@@ -8,6 +8,8 @@ Butterfly Effect first determines whether a produced task artifact was reworked 
 - When drift is supported, output a concise rewind recommendation and a copy-ready updated prompt by default, not a retrospective report.
 - Use the current conversation unless the user names another session or transcript.
 - Ground clauses in artifact evidence, continuation constraints, and accepted decisions.
+- Treat history at and after the rewind point as mixed evidence: reject drift-dependent content, retain separable valid work, and translate hindsight-only facts into discovery or verification steps.
+- Treat optional descriptions of what's wrong or right as focus hints, never as substitutes for artifact rework or causal evidence.
 - Separate stable preferences, task-specific requirements, and one-off changes.
 - Convert facts knowable only later into instructions to inspect or verify.
 - Preserve the original objective and avoid overfitting incidental code details.
@@ -45,4 +47,5 @@ npm run check:package
 - Keep both READMEs structurally equivalent.
 - Bump the version in `package.json`, `.claude-plugin/plugin.json`, and Skill metadata together.
 - Do not claim a preference is stable unless the source evidence supports it.
+- Keep the default result concise; evidence salvage belongs in `Keep`, the updated prompt, or explicit detailed output rather than a new mandatory report section.
 - Keep `NPM_TOKEN` until a Trusted Publisher release and its provenance check both succeed.

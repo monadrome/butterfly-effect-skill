@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1] - 2026-08-03
+
+### Changed
+
+- Treat history at and after the rewind point as mixed evidence: reject drift-dependent content, retain separable accepted work and constraints, and translate later-only discoveries into investigation or verification steps.
+- Accept optional natural-language descriptions of what's wrong and what's right as focus hints without allowing them to bypass artifact-first drift diagnosis or rewrite visible history.
+- Preserve supported eliminated options as portable constraints or decision gates and accepted partial work by its valid outcomes rather than its causal assumptions.
+- Keep the default output at a rewind recommendation plus copy-ready updated prompt, using `Keep` and detailed mode to expose evidence salvage only when useful.
+- Add domain language, an architectural decision, bilingual examples, distribution metadata, and static checks for context corruption and evidence salvage.
+- Clarify the first-screen product outcome without front-loading the full drift-decision contract.
+- Explain how to use the updated prompt in hosts with and without history rewind support.
+- Move repository-validation details from the user-facing README to the contributor guide.
+
 ## [0.6.0] - 2026-08-02
 
 ### Changed

@@ -89,6 +89,8 @@ for (const relative of ['README.md', 'README-zh.md']) {
     ['Claude marketplace installation', /https:\/\/github\.com\/HuaTalk\/butterfly-effect-skill\.git/],
     ['explicit prompt-only mode', /--prompt-only/],
     ['detailed output mode', /--detailed/],
+    ['optional evidence hints', /what's wrong|哪里不对/],
+    ['accepted-evidence hint', /what's right|哪些部分正确/],
     ['no-reliable fallback', /No reliable drift or rewind point detected/],
     ['contribution link', /CONTRIBUTING\.md/],
     ['changelog link', /CHANGELOG\.md/],
@@ -106,10 +108,26 @@ if (!/--detailed[^\n]+absorbed requirements and exclusions/.test(readme)) {
 if (!/--detailed[^\n]+已吸收的要求和未纳入项/.test(readmeZh)) {
   fail('README-zh.md must describe the bounded detailed-mode additions.');
 }
+if (!/Evidence salvage:[^\n]+reject later content[^\n]+retain separable accepted work[^\n]+translate hindsight-only facts/.test(readme)) {
+  fail('README.md must describe reject-retain-translate evidence salvage.');
+}
+if (!/证据提取：[^\n]+删除依赖错误轨迹[^\n]+保留可分离的已接受工作[^\n]+改写成调查或验证步骤/.test(readmeZh)) {
+  fail('README-zh.md must describe reject-retain-translate evidence salvage.');
+}
 
 const openAiAgent = fs.readFileSync(path.join(root, 'skills', 'butterfly-effect', 'agents', 'openai.yaml'), 'utf8');
 if (!/short_description:\s*["']Recommend\b/.test(openAiAgent) || /short_description:\s*["']Continue\b/.test(openAiAgent)) {
   fail('OpenAI agent metadata must describe a recommendation, not imply that the Skill performs continuation.');
+}
+if (!/default_prompt:\s*["'][^"']*\/butterfly-effect\b/.test(openAiAgent)) {
+  fail('OpenAI agent metadata must reference /butterfly-effect in its default prompt.');
+}
+
+for (const relative of ['package.json', '.claude-plugin/plugin.json', '.claude-plugin/marketplace.json']) {
+  const content = fs.readFileSync(path.join(root, relative), 'utf8');
+  if (!/salvage useful (?:later )?evidence/i.test(content)) {
+    fail(`${relative} must describe useful-evidence salvage.`);
+  }
 }
 
 const workflowFiles = [

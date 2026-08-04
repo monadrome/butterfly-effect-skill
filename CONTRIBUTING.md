@@ -18,7 +18,7 @@ This repository has no runtime application or build. It contains the Skill, dire
 ## Making a Change
 
 1. Keep universal workflow and invariants in `skills/butterfly-effect/SKILL.md`. Put condition-specific detail in the matching directly linked reference.
-2. Preserve artifact-first diagnosis before reconstruction, no-op when no task artifact was reworked, the supported-drift default of rewind recommendation plus copy-ready updated prompt, explicit-only `--prompt-only`, current-conversation source, hindsight boundary, original objective, evidence grounding, and secret redaction.
+2. Preserve artifact-first diagnosis before reconstruction, no-op when no task artifact was reworked, the supported-drift default of rewind recommendation plus copy-ready updated prompt, explicit-only `--prompt-only`, current-conversation source, mixed-evidence salvage, hindsight boundary, original objective, evidence grounding, and secret redaction.
 3. Keep `README.md` and `README-zh.md` semantically and structurally equivalent. Update paired `docs/en/` and `docs/zh/` pages together.
 4. Update `CHANGELOG.md` for release-visible behavior, documentation, packaging, or workflow changes.
 5. Run `npm test` and inspect the full diff. Static checks do not replace fresh-context behavior evaluation.
@@ -38,6 +38,8 @@ Butterfly Effect is a post-hoc AI trajectory-drift diagnosis and correction tool
 
 Every updated-prompt clause needs artifact evidence, a continuation constraint, an accepted decision, a repeated preference, or authoritative project context. Facts knowable only after investigation become inspection or verification instructions. Do not turn isolated reactions into stable user traits.
 
+Optional user descriptions of what's wrong or right are focus hints. They can narrow artifact comparison and evidence salvage, but they cannot establish drift or a rewind point without a reworked Artifact Version. Do not add host-specific argument parsing for these hints; accept ordinary natural language.
+
 ## Evaluation
 
 Use raw transcripts in a fresh context. Do not give the evaluator the intended updated prompt or expected drift diagnosis.
@@ -53,6 +55,8 @@ A successful result should:
 - preserve the original objective;
 - distinguish stable, task-specific, and one-off rules;
 - turn later discoveries into investigation steps;
+- reject drift-dependent assumptions while preserving separable accepted work and supported eliminated options;
+- treat what's-wrong and what's-right hints as non-authoritative evidence, including when they conflict with visible history or appear in a no-op case;
 - report multiple independent artifact drifts or missing history without inventing a precise rewind boundary or shared cause;
 - return the no-reliable fallback without a synthetic updated prompt when no reworked artifact or usable boundary is supported;
 - exclude unsupported personality claims and private content.
@@ -60,6 +64,8 @@ A successful result should:
 For routing or output changes, compare the old and new Skill with identical transcripts. Add regression instructions only after observing a meaningful failure.
 
 ## Validation
+
+Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents. These static checks protect the repository and release contract, but they do not prove runtime diagnostic accuracy; evaluate behavior against fresh-context transcripts as described above.
 
 ```bash
 npm test

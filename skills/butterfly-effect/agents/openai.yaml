@@ -1,4 +1,4 @@
 interface:
   display_name: "蝴蝶效应"
-  short_description: "Recommend a task-artifact drift point"
-  default_prompt: "Use /butterfly-effect on this session. Determine whether a task artifact was reworked because it drifted from the expected outcome, then return a rewind recommendation and revised prompt for a better continuation."
+  short_description: "Recommend a drift point and salvage useful evidence"
+  default_prompt: "Use /butterfly-effect on this session to diagnose task-artifact drift, salvage useful later evidence, and return a rewind recommendation plus revised continuation prompt."

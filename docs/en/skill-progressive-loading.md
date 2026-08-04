@@ -19,7 +19,7 @@ Moving text into a reference saves context only when `SKILL.md` states exactly w
 |---|---|
 | `references/source-resolution.md` | Named, ambiguous, truncated, or undiscovered interaction history |
 
-Artifact-first diagnosis, rewind selection, hindsight handling, independent drifts, and output modes stay in the decision contract because they are product rules, not environment-specific lookup knowledge.
+Artifact-first diagnosis, optional evidence hints, rewind selection, mixed-evidence salvage, hindsight handling, independent drifts, and output modes stay in the decision contract because they are product rules, not environment-specific lookup knowledge.
 
 ## Placement Test
 
@@ -49,7 +49,7 @@ Do not hide a universal safeguard behind a conditional route. Secret redaction, 
 2. Measure `SKILL.md` lines, words, and bytes.
 3. Change one high-cost conditional or duplicated block.
 4. Run old and new versions with the same raw transcript in separate fresh contexts.
-5. Grade observable output: task artifact identified, rework supported, no-op cases rejected, boundary precision justified, continuation constraints retained, later discoveries converted, and explicit-only modes respected.
+5. Grade observable output: task artifact identified, rework supported, no-op cases rejected, hints kept subordinate to the drift gate, boundary precision justified, drift-dependent content rejected, separable accepted work retained, later discoveries converted, and explicit-only modes respected.
 6. Add a focused harness only after a consequential failure is observed.
 7. Run static checks and inspect the complete diff.
 
@@ -57,7 +57,7 @@ Do not give the evaluator the intended prompt or your diagnosis. A forward test 
 
 ## Current Result
 
-The entry file is a decision contract rather than a reasoning tutorial. Its only direct reference contains environment-specific source discovery. Rewind advice, false-precision prevention, the no-reliable fallback, and explicit-only prompt mode remain testable repository anchors.
+The entry file is a decision contract rather than a reasoning tutorial. Its only direct reference contains environment-specific source discovery. Evidence hints and salvage, rewind advice, false-precision prevention, the no-reliable fallback, and explicit-only prompt mode remain testable repository anchors.
 
 ## Change Checklist
 
