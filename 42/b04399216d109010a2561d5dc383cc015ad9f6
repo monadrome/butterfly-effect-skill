@@ -1,0 +1,25 @@
+README-zh.md
+  s_ea4a99b6520643::t_4f2961fad98b64 11,30-33,205
+  s_ea4a99b6520643::t_87f7e03fd2e341 28
+README.md
+  s_ea4a99b6520643::t_4f2961fad98b64 11,30-33,205
+  s_ea4a99b6520643::t_87f7e03fd2e341 28
+CONTRIBUTING.md
+  s_ea4a99b6520643::t_4f2961fad98b64 68-69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "42b04399216d109010a2561d5dc383cc015ad9f6",
+  "prompts": {},
+  "sessions": {
+    "s_ea4a99b6520643": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fcab3-fd50-75c0-9e86-dd7c58e902ab",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
