@@ -65,6 +65,8 @@ For routing or output changes, compare the old and new Skill with identical tran
 
 ## Validation
 
+Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents. These static checks protect the repository and release contract, but they do not prove runtime diagnostic accuracy; evaluate behavior against fresh-context transcripts as described above.
+
 ```bash
 npm test
 npm run release:check

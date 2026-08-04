@@ -8,7 +8,7 @@
 
 **Butterfly Effect is a time machine for AI sessions: take what you learned later back to the point where the conversation started going off course.**
 
-One assumption or decision can produce code, a document, a design, or another task artifact that later has to be reworked because it missed the expected outcome. Butterfly Effect traces that artifact rework back to the earliest supported turning point, then salvages the useful parts of later history without carrying forward the bad assumption. It returns a rewind recommendation and a copy-ready updated prompt for taking a better path from there. Added requests alone do not establish drift: requirements introduced before an artifact version exists, normal evolution after an accepted artifact, and repeated explanations without artifact rework are no-op. It works across AI-assisted tasks with no advance tracker or artifact-version tagging.
+When an AI task only approaches the desired result after several rounds of rework, Butterfly Effect finds the earliest evidence-supported point where it went off course and generates a new prompt for continuing the task. It does not rewind the session automatically, and it does not mistake ordinary requirement additions for failure.
 
 ## Quickstart
 
@@ -25,7 +25,12 @@ After a task artifact has been reworked, ask:
 Use /butterfly-effect on this session. Determine whether a produced task artifact was reworked because it missed the expected outcome. If so, find the earliest causal point and return a rewind recommendation plus an updated prompt for continuing from there.
 ```
 
-Use the `Updated prompt` fenced `text` block when continuing from the recommended history point. It avoids Markdown blockquote markers so the copied prompt has no leading `>` characters. The rewind recommendation explains where the original trajectory first drifted. If the session does not support a reliable drift diagnosis, the Skill returns the no-reliable result instead of manufacturing a prompt.
+The rewind recommendation explains where the original trajectory first drifted. The `Updated prompt` is a fenced `text` block, so copying it does not include Markdown blockquote markers. How you use it depends on your host:
+
+- If the host supports history rewind, return to the recommended point and use the `Updated prompt` there.
+- If the host does not support history rewind, start a new session and paste the `Updated prompt` into it.
+
+If the session does not support a reliable drift diagnosis, the Skill returns the no-reliable result instead of manufacturing a prompt.
 
 You may also describe `what's wrong` or `what's right` in ordinary language after the request. These optional hints focus the artifact comparison and identify useful later evidence; they do not replace the requirement for visible artifact rework. No special flags are required.
 
@@ -197,7 +202,7 @@ Read the [design notes](docs/en/design.md) for the evidence model, non-goals, an
 
 ## Validation and Limitations
 
-**Important:** Identifying artifact versions, deciding whether rework proves drift, selecting a causal boundary, and separating useful evidence from corrupted context still depend on model judgment. Repository checks validate version consistency, release tags, Skill contract anchors, local references, plugin manifests, bilingual README structure, English-document language boundaries, and npm package contents, but these static checks cannot prove runtime diagnostic accuracy. A result may miss a drift, infer causality too strongly, overfit a hint or one-off reaction, retain a contaminated decision, or soften a contradiction incorrectly. Review important recommendations and updated prompts before using them, especially when the source spans several sessions or contains sensitive material.
+**Important:** Identifying artifact versions, deciding whether rework proves drift, selecting a causal boundary, and separating useful evidence from corrupted context still depend on model judgment. A result may miss a drift, infer causality too strongly, overfit a hint or one-off reaction, retain a contaminated decision, or soften a contradiction incorrectly. Review important recommendations and updated prompts before using them, especially when the source spans several sessions or contains sensitive material.
 
 ## Updating
 
