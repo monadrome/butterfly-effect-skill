@@ -27,7 +27,9 @@ Rewind recommendation:
 
 Updated prompt:
 
-> First inspect the named worktree and explain the existing behavior, call chain, and cause without editing. Wait for confirmation before implementation. Preserve V2, add V3 behind a default-off flag, keep configuration reads at the entry and core matching logic pure, run existing tests without adding new ones unless requested, and verify the worktree diff before committing and pushing.
+```text
+First inspect the named worktree and explain the existing behavior, call chain, and cause without editing. Wait for confirmation before implementation. Preserve V2, add V3 behind a default-off flag, keep configuration reads at the entry and core matching logic pure, run existing tests without adding new ones unless requested, and verify the worktree diff before committing and pushing.
+```
 
 No local session lookup is needed when the visible conversation contains the opening request and the causal Agent action. If those early turns were truncated, resolve only the current session when it is identifiable and accessible. Without that action, describe the supported boundary without inventing a turn identifier; if the remaining history cannot support causality, return the no-reliable fallback.
 
@@ -90,7 +92,9 @@ Rewind recommendation:
 
 Updated prompt:
 
-> First establish the product's core outcome, user motivation, trigger boundary, and invariants; do not begin from a popular template. Treat release workflows as common scenarios rather than prerequisites. Present positioning and discovery-description candidates for explicit selection before editing, then keep the Skill, README, package, and marketplace wording consistent.
+```text
+First establish the product's core outcome, user motivation, trigger boundary, and invariants; do not begin from a popular template. Treat release workflows as common scenarios rather than prerequisites. Present positioning and discovery-description candidates for explicit selection before editing, then keep the Skill, README, package, and marketplace wording consistent.
+```
 
 ## Research or Decision Task
 
@@ -109,7 +113,9 @@ Rewind recommendation:
 
 Updated prompt:
 
-> First establish the decision criteria, affected users, constraints, and time horizon before comparing options. Separate sourced evidence, assumptions, and missing information; verify time-sensitive claims against current sources. Compare trade-offs including operating cost, migration risk, and reversibility, then give a recommendation with the conditions under which it changes and a short validation plan.
+```text
+First establish the decision criteria, affected users, constraints, and time horizon before comparing options. Separate sourced evidence, assumptions, and missing information; verify time-sensitive claims against current sources. Compare trade-offs including operating cost, migration risk, and reversibility, then give a recommendation with the conditions under which it changes and a short validation plan.
+```
 
 ## Creative or Design Task
 
@@ -128,7 +134,9 @@ Rewind recommendation:
 
 Updated prompt:
 
-> First establish the audience, intended response, existing brand constraints, and accessibility requirements. Present two or three clearly distinct directions with their trade-offs before producing the final assets. Keep the selected direction consistent across the requested surfaces, verify contrast and content fit, and ask for approval before changing high-impact public-facing material.
+```text
+First establish the audience, intended response, existing brand constraints, and accessibility requirements. Present two or three clearly distinct directions with their trade-offs before producing the final assets. Keep the selected direction consistent across the requested surfaces, verify contrast and content fit, and ask for approval before changing high-impact public-facing material.
+```
 
 ## Named Local Session
 
@@ -158,7 +166,7 @@ Request:
 Use /butterfly-effect --prompt-only on this session.
 ```
 
-This explicit mode returns only the updated prompt blockquote after artifact drift has been diagnosed. It does not become the default from prior usage. If the source cannot show a reworked artifact and causal boundary, the result is still `No reliable drift or rewind point detected`; the mode does not force prompt generation.
+This explicit mode returns only the updated prompt as a fenced `text` block after artifact drift has been diagnosed. It does not become the default from prior usage. If the source cannot show a reworked artifact and causal boundary, the result is still `No reliable drift or rewind point detected`; the mode does not force prompt generation.
 
 ## Detailed Mode
 
@@ -170,7 +178,7 @@ Use /butterfly-effect --detailed on this session.
 
 Output shape:
 
-```markdown
+````markdown
 ## Rewind recommendation
 
 - Rewind to: before the Agent assumed the work was only a code change.
@@ -179,7 +187,9 @@ Output shape:
 
 ## Updated prompt
 
-> First inspect ...
+```text
+First inspect ...
+```
 
 ## Requirements absorbed
 
@@ -190,7 +200,7 @@ Output shape:
 
 - The exact root cause was discovered later, so it became an inspection step.
 - An isolated tone reaction was too weak to treat as a stable preference.
-```
+````
 
 The rewind recommendation and updated prompt remain first. Detailed mode explains the mapping; it does not replace either artifact with a retrospective.
 

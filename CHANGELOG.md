@@ -4,7 +4,7 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.5.1] - 2026-07-28
+## [0.6.1] - 2026-08-03
 
 ### Changed
 
@@ -13,6 +13,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Preserve supported eliminated options as portable constraints or decision gates and accepted partial work by its valid outcomes rather than its causal assumptions.
 - Keep the default output at a rewind recommendation plus copy-ready updated prompt, using `Keep` and detailed mode to expose evidence salvage only when useful.
 - Add domain language, an architectural decision, bilingual examples, distribution metadata, and static checks for context corruption and evidence salvage.
+- Clarify the first-screen product outcome without front-loading the full drift-decision contract.
+- Explain how to use the updated prompt in hosts with and without history rewind support.
+- Move repository-validation details from the user-facing README to the contributor guide.
+
+## [0.6.0] - 2026-08-02
+
+### Changed
+
+- Return updated prompts in fenced `text` code blocks so copied prompts do not contain Markdown blockquote markers.
+
+### Fixed
+
+- Quoted the Skill frontmatter description so YAML parsers do not interpret `Chinese triggers:` as a nested mapping and reject package installation.
 
 ## [0.5.0] - 2026-07-28
 

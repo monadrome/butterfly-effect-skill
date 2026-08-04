@@ -1,9 +1,9 @@
 ---
 name: butterfly-effect
-description: Detect whether a task artifact drifted and was reworked, recommend the earliest supported history point to continue from, then produce a revised prompt for a better trajectory. Use for session time travel, turning-point analysis, or hindsight-guided continuation; Chinese triggers: 月光宝盒、蝴蝶效应.
+description: "Detect whether a task artifact drifted and was reworked, recommend the earliest supported history point to continue from, then produce a revised prompt for a better trajectory. Use for session time travel, turning-point analysis, or hindsight-guided continuation; Chinese triggers: 月光宝盒, 蝴蝶效应."
 metadata:
   author: HuaTalk
-  version: "0.5.1"
+  version: "0.6.1"
   category: prompt-engineering
 ---
 
@@ -30,6 +30,6 @@ If the history does not show a reworked artifact or cannot support its causal bo
 Otherwise return:
 
 - **Rewind recommendation:** `Rewind to`, `Why`, and `Keep`; use `Keep` to summarize relevant evidence retained or translated from later history.
-- **Updated prompt:** one copy-ready blockquote supported by artifact evidence, continuation constraints, or authoritative context and usable without the retrospective.
+- **Updated prompt:** one copy-ready fenced `text` code block supported by artifact evidence, continuation constraints, or authoritative context and usable without the retrospective. Do not use Markdown blockquote syntax because copied prompts must not contain leading `>` characters.
 
-For explicit `--prompt-only`, return only the prompt. For explicit `--detailed`, append at most `Requirements absorbed` and `Not included`. When independent artifact drifts have different boundaries, state that no single rewind point exists and provide separate recommendations; use one prompt only when it covers them without conflating objectives.
+For explicit `--prompt-only`, return only the fenced prompt block. For explicit `--detailed`, append at most `Requirements absorbed` and `Not included`. When independent artifact drifts have different boundaries, state that no single rewind point exists and provide separate recommendations; use one prompt only when it covers them without conflating objectives.
