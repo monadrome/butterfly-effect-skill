@@ -1,0 +1,38 @@
+scripts/check-package.js
+  s_94d062e10d2393::t_d5ea2572ad1bb2 28-30
+package.json
+  s_94d062e10d2393::t_fbd0aafe950b83 2-3
+CHANGELOG.md
+  s_94d062e10d2393::t_0263695c21a786 7-20
+CONTRIBUTING.md
+  s_94d062e10d2393::t_fd585b2442d99e 87-95
+scripts/check-install.js
+  s_94d062e10d2393::t_3033f500a14ade 36-38
+  s_94d062e10d2393::t_5fb6758dcf6390 57,61
+skills/butterfly-effect/SKILL.md
+  s_94d062e10d2393::t_5cd7608a2196a2 6
+README-zh.md
+  s_94d062e10d2393::t_a6db23f57ff4a2 18,128
+.claude-plugin/plugin.json
+  s_94d062e10d2393::t_71edf9d9709430 4
+README.md
+  s_94d062e10d2393::t_b092447deaff0f 18,128
+scripts/check-repository.js
+  s_94d062e10d2393::t_d34c2b1711f8e8 101-108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.43-trip",
+  "base_commit_sha": "b71ea06a5ce1e7036b3d14d2715bd08fcfc3ae03",
+  "prompts": {},
+  "sessions": {
+    "s_94d062e10d2393": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f2d592d-88d6-4c19-8204-2585df1f1f45",
+        "model": "deepseek-v4.1-flash-expires-on-0910"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
