@@ -46,22 +46,44 @@ jobs:
         if: steps.auth.outputs.mode == 'token'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --provenance --access public --registry=https://registry.npmjs.org/
+        shell: bash
+        run: |
+          package_name=$(node -p "require('./package.json').name")
+          package_version=$(node -p "require('./package.json').version")
+          package_path=${package_name/\//%2f}
+          # Read the version document directly: the package document replicates slower.
+          if curl -sf "https://registry.npmjs.org/${package_path}/${package_version}" >/dev/null; then
+            echo "${package_name}@${package_version} is already published; skipping publication."
+            exit 0
+          fi
+          npm publish --provenance --access public --registry=https://registry.npmjs.org/
       - name: Publish with npm Trusted Publisher
         if: steps.auth.outputs.mode == 'oidc'
-        run: npm publish --provenance --access public --registry=https://registry.npmjs.org/
+        shell: bash
+        run: |
+          package_name=$(node -p "require('./package.json').name")
+          package_version=$(node -p "require('./package.json').version")
+          package_path=${package_name/\//%2f}
+          # Read the version document directly: the package document replicates slower.
+          if curl -sf "https://registry.npmjs.org/${package_path}/${package_version}" >/dev/null; then
+            echo "${package_name}@${package_version} is already published; skipping publication."
+            exit 0
+          fi
+          npm publish --provenance --access public --registry=https://registry.npmjs.org/
       - name: Verify registry provenance
         shell: bash
         run: |
           package_name=$(node -p "require('./package.json').name")
           package_version=$(node -p "require('./package.json').version")
-          for attempt in {1..12}; do
+          # The package document is served from a read replica; a first release under a
+          # new scope has been observed to lag for several minutes, so wait up to 5 minutes.
+          for attempt in {1..30}; do
             provenance=$(npm view "${package_name}@${package_version}" dist.attestations.provenance --json 2>/dev/null || true)
             if node -e 'const value = JSON.parse(process.argv[1] || "null"); process.exit(value?.predicateType === "https://slsa.dev/provenance/v1" ? 0 : 1)' "$provenance"; then
               echo "Verified npm provenance for ${package_name}@${package_version}."
               exit 0
             fi
-            sleep 5
+            sleep 10
           done
           echo "Published package is missing npm provenance."
           exit 1
