@@ -3,8 +3,8 @@
   "name": "butterfly-effect",
   "description": "Detect task-artifact drift and recommend an AI session history point plus a revised prompt for continuing from there.",
   "owner": {
-    "name": "HuaTalk",
-    "url": "https://github.com/HuaTalk"
+    "name": "monadrome",
+    "url": "https://github.com/monadrome"
   },
   "plugins": [
     {

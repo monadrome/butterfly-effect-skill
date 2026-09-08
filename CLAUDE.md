@@ -12,7 +12,7 @@ Read `docs/en/skill-progressive-loading.md` before moving instructions between t
 
 | Channel | Mechanism |
 |---|---|
-| Agent Skills | `npx skills add HuaTalk/butterfly-effect-skill` |
+| Agent Skills | `npx skills add monadrome/butterfly-effect-skill` |
 | Claude Code | `/plugin install butterfly-effect@butterfly-effect` |
 
 ## Design Rules

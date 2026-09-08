@@ -98,7 +98,7 @@ Trusted Publisher cannot be configured until the npm package exists. Bootstrap t
 
 After the package exists, configure npm Trusted Publisher with:
 
-- GitHub owner: `HuaTalk`
+- GitHub owner: `monadrome`
 - repository: `butterfly-effect-skill`
 - workflow filename: `publish.yml`
 - environment: leave unset unless the workflow is updated to use one
