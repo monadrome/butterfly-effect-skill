@@ -1,7 +1,7 @@
 {
   "name": "butterfly-effect-skill",
   "description": "Detect task-artifact drift, recommend where an AI session should rewind, and generate a revised prompt for continuing from there.",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": {
     "name": "monadrome",
     "url": "https://github.com/monadrome"

@@ -3,7 +3,7 @@ name: butterfly-effect
 description: "Detect whether a task artifact drifted and was reworked, recommend the earliest supported history point to continue from, then produce a revised prompt for a better trajectory. Use for session time travel, turning-point analysis, or hindsight-guided continuation; Chinese triggers: 月光宝盒, 蝴蝶效应."
 metadata:
   author: monadrome
-  version: "0.7.0"
+  version: "0.7.1"
   category: prompt-engineering
 ---
 

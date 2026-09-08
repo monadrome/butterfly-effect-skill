@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2026-09-08
+
+### Changed
+
+- Publish through npm Trusted Publisher again. Version 0.7.0 was the bootstrap release of the new `@monadrome` package and had to be published outside the release workflow, so it carries no provenance; this version is the first one released from a tag with SLSA provenance attached.
+
 ## [0.7.0] - 2026-09-08
 
 ### Changed
