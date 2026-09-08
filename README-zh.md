@@ -15,7 +15,7 @@ Session 中的一个假设或决定，可能产出需要返工的代码、文档
 通过 npm 安装 Skill：
 
 ```bash
-npm install -D @huatalk/butterfly-effect-skill
+npm install -D @monadrome/butterfly-effect-skill
 npx skills-npm setup
 ```
 
@@ -125,7 +125,7 @@ Agent 最初没有定义团队标准就推荐了热门工具。随后，这份�
 适用于使用 `skills-npm` 的环境：
 
 ```bash
-npm install -D @huatalk/butterfly-effect-skill
+npm install -D @monadrome/butterfly-effect-skill
 npx skills-npm setup
 ```
 

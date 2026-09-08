@@ -15,7 +15,7 @@ One assumption or decision can produce code, a document, a design, or another ta
 Install the Skill from npm:
 
 ```bash
-npm install -D @huatalk/butterfly-effect-skill
+npm install -D @monadrome/butterfly-effect-skill
 npx skills-npm setup
 ```
 
@@ -125,7 +125,7 @@ Installation depends on how your AI agent loads Skills.
 For environments using `skills-npm`:
 
 ```bash
-npm install -D @huatalk/butterfly-effect-skill
+npm install -D @monadrome/butterfly-effect-skill
 npx skills-npm setup
 ```
 

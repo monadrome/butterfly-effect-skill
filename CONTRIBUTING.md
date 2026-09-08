@@ -84,15 +84,15 @@ The package is scoped and public. `package.json` pins the official registry and 
 
 ### First npm Publication
 
-Trusted Publisher cannot be configured until the npm package exists. Bootstrap the first release with a token:
+Trusted Publisher cannot be configured until the npm package exists, so the first version of a package is published outside the release workflow:
 
-1. Sign in with `npm login --scope=@huatalk --registry=https://registry.npmjs.org/`.
-2. Confirm the account with `npm whoami --registry=https://registry.npmjs.org/` and verify it can publish under `@huatalk`.
-3. Confirm the package name is not already occupied with `npm view @huatalk/butterfly-effect-skill --registry=https://registry.npmjs.org/`; `E404` is expected before the first release.
-4. Create a short-lived or granular npm token with publish permission and store it as the repository secret `NPM_TOKEN`.
-5. Leave the repository variable `NPM_TRUSTED_PUBLISHER` unset or set to `false`.
-6. Push the release tag. The workflow selects token mode and still requests npm provenance.
-7. Confirm the package exists and the workflow's provenance verification step passes.
+1. Confirm the account with `npm whoami --registry=https://registry.npmjs.org/` and confirm it owns the scope with `npm org ls monadrome --registry=https://registry.npmjs.org/`.
+2. Confirm the package name is not already occupied with `npm view @monadrome/butterfly-effect-skill --registry=https://registry.npmjs.org/`; `E404` is expected before the first release.
+3. Publish from a terminal with `npm publish --access public --registry=https://registry.npmjs.org/` and answer the one-time password prompt. Do not add `--provenance`; provenance requires the CI OIDC identity.
+4. Do not push the release tag for that version. The publish workflow would attempt the same version again and fail; tag the next version instead.
+5. Confirm the published version is visible on the registry.
+
+A granular token is a fallback for an account without interactive 2FA. Store a token that may publish to the scope as the repository secret `NPM_TOKEN`, leave `NPM_TRUSTED_PUBLISHER` unset or `false`, and push the release tag. A token without a 2FA bypass fails in CI with `EOTP`, and npm restricts bypass tokens for direct publishing, so prefer the interactive publish.
 
 ### Trusted Publisher Migration
 

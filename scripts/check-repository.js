@@ -98,6 +98,14 @@ for (const relative of ['README.md', 'README-zh.md']) {
   }
 }
 
+for (const relative of ['README.md', 'README-zh.md']) {
+  const content = fs.readFileSync(path.join(root, relative), 'utf8');
+  const installNames = [...content.matchAll(/npm install -D (@[^@\s/]+\/[^\s]+)/g)].map(([, name]) => name);
+  if (installNames.length === 0 || installNames.some((name) => name !== packageJson.name)) {
+    fail(`${relative} npm install command must reference the package name ${packageJson.name}.`);
+  }
+}
+
 const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
 const readmeZh = fs.readFileSync(path.join(root, 'README-zh.md'), 'utf8');
 if (!/--detailed[^\n]+absorbed requirements and exclusions/.test(readme)) {

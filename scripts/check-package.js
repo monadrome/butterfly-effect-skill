@@ -25,8 +25,9 @@ if (packed.status !== 0) {
 let archive;
 try {
   const parsed = JSON.parse(packed.stdout);
-  if (!Array.isArray(parsed) || parsed.length !== 1) throw new Error('expected one package result');
-  [archive] = parsed;
+  const list = Array.isArray(parsed) ? parsed : Object.values(parsed);
+  if (list.length !== 1) throw new Error('expected one package result');
+  [archive] = list;
 } catch (error) {
   console.error(`Unable to parse npm pack output: ${error.message}`);
   process.exit(1);
