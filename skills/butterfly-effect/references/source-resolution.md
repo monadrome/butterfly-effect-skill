@@ -31,6 +31,8 @@ Common local location:
 
 Exclude `subagents/` by default. Include a sub-agent transcript only when the artifact rework directly concerns delegated work. Extract human-readable user and assistant text; ignore tool results and local command caveats unless they changed the task.
 
+The project directory name is the workspace path with `/` replaced by `-`. Identify the current session as the newest transcript in that directory whose entries carry the workspace path as `cwd`; when several candidates remain, prefer the one matching the visible conversation.
+
 ## Other agents or exported transcripts
 
 Use the user-provided path, export, handoff, chat log, issue discussion, review thread, document, notes, or research log. Preserve chronology and distinguish human messages from generated summaries.
