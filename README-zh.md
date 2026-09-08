@@ -1,6 +1,6 @@
 # 蝴蝶效应
 
-[![CI](https://github.com/HuaTalk/butterfly-effect-skill/actions/workflows/test.yml/badge.svg)](https://github.com/HuaTalk/butterfly-effect-skill/actions/workflows/test.yml)
+[![CI](https://github.com/monadrome/butterfly-effect-skill/actions/workflows/test.yml/badge.svg)](https://github.com/monadrome/butterfly-effect-skill/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 
@@ -134,7 +134,7 @@ npx skills-npm setup
 适用于 Codex、Cursor、Windsurf、Gemini CLI、GitHub Copilot、Cline，以及 Agent Skills 生态支持的其他环境：
 
 ```bash
-npx skills add HuaTalk/butterfly-effect-skill
+npx skills add monadrome/butterfly-effect-skill
 ```
 
 安装位置和兼容性由安装器及宿主 Agent 的 Skill 实现决定。
@@ -144,7 +144,7 @@ npx skills add HuaTalk/butterfly-effect-skill
 先把仓库注册为插件市场：
 
 ```text
-/plugin marketplace add https://github.com/HuaTalk/butterfly-effect-skill.git
+/plugin marketplace add https://github.com/monadrome/butterfly-effect-skill.git
 ```
 
 再用单独一条指令安装插件：
@@ -200,7 +200,7 @@ npx skills add HuaTalk/butterfly-effect-skill
 Agent Skills：
 
 ```bash
-npx skills add HuaTalk/butterfly-effect-skill
+npx skills add monadrome/butterfly-effect-skill
 ```
 
 Claude Code：
@@ -218,7 +218,7 @@ npm test
 npm run check:package
 ```
 
-`npm test` 会运行 release tag 回归测试，以及仓库、Skill、文档和包内容的全部检查。修改行为或发布元数据前，请先阅读[贡献指南](CONTRIBUTING.md)。问题可提交到 [GitHub Issues](https://github.com/HuaTalk/butterfly-effect-skill/issues)。
+`npm test` 会运行 release tag 回归测试，以及仓库、Skill、文档和包内容的全部检查。修改行为或发布元数据前，请先阅读[贡献指南](CONTRIBUTING.md)。问题可提交到 [GitHub Issues](https://github.com/monadrome/butterfly-effect-skill/issues)。
 
 ## 许可证
 

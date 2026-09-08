@@ -22,16 +22,16 @@
   ],
   "license": "MIT",
   "author": {
-    "name": "HuaTalk",
-    "url": "https://github.com/HuaTalk"
+    "name": "monadrome",
+    "url": "https://github.com/monadrome"
   },
-  "homepage": "https://github.com/HuaTalk/butterfly-effect-skill",
+  "homepage": "https://github.com/monadrome/butterfly-effect-skill",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HuaTalk/butterfly-effect-skill.git"
+    "url": "git+https://github.com/monadrome/butterfly-effect-skill.git"
   },
   "bugs": {
-    "url": "https://github.com/HuaTalk/butterfly-effect-skill/issues"
+    "url": "https://github.com/monadrome/butterfly-effect-skill/issues"
   },
   "publishConfig": {
     "access": "public",
