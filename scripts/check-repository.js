@@ -84,9 +84,9 @@ for (const [english, chinese] of [
 for (const relative of ['README.md', 'README-zh.md']) {
   const content = fs.readFileSync(path.join(root, relative), 'utf8');
   for (const [label, pattern] of [
-    ['Agent Skills installation', /npx skills add HuaTalk\/butterfly-effect-skill/],
+    ['Agent Skills installation', /npx skills add monadrome\/butterfly-effect-skill/],
     ['slash Skill invocation', /\/butterfly-effect/],
-    ['Claude marketplace installation', /https:\/\/github\.com\/HuaTalk\/butterfly-effect-skill\.git/],
+    ['Claude marketplace installation', /https:\/\/github\.com\/monadrome\/butterfly-effect-skill\.git/],
     ['explicit prompt-only mode', /--prompt-only/],
     ['detailed output mode', /--detailed/],
     ['no-reliable fallback', /No reliable drift or rewind point detected/],
@@ -95,6 +95,14 @@ for (const relative of ['README.md', 'README-zh.md']) {
     ['license link', /LICENSE/],
   ]) {
     if (!pattern.test(content)) fail(`${relative} is missing the ${label} contract.`);
+  }
+}
+
+for (const relative of ['README.md', 'README-zh.md']) {
+  const content = fs.readFileSync(path.join(root, relative), 'utf8');
+  const installNames = [...content.matchAll(/npm install -D (@[^@\s/]+\/[^\s]+)/g)].map(([, name]) => name);
+  if (installNames.length === 0 || installNames.some((name) => name !== packageJson.name)) {
+    fail(`${relative} npm install command must reference the package name ${packageJson.name}.`);
   }
 }
 

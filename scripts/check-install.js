@@ -33,8 +33,9 @@ try {
     '--pack-destination',
     temporaryRoot,
   ]);
-  const packed = JSON.parse(packOutput);
-  if (!Array.isArray(packed) || packed.length !== 1 || !packed[0].filename) {
+  const parsed = JSON.parse(packOutput);
+  const packed = Array.isArray(parsed) ? parsed : Object.values(parsed);
+  if (packed.length !== 1 || !packed[0].filename) {
     throw new Error('npm pack did not return exactly one archive');
   }
 
@@ -53,13 +54,12 @@ try {
     archivePath,
   ], temporaryRoot);
 
+  const sourcePackage = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
   const installedRoot = path.join(
     temporaryRoot,
     'node_modules',
-    '@huatalk',
-    'butterfly-effect-skill',
+    ...sourcePackage.name.split('/'),
   );
-  const sourcePackage = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
   const installedPackage = JSON.parse(fs.readFileSync(path.join(installedRoot, 'package.json'), 'utf8'));
 
   if (installedPackage.name !== sourcePackage.name || installedPackage.version !== sourcePackage.version) {

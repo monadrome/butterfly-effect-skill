@@ -2,8 +2,8 @@
 name: butterfly-effect
 description: "Detect whether a task artifact drifted and was reworked, recommend the earliest supported history point to continue from, then produce a revised prompt for a better trajectory. Use for session time travel, turning-point analysis, or hindsight-guided continuation; Chinese triggers: 月光宝盒, 蝴蝶效应."
 metadata:
-  author: HuaTalk
-  version: "0.6.0"
+  author: monadrome
+  version: "0.7.0"
   category: prompt-engineering
 ---
 
@@ -20,14 +20,15 @@ Use artifact rework to recommend a session rewind point and revised prompt for c
 - Preserve the original objective and accepted decisions. Include relevant repeated or explicit preferences; omit isolated style reactions, personality inferences, and incidental details.
 - Convert facts discovered later into instructions to inspect, reproduce, or verify. Do not present hindsight as information known at the rewind point.
 - Redact secrets, private identifiers, and irrelevant personal content.
+- Treat `--prompt-only` and `--detailed` as explicit only when the user passes them in the invocation; never infer an output mode from the conversation.
 
 ## Result
 
-If the history does not show a reworked artifact or cannot support its causal boundary, return `No reliable drift or rewind point detected` plus one sentence naming the evidence gap. This is the no-op result. Do not generate a revised prompt unless the user explicitly requests reconstruction from limited evidence.
+Reply in the user's language. If the history does not show a reworked artifact or cannot support its causal boundary, return `No reliable drift or rewind point detected` plus one sentence naming the evidence gap. This is the no-op result. Do not generate a revised prompt unless the user explicitly requests reconstruction from limited evidence.
 
 Otherwise return:
 
-- **Rewind recommendation:** `Rewind to`, `Why`, and `Keep`.
-- **Updated prompt:** one copy-ready fenced `text` code block supported by artifact evidence, continuation constraints, or authoritative context and usable without the retrospective. Do not use Markdown blockquote syntax because copied prompts must not contain leading `>` characters.
+- **Rewind recommendation:** name the artifact it applies to, then `Rewind to`, `Why`, and `Keep`. `Keep` lists the decisions and constraints to carry into the new trajectory.
+- **Updated prompt:** one copy-ready fenced `text` code block supported by artifact evidence, continuation constraints, or authoritative context and usable without the retrospective. Refer to no earlier turn. Do not use Markdown blockquote syntax because copied prompts must not contain leading `>` characters.
 
 For explicit `--prompt-only`, return only the fenced prompt block. For explicit `--detailed`, append at most `Requirements absorbed` and `Not included`. When independent artifact drifts have different boundaries, state that no single rewind point exists and provide separate recommendations; use one prompt only when it covers them without conflating objectives.

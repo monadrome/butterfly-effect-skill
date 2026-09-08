@@ -4,6 +4,20 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-09-08
+
+### Changed
+
+- Moved the npm package from `@huatalk/butterfly-effect-skill` to `@monadrome/butterfly-effect-skill` after the GitHub organization rename. The old package name stays published and is deprecated with a pointer to the new scope, so existing lockfiles keep resolving while new installs use `@monadrome`.
+- Clarified the Skill contract: reply in the user's language, treat `--prompt-only` and `--detailed` as explicit only when passed in the invocation, name the artifact a rewind recommendation applies to, and state what `Keep` carries into the new trajectory.
+- Added Claude Code project-directory resolution to the source-resolution reference: the encoded project directory name and how to identify the current session among several transcripts.
+
+### Fixed
+
+- Accept both the npm 11 array and the npm 12 object form of `npm pack --json` output in the package and install checks.
+- Derive the installed package path in the install smoke test from the manifest name instead of a hard-coded scope.
+- Check that the README install commands reference the manifest package name.
+
 ## [0.6.0] - 2026-08-02
 
 ### Changed

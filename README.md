@@ -1,6 +1,6 @@
 # Butterfly Effect
 
-[![CI](https://github.com/HuaTalk/butterfly-effect-skill/actions/workflows/test.yml/badge.svg)](https://github.com/HuaTalk/butterfly-effect-skill/actions/workflows/test.yml)
+[![CI](https://github.com/monadrome/butterfly-effect-skill/actions/workflows/test.yml/badge.svg)](https://github.com/monadrome/butterfly-effect-skill/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-blue.svg)](README-zh.md)
 
@@ -15,7 +15,7 @@ One assumption or decision can produce code, a document, a design, or another ta
 Install the Skill from npm:
 
 ```bash
-npm install -D @huatalk/butterfly-effect-skill
+npm install -D @monadrome/butterfly-effect-skill
 npx skills-npm setup
 ```
 
@@ -125,7 +125,7 @@ Installation depends on how your AI agent loads Skills.
 For environments using `skills-npm`:
 
 ```bash
-npm install -D @huatalk/butterfly-effect-skill
+npm install -D @monadrome/butterfly-effect-skill
 npx skills-npm setup
 ```
 
@@ -134,7 +134,7 @@ npx skills-npm setup
 Use this for Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot, Cline, and other environments supported by the Agent Skills ecosystem:
 
 ```bash
-npx skills add HuaTalk/butterfly-effect-skill
+npx skills add monadrome/butterfly-effect-skill
 ```
 
 Install location and compatibility depend on the installer and the host agent's Skill implementation.
@@ -144,7 +144,7 @@ Install location and compatibility depend on the installer and the host agent's 
 Register the repository as a plugin marketplace:
 
 ```text
-/plugin marketplace add https://github.com/HuaTalk/butterfly-effect-skill.git
+/plugin marketplace add https://github.com/monadrome/butterfly-effect-skill.git
 ```
 
 Install the plugin in a separate prompt:
@@ -200,7 +200,7 @@ Read the [design notes](docs/en/design.md) for the evidence model, non-goals, an
 Agent Skills:
 
 ```bash
-npx skills add HuaTalk/butterfly-effect-skill
+npx skills add monadrome/butterfly-effect-skill
 ```
 
 Claude Code:
@@ -218,7 +218,7 @@ npm test
 npm run check:package
 ```
 
-`npm test` runs the release-tag regression tests and all repository, Skill, documentation, and package checks. Contributions are welcome; read [CONTRIBUTING.md](CONTRIBUTING.md) before changing behavior or release metadata. Report defects through [GitHub Issues](https://github.com/HuaTalk/butterfly-effect-skill/issues).
+`npm test` runs the release-tag regression tests and all repository, Skill, documentation, and package checks. Contributions are welcome; read [CONTRIBUTING.md](CONTRIBUTING.md) before changing behavior or release metadata. Report defects through [GitHub Issues](https://github.com/monadrome/butterfly-effect-skill/issues).
 
 ## License
 
