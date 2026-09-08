@@ -1,0 +1,25 @@
+.claude-plugin/plugin.json
+  s_94d062e10d2393::t_d723c86cacc7b7 4
+package.json
+  s_94d062e10d2393::t_b385eb0b764325 3
+CHANGELOG.md
+  s_94d062e10d2393::t_7998b815b0221e 7-12
+skills/butterfly-effect/SKILL.md
+  s_94d062e10d2393::t_efbb9862ee3196 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.43-trip",
+  "base_commit_sha": "fff30a4c9b003d83e3e7b67b313ccd4829a141c1",
+  "prompts": {},
+  "sessions": {
+    "s_94d062e10d2393": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f2d592d-88d6-4c19-8204-2585df1f1f45",
+        "model": "deepseek-v4.1-flash-expires-on-0910"
+      },
+      "human_author": "linqh <linqh@trip.com>"
+    }
+  }
+}
