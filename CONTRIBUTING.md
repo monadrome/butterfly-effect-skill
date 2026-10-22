@@ -27,7 +27,7 @@ Read [Skill progressive loading](docs/en/skill-progressive-loading.md) before mo
 
 ## Language Conventions
 
-- Maintainer-facing content is English: the Skill body, `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, scripts, CI, and maintainer docs.
+- Maintainer-facing content is English: the Skill body, `AGENTS.md`, `CONTRIBUTING.md`, scripts, CI, and maintainer docs.
 - `README-zh.md` and `docs/zh/` are user-facing Chinese documentation.
 - The Skill frontmatter description keeps bilingual trigger phrases for discovery.
 - User-facing English and Chinese pages must describe the same behavior, even when the wording is not a literal translation.

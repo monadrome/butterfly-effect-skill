@@ -45,7 +45,6 @@ const englishFiles = [
   'README.md',
   'AGENTS.md',
   'CHANGELOG.md',
-  'CLAUDE.md',
   'CONTRIBUTING.md',
 ].map((relative) => path.join(root, relative));
 englishFiles.push(...walkFiles(path.join(root, 'docs', 'en'), (filePath) => filePath.endsWith('.md')));
