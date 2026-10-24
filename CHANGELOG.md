@@ -4,6 +4,17 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Removed duplicated runtime product rules from repository maintenance instructions, kept Claude guidance as an import of `AGENTS.md`, and routed conditional maintenance work to existing references.
+- Recorded complete runtime invocation-path source-byte totals separately from `AGENTS.md` and `CLAUDE.md` maintenance-file sizes; unchanged Skill routes remain explicitly marked as unchanged.
+
+### Fixed
+
+- Corrected the Claude Code plugin manifest name to match the existing marketplace identity and bilingual README commands; added manifest, install/update, and namespaced-command consistency checks.
+
 ## [0.7.1] - 2026-09-08
 
 ### Changed

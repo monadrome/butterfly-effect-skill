@@ -1,48 +1,24 @@
-# Butterfly Effect - trajectory drift diagnosis and correction
+# Butterfly Effect: repository maintenance
 
-Butterfly Effect first determines whether a produced task artifact was reworked because it missed the expected outcome, then finds the earliest defensible Agent action behind that drift and turns the evidence into a rewind recommendation plus an updated prompt.
+This repository ships the `/butterfly-effect` Agent Skill, user documentation, distribution metadata, and static checks. There is no runtime application or build.
 
-## Core Contract
+## Working Conventions
 
-- Diagnose drift from a reworked task artifact before reconstructing a prompt; do not infer drift from later requests alone.
-- When drift is supported, output a concise rewind recommendation and a copy-ready updated prompt by default, not a retrospective report.
-- Use the current conversation unless the user names another session or transcript.
-- Ground clauses in artifact evidence, continuation constraints, and accepted decisions.
-- Separate stable preferences, task-specific requirements, and one-off changes.
-- Convert facts knowable only later into instructions to inspect or verify.
-- Preserve the original objective and avoid overfitting incidental code details.
-- Treat requirements added before an artifact version exists, normal evolution after acceptance, and repeated explanations without artifact rework as no-op.
-- Do not mistake the first later request for the rewind point; trace artifact rework back to the earlier Agent assumption or action.
-- Keep independent artifact drifts separate. Use a descriptive boundary when exact history is missing, and return `No reliable drift or rewind point detected` when causality cannot support a boundary.
-- Treat `--prompt-only` as explicit-only; never infer prompt-only output as the default.
-- Redact secrets and irrelevant private content from all output.
+- Keep runtime behavior in `./skills/butterfly-effect/SKILL.md` and its directly routed references. Ordinary maintenance is not a Skill invocation; do not apply the Skill's diagnosis or output rules to maintenance replies or edits.
+- Preserve the product purpose and runtime contract. Read the Skill before changing behavior; do not add runtime rules from a maintenance concern without evidence.
+- Maintainer-facing files and Skill prose are English. Keep bilingual discovery terms in frontmatter; Chinese user documentation belongs in `./README-zh.md` and `./docs/zh/`.
+- Keep `./README.md` and `./README-zh.md` structurally and semantically equivalent, and update paired English and Chinese docs together.
 
-## Commands
+## Checks
 
-```bash
-npm test
-npm run release:check
-node --test scripts/check-versions.test.js
-node scripts/check-versions.js
-node scripts/check-skill-contract.js
-npm run check:package
-```
+- Run `npm test` and `git diff --check` before delivery.
+- Run `npm run check:package` when packaging or distribution files change.
+- Static checks validate repository structure and contract anchors, not model behavior, loading costs, latency, or accuracy. Qualify those claims.
+- Record notable changes under `Unreleased` in `./CHANGELOG.md`. Maintenance-only refactors do not require a version bump or release tag.
 
-## Repository Map
+## Read When Needed
 
-- `skills/butterfly-effect/SKILL.md`: canonical decision and output contract
-- `skills/butterfly-effect/references/source-resolution.md`: environment-specific session and transcript discovery
-- `.claude-plugin/`: Claude Code plugin and marketplace metadata
-- `scripts/`: release-tag, repository, Skill, documentation, and package checks
-- `README.md` / `README-zh.md`: equivalent user-facing documentation
-- `CONTEXT.md` / `docs/adr/`: domain language and architectural decisions
-- `docs/en/skill-progressive-loading.md`: maintainer guidance for instruction placement and evaluation
-
-## Maintenance
-
-- Keep the Skill body and maintainer-facing files in English.
-- Keep bilingual discovery terms in the frontmatter description.
-- Keep both READMEs structurally equivalent.
-- Bump the version in `package.json`, `.claude-plugin/plugin.json`, and Skill metadata together.
-- Do not claim a preference is stable unless the source evidence supports it.
-- Keep `NPM_TOKEN` until a Trusted Publisher release and its provenance check both succeed.
+- Changing runtime behavior or source routing: read `./skills/butterfly-effect/SKILL.md`, then only the relevant reference.
+- Moving instructions or evaluating loading costs: read `./docs/en/skill-progressive-loading.md`.
+- Changing documentation or bilingual structure: read `./CONTRIBUTING.md` and the paired pages.
+- Changing packaging, plugin metadata, or preparing a release: read `./CONTRIBUTING.md` and the relevant files under `./.claude-plugin/`.

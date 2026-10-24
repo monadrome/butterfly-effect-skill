@@ -46,7 +46,7 @@ Do not hide a universal safeguard behind a conditional route. Secret redaction, 
 ## Evaluation Loop
 
 1. Record the baseline Skill revision and behavior oracle.
-2. Measure `SKILL.md` lines, words, and bytes.
+2. Record the exact required files for each invocation path and total their source bytes, including the complete `SKILL.md` and every required reference. Measure repository instructions separately.
 3. Change one high-cost conditional or duplicated block.
 4. Run old and new versions with the same raw transcript in separate fresh contexts.
 5. Grade observable output: task artifact identified, rework supported, no-op cases rejected, boundary precision justified, continuation constraints retained, later discoveries converted, and explicit-only modes respected.
@@ -58,6 +58,46 @@ Do not give the evaluator the intended prompt or your diagnosis. A forward test 
 ## Current Result
 
 The entry file is a decision contract rather than a reasoning tutorial. Its only direct reference contains environment-specific source discovery. Rewind advice, false-precision prevention, the no-reliable fallback, and explicit-only prompt mode remain testable repository anchors.
+
+The 2026-10-22 maintenance comparison uses initial HEAD `566cee7c96701de6a2359596f6b8de1ff62eb99b` as its immutable baseline. The Skill entry and its single conditional reference are unchanged. The following complete required-path totals count UTF-8 source bytes from that baseline and this revision:
+
+| Invocation path | Complete required files | Initial HEAD | This revision | Change |
+|---|---|---:|---:|---:|
+| Current conversation with visible history | `skills/butterfly-effect/SKILL.md` | 3,461 | 3,461 | 0 (unchanged) |
+| Named, ambiguous, truncated, or undiscovered history | `skills/butterfly-effect/SKILL.md`; `skills/butterfly-effect/references/source-resolution.md` | 6,346 | 6,346 | 0 (unchanged) |
+
+The complete `SKILL.md`, including frontmatter, is counted once per path. Conversation and transcript content, tool output, and host-provided instructions are excluded. Required reference counts remain zero and one respectively; a reference read need not correspond to one tool round trip because hosts may batch reads.
+
+Repository instructions are a separate source cost:
+
+| File | Initial HEAD | This revision | Change |
+|---|---:|---:|---:|
+| `AGENTS.md` | 2,912 | 1,847 | -1,065 |
+| `CLAUDE.md` | 3,096 | 24 | -3,072 |
+
+The 24-byte Claude file imports `AGENTS.md`; it is not a 24-byte total after import expansion. These files affect repository maintenance where the host loads them. They are not part of an installed Skill invocation in another project that does not load this repository's instructions.
+
+Reproduce the file sizes from the repository root, then add the complete file sets listed above. The baseline commit is the exact Git object named above; no session-temporary file is required:
+
+```bash
+node <<'NODE'
+const fs = require('node:fs');
+const { execFileSync } = require('node:child_process');
+const baseline = '566cee7c96701de6a2359596f6b8de1ff62eb99b';
+for (const file of [
+  'skills/butterfly-effect/SKILL.md',
+  'skills/butterfly-effect/references/source-resolution.md',
+  'AGENTS.md',
+  'CLAUDE.md',
+]) {
+  const before = execFileSync('git', ['show', `${baseline}:${file}`]).length;
+  const after = fs.readFileSync(file).length;
+  console.log(`${file}: ${before} -> ${after} bytes (${after - before})`);
+}
+NODE
+```
+
+These are static source-size comparisons, not token, latency, context-window, accuracy, or cross-agent behavior measurements. No host loading traces were collected. The unchanged runtime routes provide no demonstrated runtime context saving; maintenance instruction deduplication does not establish model or performance effects.
 
 ## Change Checklist
 

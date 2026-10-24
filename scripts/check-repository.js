@@ -31,6 +31,8 @@ for (const relative of ['package.json', '.claude-plugin/plugin.json', '.claude-p
 }
 
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+const pluginJson = JSON.parse(fs.readFileSync(path.join(root, '.claude-plugin/plugin.json'), 'utf8'));
+const marketplaceJson = JSON.parse(fs.readFileSync(path.join(root, '.claude-plugin/marketplace.json'), 'utf8'));
 if (packageJson.packageManager !== 'npm@11.6.2') {
   fail('package.json must pin the npm release client through packageManager.');
 }
@@ -39,6 +41,15 @@ if (packageJson.scripts?.prepublishOnly !== 'npm test') {
 }
 if (!/npm publish --dry-run/.test(packageJson.scripts?.['release:check'] || '')) {
   fail('package.json must provide a release:check dry run.');
+}
+
+const localMarketplacePlugin = Array.isArray(marketplaceJson.plugins)
+  ? marketplaceJson.plugins.find((plugin) => plugin?.source === './')
+  : null;
+if (!localMarketplacePlugin) {
+  fail('.claude-plugin/marketplace.json must declare a local plugin with source "./".');
+} else if (pluginJson.name !== localMarketplacePlugin.name) {
+  fail('.claude-plugin/plugin.json name must match the local marketplace plugin name.');
 }
 
 const englishFiles = [
@@ -94,6 +105,18 @@ for (const relative of ['README.md', 'README-zh.md']) {
     ['license link', /LICENSE/],
   ]) {
     if (!pattern.test(content)) fail(`${relative} is missing the ${label} contract.`);
+  }
+  const pluginIdentity = `${pluginJson.name}@${marketplaceJson.name}`;
+  const pluginCommands = [...content.matchAll(/\/plugin\s+(install|update)\s+([^\s`]+)/g)];
+  for (const command of ['install', 'update']) {
+    const commands = pluginCommands.filter(([, action]) => action === command);
+    if (commands.length === 0 || commands.some(([, , identity]) => identity !== pluginIdentity)) {
+      fail(`${relative} Claude plugin ${command} commands must use ${pluginIdentity}.`);
+    }
+  }
+  const nativeCommands = [...content.matchAll(/`(\/[^`\s]+:[^`\s]+)`/g)];
+  if (nativeCommands.length === 0 || nativeCommands.some(([, command]) => command !== `/${pluginJson.name}:butterfly-effect`)) {
+    fail(`${relative} must describe the namespaced Skill command using the plugin manifest name.`);
   }
 }
 

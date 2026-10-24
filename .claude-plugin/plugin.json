@@ -1,5 +1,5 @@
 {
-  "name": "butterfly-effect-skill",
+  "name": "butterfly-effect",
   "description": "Detect task-artifact drift, recommend where an AI session should rewind, and generate a revised prompt for continuing from there.",
   "version": "0.7.1",
   "author": {
